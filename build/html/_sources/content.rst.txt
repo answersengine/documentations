@@ -1,0 +1,23 @@
+Fetch is a platform where you can scrape data from the internet quickly and easily without incurring significant costs.
+We do this by allowing you to scrape data from the shared-cache of contents that Fetch has collectively downloaded from the Internet for other users to scrape.
+Your scraping from the cached-content does not necessarily prevent you from getting the freshest content. In fact, you can specify how fresh the contents you want to scrape are by specifying your freshness-type and also specifying that the content should be “force fetched” or not.
+
+Keep in mind that any page that Fetch downloads for your scraper, will be stored on the shared-cache, and will be available to other Fetch users to use for their own scrapers. This reuse of cached pages allows every Fetch users to collectively save cost and save time as they scrape data from the Internet.
+Fetch is like curl, where you have lower level control of HTTP request, such as request method, headers, body, and more.
+
+Getting Started
+###############
+
+In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into AnswerEngine Fetch. Currently we support ruby 2.4.4 and 2.5.3.
+
+Install AnswersEngine Command Line Interface using rubygems
+************************************************************
+
+.. code-block:: bash
+
+   $ gem install answersengine --source https://Q34T4-cZG2rRRuLMNmG2zvwZsIJl7W5g@gem.fury.io/answersengine/
+   Successfully installed answersengine-0.2.3
+   Parsing documentation for answersengine-0.2.3
+   Done installing documentation for answersengine after 0 seconds
+   1 gem installed
+

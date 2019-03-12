@@ -1,0 +1,1537 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Coding Tutorials &mdash; AnswersEngine  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How-Tos" href="how_tos.html" />
+    <link rel="prev" title="Scraper Maintenance workflow" href="scraper_maintenance_workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AnswersEngine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Coding Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-ebay-scraper-ruby">Simple Ebay scraper (Ruby)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-create-a-base-scraper-locally">Exercise 1: Create a base scraper locally.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-2-run-the-scraper-on-fetch">Exercise 2: Run the scraper on Fetch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-3-create-parser-script">Exercise 3. Create parser script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-4-enqueue-more-pages-and-pass-variables-to-the-next-pages">Exercise 4: Enqueue more pages, and pass variables to the next pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-5-exporting-outputs">Exercise 5: Exporting outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnswersEngine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Coding Tutorials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/coding_tutorials.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="coding-tutorials">
+<h1>Coding Tutorials<a class="headerlink" href="#coding-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-ebay-scraper-ruby">
+<h2>Simple Ebay scraper (Ruby)<a class="headerlink" href="#simple-ebay-scraper-ruby" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create an ebay scraper from scratch.
+In this tutorial, we will go step by step in creating a scraper that scrapes an ebay listing page, and loop through each of the pages to extract some related information from it. You will also get familiarized with the basic usage of developing on the Fetch platform.</p>
+<p>If you want to see the the exercise solutions, please refer to the branches in <a class="reference external" href="https://github.com/answersengine/ebay-scraper">https://github.com/answersengine/ebay-scraper</a></p>
+<div class="section" id="exercise-1-create-a-base-scraper-locally">
+<h3>Exercise 1: Create a base scraper locally.<a class="headerlink" href="#exercise-1-create-a-base-scraper-locally" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise we will create a base scraper. At minimum a scraper needs a seeder script for it to run.
+After that we will commit and deploy to Fetch.</p>
+<p>Let’s create an empty directory first, and name it ‘ebay-scraper’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir ebay-scraper
+</pre></div>
+</div>
+<p>Next let’s go into the directory and initialize it as a Git repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ebay-scraper
+$ git init .
+Initialized empty Git repository in /Users/workspace/ebay-scraper/.git/
+</pre></div>
+</div>
+<p>Now, let’s create a seeder script.
+A seeder script gets run when a scraping job is run. This allows for us to seed the first few pages that will need to be fetched and parsed by Fetch.</p>
+<p>Let’s create a seeder directory first, so that we can put any files related to our seeding there. This is a good convention to keep our codes organized</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir seeder
+</pre></div>
+</div>
+<p>Next, let’s create a ruby script called seeder.rb in the seeder directory with the following content:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">page_type</span><span class="p">:</span> <span class="s1">&#39;listings&#39;</span><span class="p">,</span>
+  <span class="nb">method</span><span class="p">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the ruby script above, we are basically seeding an Apple iPhone page on ebay, so that Fetch can download the page so that it can be parsed. We are also setting page_type to ‘listings’, this allows Fetch to know which parser script to use to parse the content of this page. More on this on Exercise 3.
+Note that <cite>pages</cite> is a reserved variable. It is an array that represents what pages you want to seed, so that it gets fetched.</p>
+<p>After you’ve created the seeder.rb file, the seeder directory, should look like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -alth
+total <span class="m">8</span>
+-rw-r--r--  <span class="m">1</span> johndoe  staff   122B <span class="m">26</span> Nov <span class="m">16</span>:16 seeder.rb
+drwxr-xr-x  <span class="m">3</span> johndoe  staff    96B <span class="m">26</span> Nov <span class="m">16</span>:15 .
+drwxr-xr-x  <span class="m">4</span> johndoe  staff   128B <span class="m">26</span> Nov <span class="m">16</span>:15 ..
+</pre></div>
+</div>
+<p>Let’s go back to the root directory of the project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+$ ls -alth
+total <span class="m">0</span>
+drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</span> Nov <span class="m">16</span>:19 .git
+drwxr-xr-x   <span class="m">3</span> johndoe  staff    96B <span class="m">26</span> Nov <span class="m">16</span>:15 seeder
+drwxr-xr-x   <span class="m">4</span> johndoe  staff   128B <span class="m">26</span> Nov <span class="m">16</span>:15 .
+drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</span> Nov <span class="m">15</span>:59 ..
+</pre></div>
+</div>
+<p>Now that we’ve created the seeder script, let’s see if there are any syntax error in it.
+Luckily for us, by using the answersengine command line interface(cli), we can trial-run a script without actually saving it to Fetch.</p>
+<p>From the root of project directory, let’s try the seeder script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine seeder try ebay seeder/seeder.rb
+Trying seeder <span class="nv">script</span>
+<span class="o">===========</span> Seeding Script <span class="nv">Executed</span> <span class="o">===========</span>
+----------- New Pages to Enqueue: -----------
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+    <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>If you see the above, it means the trial-run was successful.</p>
+<p>Let’s now commit this git repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;created a seeder file&#39;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 7632be0<span class="o">]</span> created a seeder file
+ <span class="m">1</span> file changed, <span class="m">5</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> seeder/seeder.rb
+</pre></div>
+</div>
+<p>Next, let’s push it to a online git repository provider. In this case let’s push this to github.
+In the example below it is using our git repository, you should push to your own repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/answersengine/ebay-scraper.git
+$ git push -u origin master
+Counting objects: <span class="m">4</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">382</span> bytes <span class="p">|</span> <span class="m">382</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote:
+remote: Create a pull request <span class="k">for</span> <span class="s1">&#39;master&#39;</span> on GitHub by visiting:
+remote:      https://github.com/answersengine/ebay-scraper/pull/new/master
+remote:
+To https://github.com/answersengine/ebay-scraper.git
+ * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+Branch <span class="s1">&#39;master&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;master&#39;</span> from <span class="s1">&#39;origin&#39;</span>.
+</pre></div>
+</div>
+<p>Ok, looks like this has successfully pushed.</p>
+<p>Let’s now create a config file. A scraper requires a config file so that Fetch understands how to seed, and do other things.
+Create a config.yaml file in the root project directory with the following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+ <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+ <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional. Set it to true if you want to disable execution of this file</span>
+</pre></div>
+</div>
+<p>The config above simply tells Fetch where the seeder file is, so that it can be executed.</p>
+<p>Let’s now commit this config file on git, and push it to Github.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;add config.yaml file&#39;</span>
+<span class="o">[</span>master c32d451<span class="o">]</span> add config.yaml file
+ <span class="m">1</span> file changed, <span class="m">3</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> config.yaml
+$ git push origin master
+Counting objects: <span class="m">3</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>, <span class="m">383</span> bytes <span class="p">|</span> <span class="m">383</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">3</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+To https://github.com/answersengine/ebay-scraper.git
+   7632be0..c32d451  master -&gt; master
+</pre></div>
+</div>
+<p>Congratulations, you’ve successfully created a base scraper that includes a seeder script and a config file. You’ve also pushed this scraper codes to Github.</p>
+<p>In the next exercise we’ll learn how to run this scraper on Fetch.</p>
+</div>
+<div class="section" id="exercise-2-run-the-scraper-on-fetch">
+<h3>Exercise 2: Run the scraper on Fetch<a class="headerlink" href="#exercise-2-run-the-scraper-on-fetch" title="Permalink to this headline">¶</a></h3>
+<p>In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on Fetch. If you’ve skipped the last exercise, you can see the source code here: <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise1">https://github.com/answersengine/ebay-scraper/tree/exercise1</a></p>
+<p>Let’s run the code on Fetch now. But before we do that, we need to create the scraper first using the code that was created. You also need the URL to your scraper’s Git repository.</p>
+<p>Create the scraper on Fetch and name it ‘ebay.’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create ebay https://github.com/answersengine/ebay-scraper.git
+<span class="o">{</span>
+ <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
+ <span class="s2">&quot;id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;account_id&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;force_fetch&quot;</span>: false,
+ <span class="s2">&quot;freshness_type&quot;</span>: <span class="s2">&quot;any&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:00:43.007755Z&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;https://github.com/answersengine/ebay-scraper.git&quot;</span>,
+ <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
+ <span class="s2">&quot;deployed_git_repository&quot;</span>: null,
+ <span class="s2">&quot;deployed_git_branch&quot;</span>: null,
+ <span class="s2">&quot;deployed_commit_hash&quot;</span>: null,
+ <span class="s2">&quot;deployed_at&quot;</span>: null,
+ <span class="s2">&quot;config&quot;</span>: null
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If you see the above, that means it successfully created the scraper.</p>
+<p>Next, we need to deploy from your remote Git repository onto Fetch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">122</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;https://github.com/answersengine/ebay-scraper.git&quot;</span>,
+ <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
+ <span class="s2">&quot;errors&quot;</span>: null,
+ <span class="s2">&quot;success&quot;</span>: true,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:03:09.002231Z&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;seeder&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./seeder/seeder.rb&quot;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Seems like the deployment was a success, and that there were no errors.</p>
+<p>You can also see the deployment history of this scraper as well.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deployment list ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>: <span class="m">122</span>,
+  <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+  <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03&quot;</span>,
+  <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;https://github.com/answersengine/ebay-scraper.git&quot;</span>,
+  <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
+  <span class="s2">&quot;errors&quot;</span>: null,
+  <span class="s2">&quot;success&quot;</span>: true,
+  <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:03:09.002231Z&quot;</span>,
+  <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;seeder&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./seeder/seeder.rb&quot;</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Of course, because there was only one deployment, you only see one here.</p>
+<p>Let’s now start the scraper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper start ebay
+Starting a scrape job...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">70</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:06:54.399547Z&quot;</span>,
+ <span class="s2">&quot;freshness&quot;</span>: null,
+ <span class="s2">&quot;force_fetch&quot;</span>: false,
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;active&quot;</span>,
+ <span class="s2">&quot;seeding_at&quot;</span>: null,
+ <span class="s2">&quot;seeding_failed_at&quot;</span>: null,
+ <span class="s2">&quot;seeded_at&quot;</span>: null,
+ <span class="s2">&quot;seeding_try_count&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;seeding_fail_count&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;seeding_error_count&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;worker_count&quot;</span>: <span class="m">1</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Doing the above will create a new scrape job and run it.
+Notice that the job status is “active”. This means that the scraper job is currently running.</p>
+<p>Let’s give it a minute, and see the stats of the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats ebay
+<span class="o">{</span>
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,             <span class="c1"># Job ID</span>
+ <span class="s2">&quot;pages&quot;</span>: <span class="m">1</span>,               <span class="c1"># How many pages in the scrape job</span>
+ <span class="s2">&quot;fetched_pages&quot;</span>: <span class="m">1</span>,       <span class="c1"># Number of fetched pages</span>
+ <span class="s2">&quot;to_fetch&quot;</span>: <span class="m">0</span>,            <span class="c1"># Pages that needs to be fetched</span>
+ <span class="s2">&quot;fetching_failed&quot;</span>: <span class="m">0</span>,     <span class="c1"># Pages that failed fetching</span>
+ <span class="s2">&quot;fetched_from_web&quot;</span>: <span class="m">1</span>,    <span class="c1"># Pages that were fetched from Web</span>
+ <span class="s2">&quot;fetched_from_cache&quot;</span>: <span class="m">0</span>,  <span class="c1"># Pages that were fetched from the shared Cache</span>
+ <span class="s2">&quot;parsed_pages&quot;</span>: <span class="m">0</span>,        <span class="c1"># Pages that have been parsed by parsing script</span>
+ <span class="s2">&quot;to_parse&quot;</span>: <span class="m">1</span>,            <span class="c1"># Pages that needs to be parsed</span>
+ <span class="s2">&quot;parsing_failed&quot;</span>: <span class="m">0</span>,      <span class="c1"># Pages that failed parsing</span>
+ <span class="s2">&quot;outputs&quot;</span>: <span class="m">0</span>,             <span class="c1"># Outputs of the scrape</span>
+ <span class="s2">&quot;output_collections&quot;</span>: <span class="m">0</span>,  <span class="c1"># Output collections</span>
+ <span class="s2">&quot;workers&quot;</span>: <span class="m">1</span>,             <span class="c1"># How many workers are used in this scrape job</span>
+ <span class="s2">&quot;time_stamp&quot;</span>: <span class="s2">&quot;2018-11-26T22:09:57.956158Z&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>From the stats above, we can derive that one page has been seeded, and that one page has been fetched by our scrape job. So this looks Good.</p>
+<p>Just to be sure, let’s check the scraper log to see if there are any errors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper log ebay
+</pre></div>
+</div>
+<p>Seems like there are no errors so far.</p>
+<p>You have now successfully ran a scrape job on Fetch</p>
+<p>Congratulations, you have completed exercise 2.</p>
+<p>To see the codes that was done throughout this exercise, please visit <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise2">https://github.com/answersengine/ebay-scraper/tree/exercise2</a></p>
+<p>In the next exercise, we’ll learn how to write a parser script so that we can parse the pages that has been enqueued by the seeder.</p>
+</div>
+<div class="section" id="exercise-3-create-parser-script">
+<h3>Exercise 3. Create parser script<a class="headerlink" href="#exercise-3-create-parser-script" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise, we’ll learn how to write a parser script so that we can parse the pages that has been fetched, and output it into a collection.
+If you have not done Exercise 2, please do so first, as this exercise depends on exercise 2.</p>
+<p>To continue where we left off, let’s look at the pages that has been enqueued and fetched.</p>
+<p>Look at the page list that is in the ebay scraper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page list ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>, <span class="c1"># Global ID</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,
+  <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+  <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+  <span class="s2">&quot;headers&quot;</span>: null,
+  <span class="s2">&quot;body&quot;</span>: null,
+  <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:07:49.013537Z&quot;</span>,
+  ...
+  <span class="s2">&quot;fetched_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:08:03.14285Z&quot;</span>,
+  ...
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>This returns the page that the seeder have enqueued.
+Also, take note of the GID field <strong>www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e</strong>
+GID (Global ID) is a very important concept in Fetch. This represents a unique identifier of that particular page that you’ve enqueued. You can refer to this particular page by referring to this GID.</p>
+<p>If you want to see the scraper job’s page in, you can do like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<span class="o">{</span>
+ <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,
+ <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+ <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+ <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+ <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+...
+</pre></div>
+</div>
+<p>You can also take a look at the Global page for this GID.
+Think of the global page as a shared-cache of metadatas and contents related to pages that all Fetch users have fetched. Globalpage contains many more information about the page than the scraper’s job page. Please refer to the “High Level Concepts” section to learn more.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<span class="o">{</span>
+ <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
+ <span class="s2">&quot;hostname&quot;</span>: <span class="s2">&quot;www.ebay.com&quot;</span>,
+ <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+ <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+ <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span>,
+ <span class="s2">&quot;headers&quot;</span>: null,
+ <span class="s2">&quot;body&quot;</span>: null,
+...
+</pre></div>
+</div>
+<p>Now that you’ve seen an information of a global page, let’s look at the actual content that is stored in the cache.
+Let’s take the same GID and preview the content of that page</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+Preview content url: <span class="s2">&quot;https://fetch.answersengine.com/public/global_pages/preview/ICK7bZUfp19F4_8DnGn36tjGuS8Otfsg5QRDTXQyJTfQpGrc697HsAMiTlv6aKKH1x9rd8RYffluI7amPUvCAFOLDPlcH0Wmq3b0eiCJGUFi5xLhqp7E0CSt0hTFYxB6dY2H6Wzh7sCcBey93TbwJFArhcbar6U-Owd5QCsUUS-eW3OPMN5OPmYACwRJ0AJHESsjVTmsnfCw6EkMCUQlXmzz8Q2TMF8v1PHPv5185Z04w14rDY78E1UjdDOJO7W7jBK79JetWj5wUCOttBGolj_G7T9_9j0V5sA0dRn88wib19BIjboDHOczufyCv78x1f4njGMZZFwb&quot;</span>
+</pre></div>
+</div>
+<img alt="_images/ebay-preview.png" src="_images/ebay-preview.png" />
+<p>Copy and paste the link that you got from the command line result, into a browser, and you will see the actual content of the the cache.</p>
+<p>Previewing the cached page is a powerful thing when developing a parser script, because it allows you to get the actual page that the parser will execute on. This is much better than other kinds of web scraping frameworks out there, where you are developing scraper codes and “hoping” that the page scraped will be the same with what you are seeing.</p>
+<p>Once you have the previewed content opened on your browser, let’s look at it, and try to extract the listing names. You can use the Chrome Developer Tool (or other similar tools) to extract the DOM path.</p>
+<img alt="_images/ebay-listing.png" src="_images/ebay-listing.png" />
+<p>What we are going to do next is to create a ruby script for parsing and extracting the listing names, prices, and the listing URLs, and enqueue additional pages, that we can parse on a later step.</p>
+<p>Let’s now create a ruby file, called listings.rb. For standard conventions, let’s put this file in a directory called ‘parsers.’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir parsers
+$ touch parsers/listings.rb
+$ ls -alth
+total <span class="m">8</span>
+drwxr-xr-x  <span class="m">14</span> johndoe  staff   448B <span class="m">27</span> Nov <span class="m">20</span>:01 .git
+drwxr-xr-x   <span class="m">3</span> johndoe  staff    96B <span class="m">27</span> Nov <span class="m">20</span>:01 parsers
+drwxr-xr-x   <span class="m">6</span> johndoe  staff   192B <span class="m">27</span> Nov <span class="m">20</span>:01 .
+-rw-r--r--   <span class="m">1</span> johndoe  staff   123B <span class="m">26</span> Nov <span class="m">16</span>:54 config.yaml
+drwxr-xr-x   <span class="m">3</span> johndoe  staff    96B <span class="m">26</span> Nov <span class="m">16</span>:15 seeder
+drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</span> Nov <span class="m">15</span>:59 ..
+$ ls -alth parsers
+total <span class="m">0</span>
+drwxr-xr-x  <span class="m">3</span> johndoe  staff    96B <span class="m">27</span> Nov <span class="m">20</span>:01 .
+-rw-r--r--  <span class="m">1</span> johndoe  staff     0B <span class="m">27</span> Nov <span class="m">20</span>:01 listings.rb
+drwxr-xr-x  <span class="m">6</span> johndoe  staff   192B <span class="m">27</span> Nov <span class="m">20</span>:01 ..
+</pre></div>
+</div>
+<p>Next, type the following codes into the parsers/listings.rb file.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">nokogiri</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>“content” is a reserved word that contains the content data. In this case, it is the same exact html content that you are currently also previewing from the globalpage.
+We support the use Nokogiri for parsing html/xml.</p>
+<p>Let’s add the codes that loops through the listing rows and extract each individual listing name, price, and listings URLs.</p>
+<p>Get the group of listings from nokogiri.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">listings</span> <span class="o">=</span> <span class="n">nokogiri</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;ul.b-list__items_nofooter li.s-item&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And then loop through the listing rows to extract the name, price, listing URL, and save the records to a Fetch collection.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">listings</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">listing</span><span class="o">|</span>
+    <span class="c1"># initialize an empty hash</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># extract the information into the product hash</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;h3.s-item__title&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the price</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;price&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;.s-item__price&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the listing URL</span>
+    <span class="n">item_link</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;a.s-item__link&#39;</span><span class="p">)</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">item_link</span><span class="o">[</span><span class="s1">&#39;href&#39;</span><span class="o">]</span> <span class="k">unless</span> <span class="n">item_link</span><span class="o">.</span><span class="n">nil?</span>
+
+    <span class="c1"># specify the collection where this record will be stored</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;_collection&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;listings&quot;</span>
+
+    <span class="c1"># save the product to the job’s outputs</span>
+    <span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="n">product</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>“outputs” is a reserved word, that contains a list of records that will be stored onto the scrape job’s output collection(s)</p>
+<p>Once you’ve written the codes, your listings.rb script should look like this:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize nokogiri</span>
+<span class="n">nokogiri</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># get the group of listings</span>
+<span class="n">listings</span> <span class="o">=</span> <span class="n">nokogiri</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;ul.b-list__items_nofooter li.s-item&#39;</span><span class="p">)</span>
+
+<span class="c1"># loop through the listings</span>
+<span class="n">listings</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">listing</span><span class="o">|</span>
+    <span class="c1"># initialize an empty hash</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># extract the information into the product hash</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;h3.s-item__title&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the price</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;price&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;.s-item__price&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the listing URL</span>
+    <span class="n">item_link</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;a.s-item__link&#39;</span><span class="p">)</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">item_link</span><span class="o">[</span><span class="s1">&#39;href&#39;</span><span class="o">]</span> <span class="k">unless</span> <span class="n">item_link</span><span class="o">.</span><span class="n">nil?</span>
+
+    <span class="c1"># specify the collection where this record will be stored</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;_collection&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;listings&quot;</span>
+
+    <span class="c1"># save the product to the job’s outputs</span>
+    <span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="n">product</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Now that you’ve created the listings.rb file, let’s do a trial-run of this page to ensure that this page would execute properly on Fetch.</p>
+<p>Let’s use the parser try command on this script on the same GID.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+Trying parser script
+getting Job <span class="nv">Page</span>
+<span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
+----------- Outputs: -----------
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 Plus a1661 128GB Smartphone LTE CDMA/GSM Unlocked&quot;</span>,
+    <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$349</span><span class="s2">.99&quot;</span>,
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-Plus-a1661-128GB-Smartphone-LTE-CDMA-GSM-Unlocked/201795245944?epid=232746597&amp;hash=item2efbef1778:m:mks-K6wL_LJV1VV0f3-E8ow:sc:USPSPriority!95113!US!-1&amp;var=501834147259&quot;</span>,
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone XS MAX 256GB - All Colors - GSM &amp; CDMA UNLOCKED&quot;</span>,
+    <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">,199.00&quot;</span>,
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-XS-MAX-256GB-All-Colors-GSM-CDMA-UNLOCKED/163267140481?epid=24023697465&amp;hash=item26037adb81:m:m63pSpGuBZVZTiz-IS3A-UA:sc:USPSPriorityMailPaddedFlatRateEnvelope!95113!US!-1&amp;var=462501487846&quot;</span>,
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>
+  <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>In the trial-run above, you saw that we were able to extract into several outputs correctly.</p>
+<p>Seems like this is a successful trial run.</p>
+<p>Let’s now commit this code to Git.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added listings parser&#39;</span>
+<span class="o">[</span>master e1a8980<span class="o">]</span> added listings parser
+ <span class="m">1</span> file changed, <span class="m">27</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> parsers/listings.rb
+</pre></div>
+</div>
+<p>Now that we’re done with creating the parser script, there is only one thing left to do before this is ready to be run on Fetch. And that is to modify the config file so that it contains the references pointing to this file.</p>
+<p>Add the parsers section of the config.yaml so that it looks like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+ <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+ <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional. Set it to true if you want to disable</span>
+<span class="nt">parsers</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/listings.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional</span>
+</pre></div>
+</div>
+<p>And let’s commit this to Git, and push it to your remote Git repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;add listings parser to config&#39;</span>
+<span class="o">[</span>master 209dba3<span class="o">]</span> add listings parser to config
+ <span class="m">1</span> file changed, <span class="m">6</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">2</span> deletions<span class="o">(</span>-<span class="o">)</span>
+$ git push origin master
+Counting objects: <span class="m">7</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">7</span>/7<span class="o">)</span>, <span class="m">1</span>.12 KiB <span class="p">|</span> <span class="m">1</span>.12 MiB/s, <span class="k">done</span>.
+Total <span class="m">7</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+To https://github.com/answersengine/ebay-scraper.git
+   c32d451..209dba3  master -&gt; master
+</pre></div>
+</div>
+<p>Now that you’ve pushed the code to your remote Git repository, let’s deploy the scraper again.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">130</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;209dba31698b2146b9c841f0a91bfdd966f973aa&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;https://github.com/answersengine/ebay-scraper.git&quot;</span>,
+ <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
+ <span class="s2">&quot;errors&quot;</span>: null,
+ <span class="s2">&quot;success&quot;</span>: true,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T03:05:02.220272Z&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;parsers&quot;</span>: <span class="o">[</span>
+   <span class="o">{</span>
+    <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./parsers/listings.rb&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>
+   <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">&quot;seeder&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./seeder/seeder.rb&quot;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Looks like a successful deploy.</p>
+<p>Because you have a running scrape job (you’ve started this scrape job in Exercise 2), as soon as you deploy new code, the scrape job will immediately download and execute.</p>
+<p>Let’s now check for the stats on this job.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats ebay
+<span class="o">{</span>
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,
+ <span class="s2">&quot;pages&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;fetched_pages&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;to_fetch&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetching_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetched_from_web&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;fetched_from_cache&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsed_pages&quot;</span>: <span class="m">1</span>,        <span class="c1"># Parsed pages is now 1</span>
+ <span class="s2">&quot;to_parse&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsing_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;outputs&quot;</span>: <span class="m">48</span>,            <span class="c1"># We now have 48 output records</span>
+ <span class="s2">&quot;output_collections&quot;</span>: <span class="m">1</span>,  <span class="c1"># And we have 1 output collection</span>
+ <span class="s2">&quot;workers&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;time_stamp&quot;</span>: <span class="s2">&quot;2018-11-28T03:06:04.959513Z&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If you look at the result of the command above, you see that our scraper has already parsed the listings page, and created 48 output records, and it also created one output collection.</p>
+<p>Let’s check the scraper log to see if there are any errors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper log ebay
+</pre></div>
+</div>
+<p>Seems like there are no errors so far.</p>
+<p>Let’s look further on what collections are created by the scraper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output collections ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">48</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Just as we specified in the parser code, it saves the output records onto the listings collection.</p>
+<p>Let’s look at the output records inside the listings collection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list ebay --collection listings
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T03:05:56.510638Z&quot;</span>,
+  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
+  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;016f6ca8010541539e13c687edd6cf91&quot;</span>,
+  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">70</span>,
+  <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$239</span><span class="s2">.99 to </span><span class="nv">$339</span><span class="s2">.99&quot;</span>,
+  <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 32/128/256GB Factory Unlocked AT\u0026T Sprint Verizon T-Mobile&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-32-128-256GB-Factory-Unlocked-AT-T-Sprint-Verizon-T-Mobile/382231636268?epid=232669182\u0026hash=item58fec7e92c:m:mGdfdcg2f2rqhQh7_Aq4EYQ\u0026var=651061946000&quot;</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T03:05:56.510638Z&quot;</span>,
+  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
+  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;029788f01c73460683f0910681348222&quot;</span>,
+  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">70</span>,
+  <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$374</span><span class="s2">.99&quot;</span>,
+  <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 Plus a1661 256GB Smartphone LTE CDMA/GSM Unlocked&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-Plus-a1661-256GB-Smartphone-LTE-CDMA-GSM-Unlocked/152410916266?epid=238409027\u0026hash=item237c6605aa:m:mks-K6wL_LJV1VV0f3-E8ow:sc:USPSPriority!95113!US!-1\u0026var=451703657817&quot;</span>
+ <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>We’ve got almost same exact output records with the ones on the trial-run. The difference is, now you can see “_gid”, “_created_at”, “_id”, and “_job_id”. These are metadatas that are automatically generated. Output metadata fields are usually starts with “_”(underscore) on their field names.</p>
+<p>If you want to see one output record, you can run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
+<span class="o">{</span>
+ <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+ <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T03:05:56.510638Z&quot;</span>,
+ <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
+ <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;97d7bcd021de4bdbb6818825703b26dd&quot;</span>,
+ <span class="s2">&quot;_job_id&quot;</span>: <span class="m">70</span>,
+ <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$259</span><span class="s2">.99 to </span><span class="nv">$344</span><span class="s2">.99&quot;</span>,
+ <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 - 32/128/256GB Unlocked GSM (AT\u0026T T-Mobile +More) 4G Smartphone&quot;</span>,
+ <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-32-128-256GB-Unlocked-GSM-AT-T-T-Mobile-More-4G-Smartphone/142631642365?epid=240455139\u0026hash=item21358224fd:m:miu7oWIlKlIyiHYnR76rFnA\u0026var=441608064608&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>We’re nearing the end of the exercise.
+Let’s cancel the current scrape job, as we will be creating a new job in the next exercise.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel ebay
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">70</span>,
+ <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:06:54.399547Z&quot;</span>,
+ <span class="s2">&quot;freshness&quot;</span>: null,
+ <span class="s2">&quot;force_fetch&quot;</span>: false,
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;cancelled&quot;</span>,
+ <span class="s2">&quot;seeding_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:07:10.68643Z&quot;</span>,
+ <span class="s2">&quot;seeding_failed_at&quot;</span>: null,
+ <span class="s2">&quot;seeded_at&quot;</span>: <span class="s2">&quot;2018-11-26T22:07:49.021679Z&quot;</span>,
+ <span class="s2">&quot;seeding_try_count&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;seeding_fail_count&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;seeding_error_count&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;worker_count&quot;</span>: <span class="m">1</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Congratulations, you have completed exercise 3.
+You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.</p>
+<p>The source codes that we’ve built throughout the exercise are located here <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise3">https://github.com/answersengine/ebay-scraper/tree/exercise3</a>.</p>
+<p>In the next exercise, we’ll be building upon this exercise to enqueue more pages to be scraped.</p>
+</div>
+<div class="section" id="exercise-4-enqueue-more-pages-and-pass-variables-to-the-next-pages">
+<h3>Exercise 4: Enqueue more pages, and pass variables to the next pages<a class="headerlink" href="#exercise-4-enqueue-more-pages-and-pass-variables-to-the-next-pages" title="Permalink to this headline">¶</a></h3>
+<p>In the last exercise, You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.</p>
+<p>If you’ve skipped the last exercise, you can see the source code here: <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise4">https://github.com/answersengine/ebay-scraper/tree/exercise4</a>.</p>
+<p>In this exercise, we will be building upon the previous exercise by enqueuing more pages from the listings parser, onto the details pages. We’ll also be passing some page variables that we generated on the listings parser onto the the detail pages, so that the parser for the detail page can take advantage of it.</p>
+<p>Let’s add the following code inside the listings loop, just before the end of the loop in parsers/listings.rb:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># enqueue more pages to the scrape job</span>
+<span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+    <span class="ss">url</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="ss">page_type</span><span class="p">:</span> <span class="s1">&#39;details&#39;</span><span class="p">,</span>
+    <span class="ss">vars</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">title</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="ss">price</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;price&#39;</span><span class="o">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Once done, the parsers/listings.rb should look like this:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize nokogiri</span>
+<span class="n">nokogiri</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># get the group of listings</span>
+<span class="n">listings</span> <span class="o">=</span> <span class="n">nokogiri</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;ul.b-list__items_nofooter li.s-item&#39;</span><span class="p">)</span>
+
+<span class="c1"># loop through the listings</span>
+<span class="n">listings</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">listing</span><span class="o">|</span>
+    <span class="c1"># initialize an empty hash</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># extract the information into the product hash</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;h3.s-item__title&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the price</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;price&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;.s-item__price&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+    <span class="c1"># extract the listing URL</span>
+    <span class="n">item_link</span> <span class="o">=</span> <span class="n">listing</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;a.s-item__link&#39;</span><span class="p">)</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">item_link</span><span class="o">[</span><span class="s1">&#39;href&#39;</span><span class="o">]</span> <span class="k">unless</span> <span class="n">item_link</span><span class="o">.</span><span class="n">nil?</span>
+
+    <span class="c1"># specify the collection where this record will be stored</span>
+    <span class="n">product</span><span class="o">[</span><span class="s1">&#39;_collection&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;listings&quot;</span>
+
+    <span class="c1"># save the product to the outputs.</span>
+    <span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="n">product</span>
+
+    <span class="c1"># enqueue more pages to the scrape job</span>
+    <span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+        <span class="ss">url</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="ss">page_type</span><span class="p">:</span> <span class="s1">&#39;details&#39;</span><span class="p">,</span>
+        <span class="ss">vars</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># adding vars to this page</span>
+            <span class="ss">title</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span><span class="p">,</span>
+            <span class="ss">price</span><span class="p">:</span> <span class="n">product</span><span class="o">[</span><span class="s1">&#39;price&#39;</span><span class="o">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Let’s now trial-run this page on a GID of the page that we’ve used on the past exercise.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+Trying parser script
+getting Job <span class="nv">Page</span>
+<span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
+----------- Outputs: -----------
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 Plus a1661 128GB Smartphone LTE CDMA/GSM Unlocked&quot;</span>,
+    <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$349</span><span class="s2">.99&quot;</span>,
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-Plus-a1661-128GB-Smartphone-LTE-CDMA-GSM-Unlocked/201795245944?epid=232746597&amp;hash=item2efbef1778:m:mks-K6wL_LJV1VV0f3-E8ow:sc:USPSPriority!95113!US!-1&amp;var=501834147259&quot;</span>,
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>
+  <span class="o">}</span>,
+...
+----------- New Pages to Enqueue: -----------
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-7-Plus-a1661-128GB-Smartphone-LTE-CDMA-GSM-Unlocked/201795245944?epid=232746597&amp;hash=item2efbef1778:m:mks-K6wL_LJV1VV0f3-E8ow:sc:USPSPriority!95113!US!-1&amp;var=501834147259&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;details&quot;</span>,
+    <span class="s2">&quot;vars&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 Plus a1661 128GB Smartphone LTE CDMA/GSM Unlocked&quot;</span>,
+      <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$349</span><span class="s2">.99&quot;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/Apple-iPhone-XS-MAX-256GB-All-Colors-GSM-CDMA-UNLOCKED/163267140481?epid=24023697465&amp;hash=item26037adb81:m:m63pSpGuBZVZTiz-IS3A-UA:sc:USPSPriorityMailPaddedFlatRateEnvelope!95113!US!-1&amp;var=462501487846&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;details&quot;</span>,
+    <span class="s2">&quot;vars&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone XS MAX 256GB - All Colors - GSM &amp; CDMA UNLOCKED&quot;</span>,
+      <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">,199.00&quot;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>The trial-run seems to be successful, and you now see a new pages to enqueue, as well as the page vars inside each of them.</p>
+<p>Let’s now commit this code and push it to the remote Git repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;modified listings parser to enqueue more pages&#39;</span>
+<span class="o">[</span>master 332e06d<span class="o">]</span> modified listings parser to enqueue more pages
+ <span class="m">1</span> file changed, <span class="m">10</span> insertions<span class="o">(</span>+<span class="o">)</span>
+$ git push origin master
+Counting objects: <span class="m">4</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">567</span> bytes <span class="p">|</span> <span class="m">567</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To https://github.com/answersengine/ebay-scraper.git
+   209dba3..332e06d  master -&gt; master
+</pre></div>
+</div>
+<p>Now deploy it, and start a new scrape job, so that we have some page contents in the shared cache.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">131</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;332e06d01f073ac00840184cd06c826429b3b55c&quot;</span>,
+...
+
+$ answersengine scraper start ebay
+Starting a scrape job...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">88</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+...
+</pre></div>
+</div>
+<p>Let’s check the scraper stats now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats ebay
+<span class="o">{</span>
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">88</span>,
+ <span class="s2">&quot;pages&quot;</span>: <span class="m">49</span>,
+ <span class="s2">&quot;fetched_pages&quot;</span>: <span class="m">3</span>,
+ <span class="s2">&quot;to_fetch&quot;</span>: <span class="m">46</span>,
+ <span class="s2">&quot;fetching_failed&quot;</span>: <span class="m">0</span>,
+ ...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Looks like we now have 49 pages in this job. This means we have successfully modified the parsers/listings.rb to enqueue more pages.</p>
+<p>Let’s see what pages do we have in this scrape job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page list ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e&quot;</span>,
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">88</span>,
+  <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;details&quot;</span>,
+  <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.ebay.com/itm/NEW-Apple-iPhone-6S-16GB-32GB-64GB-128GB-UNLOCKED-Gold-Silver-Gray-GSM/153152283464?epid=240420050\u0026hash=item23a8966348%3Am%3AmN52WSYRFZEr3HNCPAgfZfQ\u0026var=453004437286&quot;</span>,
+  ...
+  <span class="s2">&quot;vars&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$275</span><span class="s2">.99&quot;</span>,
+   <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 128GB 4.7\&quot; Retina Display 4G GSM BLACK UNLOCKED Smartphone SRF&quot;</span>
+  <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>Looks like it correctly enqueued the page and the vars.</p>
+<p>Now, let’s preview the content of the GID from the above result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+Preview content url: <span class="s2">&quot;https://fetch.answersengine.com/public/global_pages/preview/V58Ts9JDocg7qyjT5cxkIL5Dk_UEuEyOQXaHbxBdNJiHmsP2nhE17a8gzwXO8RYUNJ2X1K7PWh0ziIXO7ORylLVLppiufL1edZChFFr8quZuivTJql7B3z_btQA9p1wQqiowc4U90VZtP4bOrShW9v9fA6V4vedfpJL9TM5G8QR-zYhUbrwAIpB4WDLALpPz19ZPZ1rjt8OVYJ2GRDCgr2fPb1S2uBKMI35k1oXO3Cr0yf8St_M5lZqUbEYyqVLPCwDC7ZFk1J_KxQvzgD6vWqmKRoGk1XVS7gxPBusNip47gANzPbo9p3wjWHjqaQhhPb0UFXKBithJ&quot;</span>
+</pre></div>
+</div>
+<p>Now, let’s create a details parser and extract the seller’s username and their feedback.</p>
+<img alt="_images/ebay-username.png" src="_images/ebay-username.png" />
+<p>Create the parsers/details.rb file and Insert the following code:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize nokogiri</span>
+<span class="n">nokogiri</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># get the seller username</span>
+<span class="n">seller</span> <span class="o">=</span> <span class="n">nokogiri</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;.si-inner .mbg-nw&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+<span class="c1"># get the seller&#39;s feedback</span>
+<span class="n">feedback</span> <span class="o">=</span> <span class="n">nokogiri</span><span class="o">.</span><span class="n">at_css</span><span class="p">(</span><span class="s1">&#39;.si-inner #si-fb&#39;</span><span class="p">)</span><span class="o">&amp;.</span><span class="n">text</span>
+
+<span class="c1"># save it into outputs</span>
+<span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+    <span class="ss">_collection</span><span class="p">:</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span>
+    <span class="ss">title</span><span class="p">:</span> <span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">][</span><span class="s1">&#39;title&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="ss">price</span><span class="p">:</span> <span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">][</span><span class="s1">&#39;price&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="ss">seller</span><span class="p">:</span> <span class="n">seller</span><span class="p">,</span>
+    <span class="ss">feedback</span><span class="p">:</span> <span class="n">feedback</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Let’s now give this parser a try on one of the details page:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+Trying parser script
+getting Job <span class="nv">Page</span>
+<span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
+----------- Outputs: -----------
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+    <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 8 Plus a1897 64GB Smartphone GSM Unlocked&quot;</span>,
+    <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$550</span><span class="s2">.99 to </span><span class="nv">$599</span><span class="s2">.99&quot;</span>,
+    <span class="s2">&quot;seller&quot;</span>: <span class="s2">&quot;mywit&quot;</span>,
+    <span class="s2">&quot;feedback&quot;</span>: <span class="s2">&quot;97.6% Positive feedback&quot;</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>This trial-run looks really good. That we’re able to extract the details page without error, and assumed that we would be able to save the output to the products collection.</p>
+<p>Let’s now commit this details parser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added details parser&#39;</span>
+<span class="o">[</span>master 59bab08<span class="o">]</span> added details parser
+ <span class="m">1</span> file changed, <span class="m">17</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> parsers/details.rb
+</pre></div>
+</div>
+<p>Let’s not forget to update the config yaml file so that it points to this parser file. The config file should look like this now:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+  <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+  <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">parsers</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+    <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/listings.rb</span>
+    <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+    <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/details.rb</span>
+    <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>Let’s commit the file, and push it to the remote Git repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added details parser config&#39;</span>
+<span class="o">[</span>master 97dac60<span class="o">]</span> added details parser config
+ <span class="m">1</span> file changed, <span class="m">4</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
+$ git push origin master
+Counting objects: <span class="m">7</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">7</span>/7<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">7</span>/7<span class="o">)</span>, <span class="m">1008</span> bytes <span class="p">|</span> <span class="m">1008</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">7</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To https://github.com/answersengine/ebay-scraper.git
+   332e06d..97dac60  master -&gt; master
+</pre></div>
+</div>
+<p>Next, let’s deploy it to Fetch. Since we already have the current job running, we don’t need to do anything else, and the scraper will immediately execute the newly deployed code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">132</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;97dac606b24a8c818f3234419cb9180999bc9d71&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;https://github.com/answersengine/ebay-scraper.git&quot;</span>,
+ <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
+ <span class="s2">&quot;errors&quot;</span>: null,
+ <span class="s2">&quot;success&quot;</span>: true,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T06:05:48.866609Z&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;parsers&quot;</span>: <span class="o">[</span>
+   <span class="o">{</span>
+    <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./parsers/listings.rb&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>
+   <span class="o">}</span>,
+   <span class="o">{</span>
+    <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./parsers/details.rb&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;details&quot;</span>
+   <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">&quot;seeder&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./seeder/seeder.rb&quot;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Let’s check to see the scraper stats:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats ebay
+<span class="o">{</span>
+ ...
+ <span class="s2">&quot;parsed_pages&quot;</span>: <span class="m">49</span>,
+ <span class="s2">&quot;to_parse&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsing_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;outputs&quot;</span>: <span class="m">96</span>,
+ <span class="s2">&quot;output_collections&quot;</span>: <span class="m">2</span>,
+ ...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This looks good, as it shows that there are 2 collections, and a total of 96 output records.</p>
+<p>Let’s also check the scraper log to see if there are any errors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper log ebay
+</pre></div>
+</div>
+<p>Seems like there are no errors so far.</p>
+<p>Let’s look to see if the products collection has been correctly created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output collection ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">48</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">48</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Looks good.
+Now, let’s look inside the products collection and see if the outputs are correctly saved:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list ebay --collection products
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T06:15:13.061168Z&quot;</span>,
+  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.ebay.com-82d133d0dba1255c7424f99ab79776e9&quot;</span>,
+  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;ac3c99ab8d3846a98d3317660259db06&quot;</span>,
+  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">91</span>,
+  <span class="s2">&quot;feedback&quot;</span>: <span class="s2">&quot;99.8% Positive feedback&quot;</span>,
+  <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$269</span><span class="s2">.98&quot;</span>,
+  <span class="s2">&quot;seller&quot;</span>: <span class="s2">&quot;overdrive_brands&quot;</span>,
+  <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 7 32GB Smartphone AT\u0026T T-Mobile Unlocked 4G LTE Black Red Rose Gold&quot;</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T06:15:13.47726Z&quot;</span>,
+  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.ebay.com-0cc7480bd6afecb10cf81bdc5904ea74&quot;</span>,
+  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;7be4ee3e544e4e5db9115215572259b9&quot;</span>,
+  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">91</span>,
+  <span class="s2">&quot;feedback&quot;</span>: <span class="s2">&quot;99.9% Positive feedback&quot;</span>,
+  <span class="s2">&quot;price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$569</span><span class="s2">.00&quot;</span>,
+  <span class="s2">&quot;seller&quot;</span>: <span class="s2">&quot;alldayzip&quot;</span>,
+  <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;Apple iPhone 8 64GB RED \u0026 All Colors! GSM \u0026 CDMA UNLOCKED!! BRAND NEW! Warranty!&quot;</span>
+ <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>The output looks wonderful.</p>
+<p>Congratulations, you have completed exercise 4.
+You have learned to enqueue more pages from the listings parser onto detail pages.
+You have also learned about passing some page variables that were generated on the listings parser onto the the detail pages. The details parsers then combined the data from the page vars and the extracted data from the details page, into the “products” output collection.</p>
+<p>The source codes that we’ve built throughout the exercise are located here <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise4">https://github.com/answersengine/ebay-scraper/tree/exercise4</a>.</p>
+<p>In the next exercise, you will be learning how to export output by creating Exporters.</p>
+</div>
+<div class="section" id="exercise-5-exporting-outputs">
+<h3>Exercise 5: Exporting outputs<a class="headerlink" href="#exercise-5-exporting-outputs" title="Permalink to this headline">¶</a></h3>
+<p>In the last exercise, You have learned to do some more advanced techniques of creating parsers, and also saved the records into the output collection.</p>
+<p>If you’ve skipped the last exercise, you can see the source code here: <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise4">https://github.com/answersengine/ebay-scraper/tree/exercise4</a>.</p>
+<p>In this exercise, we will be exporting outputs by creating Exporters.
+In Fetch, an Exporter is a set of configurations that allows you to Export something. We have several different kinds of Exporters. Please read the documentation for further details</p>
+<p>We’re going to export the <cite>products</cite> collection ( which you’ve created in Exercise 4) into a JSON file that we can download, once the export process has finished.</p>
+<p>Before exporting all the outputs of the <cite>products</cite> collection, it is a good idea to sample a smaller number of records first, to make sure the outputs are looking good.</p>
+<p>To do that, let’s create an exporter configuration file, called <cite>products_last10_json.yaml</cite>.
+For standard conventions, let’s put this file in a directory called ‘exporters’.</p>
+<p>First you need to create the <cite>exporters</cite> directory on the project root directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir exporters
+$ touch exporters/products_last10_json.yaml
+$ ls -alth exporters
+total <span class="m">0</span>
+drwxr-xr-x  <span class="m">3</span> johndoe  staff    96B <span class="m">13</span> Jan <span class="m">00</span>:56 .
+-rw-r--r--  <span class="m">1</span> johndoe  staff     0B <span class="m">13</span> Jan <span class="m">00</span>:56 products_last10_json.yaml
+drwxr-xr-x  <span class="m">7</span> johndoe  staff   224B <span class="m">13</span> Jan <span class="m">00</span>:55 ..
+</pre></div>
+</div>
+<p>Next let’s put the following content into the products_last10_json.yaml file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_last10_json</span> <span class="c1"># Must be unique</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+<span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pretty_array</span> <span class="c1"># can be `line`,`pretty`, `pretty_array`, or `array`</span>
+<span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># limits to how many records to export</span>
+<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span> <span class="c1"># offset to where the exported record will start from</span>
+<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+</pre></div>
+</div>
+<p>The above exporter means, we want to export only the last 10 outputs from the <cite>products</cite> collection</p>
+<p>Next, let’s modify the config.yaml file, so that it knows the location of the exporter file.</p>
+<p>Your config.yaml should now look like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+ <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+ <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">parsers</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/listings.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/details.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="c1"># add the following lines below...</span>
+<span class="nt">exporters</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./exporters/products_last10_json.yaml</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>Now, let’s commit these files and push this to the remote repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added products_last10_json.yaml exporter&#39;</span>
+<span class="o">[</span>master ab7ab52<span class="o">]</span> added products_last10_json.yaml exporter
+ <span class="m">2</span> files changed, <span class="m">10</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> exporters/products_last10_json.yaml
+$ git push origin master
+Counting objects: <span class="m">5</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="m">742</span> bytes <span class="p">|</span> <span class="m">742</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">5</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To https://github.com/answersengine/ebay-scraper.git
+   7bd6091..ab7ab52  master -&gt; master
+</pre></div>
+</div>
+<p>Let’s now deploy the scraper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="m">737</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ ...
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;exporters&quot;</span>: <span class="o">[</span>
+   <span class="o">{</span>
+    <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+    <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+    <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+    <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
+    <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
+    <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
+    <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
+   <span class="o">}</span>
+  <span class="o">]</span>,
+ ...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>You’ve now deployed the newest code.</p>
+<p>To make sure that the exporters are deployed correctly, you can check a list of available exporters on this scraper:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper exporter list ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
+  <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
+  <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Next, let’s start the exporter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper exporter start ebay products_last10_json
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56&quot;</span>, <span class="c1"># Export ID here</span>
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+ <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
+  <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
+  <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
+ <span class="o">}</span>,
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;enqueued&quot;</span>, <span class="c1"># the status of the export</span>
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:19:56.815979Z&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>When you start an exporter, it creates an export record like the above.</p>
+<p>You can check the status of the export by specifying the export ID, in this case: <strong>c700cb749f4e45eeb53609927e21da56</strong></p>
+<p>Let’s now check the status of the export:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> show c700cb749f4e45eeb53609927e21da56
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56&quot;</span>,
+ ...
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;done&quot;</span>, <span class="c1"># the export is done</span>
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:19:56.815979Z&quot;</span>,
+ <span class="s2">&quot;progress&quot;</span>: <span class="m">100</span>, <span class="c1"># Progress is at 100%, again, it means it is done.</span>
+ <span class="s2">&quot;exported_records&quot;</span>: <span class="m">10</span>,
+ <span class="s2">&quot;to_export&quot;</span>: <span class="m">10</span>,
+ <span class="s2">&quot;exporting_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:19:59.794454Z&quot;</span>,
+ <span class="s2">&quot;exported_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:20:01.125188Z&quot;</span>,
+ <span class="s2">&quot;file_name&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56.tgz&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>As you can see above by looking at the status, it is done. It also shows the export’s file_name: <strong>c700cb749f4e45eeb53609927e21da56.tgz</strong></p>
+<p>Let’s now download the export, by specifying the export ID, like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> download c700cb749f4e45eeb53609927e21da56
+Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-fetch-answersengine/c700cb749f4e45eeb53609927e21da56.tgz?Authorization=blablabla&quot;</span>
+</pre></div>
+</div>
+<p>You’re now seeing the download URL, which allows you to copy and paste into your browser so that you’ll download the actual file.</p>
+<p>If you uncompress this .tgz file, you’ll see the following directory with one content:</p>
+<img alt="_images/uncompress.png" src="_images/uncompress.png" />
+<p>And when you open the json file, you’ll see the following content with the 10 most recent records from the products collection:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+  <span class="nt">&quot;_collection&quot;</span><span class="p">:</span> <span class="s2">&quot;products&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-01-13T01:17:21.925076Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_gid&quot;</span><span class="p">:</span> <span class="s2">&quot;www.ebay.com-384cfde09349adaa48f78c44b5f840db&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;574d346fb77c4d669896f15f6b40f169&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_job_id&quot;</span><span class="p">:</span> <span class="mi">852</span><span class="p">,</span>
+  <span class="nt">&quot;feedback&quot;</span><span class="p">:</span> <span class="s2">&quot;97.6% Positive feedback&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;$183.99 to $235.99&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;seller&quot;</span><span class="p">:</span> <span class="s2">&quot;x-channel&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;New *UNOPENDED* Apple iPhone SE - 16/64GB 4.0\&quot; Unlocked Smartphone&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="nt">&quot;_collection&quot;</span><span class="p">:</span> <span class="s2">&quot;products&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-01-13T01:16:53.494641Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_gid&quot;</span><span class="p">:</span> <span class="s2">&quot;www.ebay.com-e5681a88f980aa906f7c4414e9120685&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;231034ec579c4b329b0eaf8ebc642ed1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;_job_id&quot;</span><span class="p">:</span> <span class="mi">852</span><span class="p">,</span>
+  <span class="nt">&quot;feedback&quot;</span><span class="p">:</span> <span class="s2">&quot;98.3% Positive feedback&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;$299.99&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;seller&quot;</span><span class="p">:</span> <span class="s2">&quot;bidallies&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Apple iPhone 7 Plus 32GB Factory Unlocked 4G LTE iOS WiFi Smartphone&quot;</span>
+<span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now that this file looks good, let’s create another exporter to export the all of records.</p>
+<p>This is a very simple process, you just need to create another exporter file called <cite>products_json.yaml</cite> with the following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_json</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+</pre></div>
+</div>
+<p>Notice how we’re not putting anything such as <cite>limit</cite>, and <cite>offset</cite>, and even <cite>write_mode</cite>. This is because the default value for <cite>write_mode</cite> is <cite>pretty_array</cite>.</p>
+<p>Don’t forget to update the config.yaml file to look like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+ <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+ <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">parsers</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/listings.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/details.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">exporters</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./exporters/products_last10_json.yaml</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="c1"># Add the following lines below...</span>
+ <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./exporters/products_json.yaml</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>Let’s now commit and push this to the remote repos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m<span class="s1">&#39;added full products exporter&#39;</span>
+<span class="o">[</span>master 2f453eb<span class="o">]</span> added full products exporter
+ <span class="m">2</span> files changed, <span class="m">5</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> exporters/products_json.yaml
+$ git push origin master
+Counting objects: <span class="m">5</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="m">569</span> bytes <span class="p">|</span> <span class="m">569</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">5</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To https://github.com/answersengine/ebay-scraper.git
+   ab7ab52..2f453eb  master -&gt; master
+</pre></div>
+</div>
+<p>Let’s now deploy it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ ...
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;exporters&quot;</span>: <span class="o">[</span>
+   <span class="o">{</span>
+    <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+    <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+    <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+    <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
+    <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
+    <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
+    <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
+   <span class="o">}</span>,
+   <span class="o">{</span>
+    <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+    <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+    <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+    <span class="s2">&quot;limit&quot;</span>: null,
+    <span class="s2">&quot;offset&quot;</span>: null
+   <span class="o">}</span>
+  <span class="o">]</span>,
+  ...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Once deployed, let’s see what exporters are available to be used on the scraper:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper exporter list ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_last10_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
+  <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
+  <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: null,
+  <span class="s2">&quot;offset&quot;</span>: null
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Great, we’ve verified that we have indeed two exporters.</p>
+<p>Now, start the exporter that we’ve just recently created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper exporter start ebay products_json
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+ <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: null,
+  <span class="s2">&quot;offset&quot;</span>: null
+ <span class="o">}</span>,
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;enqueued&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:53:30.698121Z&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Next, let’s check the status of the export, by specifying the export ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> show 6bfd70f5c9f346b3a623cab50ea8a84c
+<span class="o">{</span>
+ <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
+ <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">20</span>,
+ <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
+ <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+ <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;exporter_name&quot;</span>: <span class="s2">&quot;products_json&quot;</span>,
+  <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
+  <span class="s2">&quot;limit&quot;</span>: null,
+  <span class="s2">&quot;offset&quot;</span>: null
+ <span class="o">}</span>,
+ <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;done&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:53:30.698121Z&quot;</span>,
+ <span class="s2">&quot;progress&quot;</span>: <span class="m">100</span>,
+ <span class="s2">&quot;exported_records&quot;</span>: <span class="m">48</span>,
+ <span class="s2">&quot;to_export&quot;</span>: <span class="m">48</span>,
+ <span class="s2">&quot;exporting_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:53:33.501493Z&quot;</span>,
+ <span class="s2">&quot;exported_at&quot;</span>: <span class="s2">&quot;2019-01-13T06:53:35.141981Z&quot;</span>,
+ <span class="s2">&quot;file_name&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c.tgz&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>As you can see, the status is now done.
+Next, let’s download the export:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> download 6bfd70f5c9f346b3a623cab50ea8a84c
+Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-fetch-answersengine/6bfd70f5c9f346b3a623cab50ea8a84c.tgz?Authorization=blablabla&quot;</span>
+</pre></div>
+</div>
+<p>Now, if you open and count the records inside the file, you will notice that it will have 48 records. Which is the exact same count that is shown in the <cite>products</cite> collection below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output collection ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">48</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">48</span> <span class="c1"># the exported count is the same as this</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>You have now created and used two exporters successfully.</p>
+<p>Let’s try to use a different kind of exporter. This time, let’s use the CSV Exporter.
+Create another file, called <cite>products_csv.yaml</cite> with the following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_csv</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+<span class="nt">fields</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;gid&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_gid&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;created_at&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_created_at&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;title&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;title&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;price&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;price&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;feedback&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;feedback&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;seller&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;seller&quot;</span>
+</pre></div>
+</div>
+<p>Since you’ve done this a couple of times now, go ahead and commit and deploy this exporter by yourself. Don’t forget to add the path to this file, into your config.yaml file.</p>
+<p>We’re nearing the end of the exercise, but before that, I want to show you one more thing.
+Let’s look at a list of all the exports that were exported from all scrapers in your account:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> list
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;fe70e697354643429712c9880fb3678e&quot;</span>,
+  ...
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56&quot;</span>,
+  ...
+ <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>You can even filter all the exports based on the scraper name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> list --scraper-name ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
+  ...
+ <span class="o">}</span>,
+...
+</pre></div>
+</div>
+<p>Congratulations, you have completed exercise 5.</p>
+<p>You have learned how to create an exporter that can export partial records, as well as an exporter that exports the full records.</p>
+<p>Fetch offers several kinds of exporters including CSV that exports to the CSV format, and Content exporter that allows you to export contents, such as files, images, pdf, etc.
+For more information please visit the documentation</p>
+<p>The source codes that we’ve built throughout the exercise are located here <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise5">https://github.com/answersengine/ebay-scraper/tree/exercise5</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="how_tos.html" class="btn btn-neutral float-right" title="How-Tos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scraper_maintenance_workflow.html" class="btn btn-neutral float-left" title="Scraper Maintenance workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Perry Danoesubroto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

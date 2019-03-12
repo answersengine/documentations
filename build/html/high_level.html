@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>High Level Concepts &mdash; AnswersEngine  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Access" href="user_access.html" />
+    <link rel="prev" title="Answers Engine Fetch" href="fetch_doc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AnswersEngine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">High Level Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scrapers">Scrapers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#available-commands">Available commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#global-pages">Global Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jobs">Jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#job-workers">Job Workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#job-pages">Job Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#job-outputs">Job Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#job-error-logs">Job Error Logs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parsers">Parsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reserved-words-or-methods-in-parser-scripts">Reserved words or methods in parser scripts:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#seeder">Seeder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reserved-words-or-methods-in-seeder-scripts">Reserved words or methods in seeder scripts:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exporters">Exporters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#available-exporter-commands">Available Exporter Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-export-commands">Available Export Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-exporter">JSON Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#json-write-modes">JSON Write Modes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#csv-exporter">CSV Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#csv-fields">CSV Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content-exporter">Content Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exporting-failed-contents">Exporting Failed Contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customizing-the-file-names">Customizing the File Names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_tutorials.html">Coding Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnswersEngine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>High Level Concepts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/high_level.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="high-level-concepts">
+<h1>High Level Concepts<a class="headerlink" href="#high-level-concepts" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/high-level-concepts.png" src="_images/high-level-concepts.png" />
+<div class="section" id="scrapers">
+<h2>Scrapers<a class="headerlink" href="#scrapers" title="Permalink to this headline">¶</a></h2>
+<p>A scraper is a group of tasks that allows users to extract data from the internet.
+Scrapers consists of a Seeder and Parsers (Currently we only support Ruby language).</p>
+<div class="section" id="available-commands">
+<h3>Available commands<a class="headerlink" href="#available-commands" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">help</span>
+Commands:
+  answersengine scraper create &lt;scraper_name&gt; &lt;git_repository&gt;  <span class="c1"># Create a scraper</span>
+  answersengine scraper deploy &lt;scraper_name&gt;                   <span class="c1"># Deploy a scraper</span>
+  answersengine scraper deployment SUBCOMMAND ...ARGS           <span class="c1"># manage scrapers deployments</span>
+  answersengine scraper <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                          <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine scraper job SUBCOMMAND ...ARGS                  <span class="c1"># manage scrapers jobs</span>
+  answersengine scraper list                                    <span class="c1"># List scrapers</span>
+  answersengine scraper log &lt;scraper_name&gt;                      <span class="c1"># List log entries related to a scraper&#39;s current job</span>
+  answersengine scraper output SUBCOMMAND ...ARGS               <span class="c1"># view scraper outputs</span>
+  answersengine scraper page SUBCOMMAND ...ARGS                 <span class="c1"># manage pages on a job</span>
+  answersengine scraper show &lt;scraper_name&gt;                     <span class="c1"># Show a scraper</span>
+  answersengine scraper start &lt;scraper_name&gt;                    <span class="c1"># Creates a scraping job and runs it</span>
+  answersengine scraper stats &lt;scraper_name&gt;                    <span class="c1"># Get the current stat for a job</span>
+  answersengine scraper update &lt;scraper_name&gt;                   <span class="c1"># Update a scraper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="global-pages">
+<h2>Global Pages<a class="headerlink" href="#global-pages" title="Permalink to this headline">¶</a></h2>
+<p>All web pages that has been fetched by Fetch on behalf of users are stored in a shared cache, called Global Pages.
+Any web pages that you need to scrape will re-use this global pages if they fit within your freshness-type.
+If they don’t match your freshness-type, you can specifically force-fetch them from your scraper and job settings.</p>
+<div class="section" id="id1">
+<h3>Available Commands<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage <span class="nb">help</span>
+Commands:
+  answersengine globalpage content &lt;gid&gt;        <span class="c1"># Show content of a globalpage</span>
+  answersengine globalpage failedcontent &lt;gid&gt;  <span class="c1"># Show failed content of a globalpage</span>
+  answersengine globalpage <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>       <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine globalpage show &lt;gid&gt;           <span class="c1"># Show a global page</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="jobs">
+<h2>Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h2>
+<p>When a scraper is run, it creates a scraping job, and will execute the seeder script that you’ve specified. As pages gets fetched, it will get parsed by the parser script that is related to that page.</p>
+<p>A job has one of following possible statuses:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>active</td>
+<td>Job is running</td>
+</tr>
+<tr class="row-odd"><td>paused</td>
+<td>User manually paused the job</td>
+</tr>
+<tr class="row-even"><td>cancelled</td>
+<td>User manually cancelled the job, or it is cancelled because
+another scheduled job on the same scraper has been started.</td>
+</tr>
+<tr class="row-odd"><td>done</td>
+<td>Job is done when there are no more to_fetch or to_parse</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h3>Available Commands<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job <span class="nb">help</span>
+scraper job commands:
+  answersengine scraper job cancel &lt;scraper_name&gt;  <span class="c1"># cancels a scraper&#39;s current job</span>
+  answersengine scraper job <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>         <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine scraper job list &lt;scraper_name&gt;    <span class="c1"># gets a list of jobs on a scraper</span>
+  answersengine scraper job pause &lt;scraper_name&gt;   <span class="c1"># pauses a scraper&#39;s current job</span>
+  answersengine scraper job resume &lt;scraper_name&gt;  <span class="c1"># resumes a scraper&#39;s current job</span>
+  answersengine scraper job show &lt;scraper_name&gt;    <span class="c1"># Show a scraper&#39;s current job</span>
+  answersengine scraper job update &lt;scraper_name&gt;  <span class="c1"># updates a scraper&#39;s current job</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="job-workers">
+<h2>Job Workers<a class="headerlink" href="#job-workers" title="Permalink to this headline">¶</a></h2>
+<p>Job workers are units of capacity that a job can run. A job needs at least one worker for it to run.</p>
+<p>There are two kinds of workers:</p>
+<ul class="simple">
+<li>Standard Worker. This allows you to fetch using regular HTTP method.</li>
+<li>Browser Worker. This will fetch using a real browser, and will render and execute any javascripts that are available on the page.</li>
+</ul>
+<p>Typically one worker can has the capacity to perform:</p>
+<ul class="simple">
+<li>Fetching and parsing of up to 100,000 fresh pages per month from the internet. *</li>
+<li>Fetching and parsing of up to 300,000 pages per month from the shared cache(global page contents). *</li>
+<li>This totals to about 400,000 parsed pages per month. *</li>
+</ul>
+<p>* performance varies based on many factors, including: target server capacity, bandwidth, size of pages, etc.</p>
+<p>Note: If you need your scraping results sooner, you can purchase more capacity by adding more workers to your account and assigning more workers to your scraper.
+When you have multiple unused workers on your account, you can choose to either run multiple scrape jobs at once, or you can assign multiple workers to a single scrape job</p>
+</div>
+<div class="section" id="job-pages">
+<h2>Job Pages<a class="headerlink" href="#job-pages" title="Permalink to this headline">¶</a></h2>
+<p>Any Pages that are added by your scraper so that AnswersEngine can fetch them, are all contained within the job, these are called job pages.</p>
+<p>ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
+Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.</p>
+<p>Vars. A job page can have user-defined variables, that you can set when a page is enqueued. This vars can then be used by the parser to do as you wish</p>
+<p>Treat a page like a curl HTTP request, where you are in control of lower level things, such as, request method, body, headers, etc.</p>
+<p>The following JSON describes the available options that you can use when enqueueing any page to Fetch via a script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+ <span class="s2">&quot;page_type&quot;</span><span class="p">:</span> <span class="s2">&quot;listings&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Foo&quot;</span><span class="p">:</span> <span class="s2">&quot;Bar&quot;</span><span class="p">},</span>
+ <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;body here&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;no_redirect&quot;</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Available Commands<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page <span class="nb">help</span>
+scraper page commands:
+ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt;     <span class="c1"># Enqueues a page to a scraper&#39;s current job</span>
+  answersengine scraper page <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>               <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine scraper page list &lt;scraper_name&gt;          <span class="c1"># List Pages on a scraper&#39;s current job</span>
+  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;     <span class="c1"># List log entries related to a job page</span>
+  answersengine scraper page refetch &lt;scraper_name&gt;       <span class="c1"># Refetch Pages on a scraper&#39;s current job</span>
+  answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;   <span class="c1"># Reset fetching and parsing of a page in a scraper&#39;s current job</span>
+  answersengine scraper page show &lt;scraper_name&gt; &lt;gid&gt;    <span class="c1"># Show a page in scraper&#39;s current job</span>
+  answersengine scraper page update &lt;scraper_name&gt; &lt;gid&gt;  <span class="c1"># Update a page in a scraper&#39;s current job</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="job-outputs">
+<h2>Job Outputs<a class="headerlink" href="#job-outputs" title="Permalink to this headline">¶</a></h2>
+<p>Outputs are generated by parser scripts. Outputs are contained within a collection that you can specify. By default, if you don’t specify a collection, the output will be stored in the “default” collection. Job outputs are in JSON format.</p>
+<div class="section" id="id4">
+<h3>Available Commands<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output <span class="nb">help</span>
+scraper output commands:
+  answersengine scraper output collections &lt;scraper_name&gt;       <span class="c1"># list job output collections that are inside a current job of a scraper.</span>
+  answersengine scraper output <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                   <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine scraper output list &lt;scraper_name&gt;              <span class="c1"># List output records in a collection that is in the current job</span>
+  answersengine scraper output show &lt;scraper_name&gt; &lt;record_id&gt;  <span class="c1"># Show one output record in a collection that is in the current job of a scraper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="job-error-logs">
+<h2>Job Error Logs<a class="headerlink" href="#job-error-logs" title="Permalink to this headline">¶</a></h2>
+<p>When an error occurs inside a job, it gets logged. And you can check to see the errors that occur on a job, or even on a particular page</p>
+<div class="section" id="id5">
+<h3>Available Commands<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">help</span> log
+Usage:
+  answersengine scraper log &lt;scraper_name&gt;
+
+Options:
+  j, <span class="o">[</span>--job<span class="o">=</span>N<span class="o">]</span>            <span class="c1"># Set a specific job ID</span>
+  H, <span class="o">[</span>--head<span class="o">=</span>HEAD<span class="o">]</span>        <span class="c1"># Show the oldest log entries. If not set, newest entries is shown</span>
+  p, <span class="o">[</span>--parsing<span class="o">=</span>PARSING<span class="o">]</span>  <span class="c1"># Show only log entries related to parsing errors</span>
+  s, <span class="o">[</span>--seeding<span class="o">=</span>SEEDING<span class="o">]</span>  <span class="c1"># Show only log entries related to seeding errors</span>
+  m, <span class="o">[</span>--more<span class="o">=</span>MORE<span class="o">]</span>        <span class="c1"># Show next set of log entries. Enter the `More token`</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Description:</dt>
+<dd>Shows log related to a scraper’s current job. Defaults to showing the most recent entries</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page <span class="nb">help</span> log
+Usage:
+  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;
+
+Options:
+  j, <span class="o">[</span>--job<span class="o">=</span>N<span class="o">]</span>            <span class="c1"># Set a specific job ID</span>
+  H, <span class="o">[</span>--head<span class="o">=</span>HEAD<span class="o">]</span>        <span class="c1"># Show the oldest log entries. If not set, newest entries is shown</span>
+  p, <span class="o">[</span>--parsing<span class="o">=</span>PARSING<span class="o">]</span>  <span class="c1"># Show only log entries related to parsing</span>
+  m, <span class="o">[</span>--more<span class="o">=</span>MORE<span class="o">]</span>        <span class="c1"># Show next set of log entries. Enter the `More token`</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Description:</dt>
+<dd>Shows log related to a page in the job. Defaults to showing the most recent entries</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="parsers">
+<h2>Parsers<a class="headerlink" href="#parsers" title="Permalink to this headline">¶</a></h2>
+<p>Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
+You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
+When you enqueue a page to AnswersEngine, you need to specify the page_type so that the matching parsers for that page_type will be executed.</p>
+<div class="section" id="reserved-words-or-methods-in-parser-scripts">
+<h3>Reserved words or methods in parser scripts:<a class="headerlink" href="#reserved-words-or-methods-in-parser-scripts" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">page</span> <span class="c1"># =&gt; Hash. returns the page metadata</span>
+<span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">]</span> <span class="c1"># =&gt; Hash. returns the page&#39;s user-defined variables</span>
+<span class="n">content</span> <span class="c1"># =&gt; String. returns the actual response body of the page</span>
+<span class="n">pages</span> <span class="c1"># =&gt; []. the pages to be enqueued, which will be fetched later</span>
+<span class="n">outputs</span> <span class="c1"># =&gt; []. the array of job output to be saved</span>
+<span class="n">save_pages</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="c1"># Save an array of pages right away and remove all elements from the array. By default this is not necessary because the parser will save the &quot;pages&quot; variable. However, if we are saving large number of pages (thousands), it is better to use this method, to avoid storing everything in memory</span>
+<span class="n">save_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="c1"># Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the parser will save the &quot;outputs&quot; variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Available Commands<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser <span class="nb">help</span>
+Commands:
+  answersengine parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;...&lt;GID&gt;  <span class="c1"># Executes a parser script on one or more Job Pages within a scraper&#39;s current job</span>
+  answersengine parser <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                                   <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine parser try &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;           <span class="c1"># Tries a parser on a Job Page</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="seeder">
+<h2>Seeder<a class="headerlink" href="#seeder" title="Permalink to this headline">¶</a></h2>
+<p>Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by AnswersEngine.</p>
+<div class="section" id="reserved-words-or-methods-in-seeder-scripts">
+<h3>Reserved words or methods in seeder scripts:<a class="headerlink" href="#reserved-words-or-methods-in-seeder-scripts" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="c1"># =&gt; []. The pages to be enqueued, and will be fetched later</span>
+<span class="n">outputs</span> <span class="c1"># =&gt; []. the array of job output to be saved</span>
+<span class="n">save_pages</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="c1"># Save an array of pages right away and remove all elements from the array. By default this is not necessary because the seeder will save the &quot;pages&quot; variable. However, if we are seeding large number of pages (thousands), it is better to use this method, to avoid storing everything in memory</span>
+<span class="n">save_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="c1"># Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the &quot;outputs&quot; variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Available Commands<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine seeder <span class="nb">help</span>
+Commands:
+  answersengine seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;  <span class="c1"># Executes a seeder script onto a scraper&#39;s current job.</span>
+  answersengine seeder <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                     <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine seeder try &lt;scraper_name&gt; &lt;seeder_file&gt;                  <span class="c1"># Tries a seeder file</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exporters">
+<h2>Exporters<a class="headerlink" href="#exporters" title="Permalink to this headline">¶</a></h2>
+<p>Exporters are a set of configurations that allows you to export data from Fetch into various formats. We currently have several different exporters: JSON, CSV, and Content.
+To add an exporter, you simply just add some lines of code under your <cite>exporters</cite> section of your config.yaml like the following example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+<span class="nn">...</span>
+<span class="nt">parsers</span><span class="p">:</span>
+<span class="nn">...</span>
+<span class="c1"># the following lines define exporters...</span>
+<span class="nt">exporters</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_json_short</span> <span class="c1"># Example JSON Exporter</span>
+   <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+   <span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+   <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span>
+   <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+   <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span>
+ <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details_content_short</span> <span class="c1"># Example Content Exporter</span>
+   <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
+   <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+   <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+   <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span>
+</pre></div>
+</div>
+<p>Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
+IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.</p>
+<div class="section" id="available-exporter-commands">
+<h3>Available Exporter Commands<a class="headerlink" href="#available-exporter-commands" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ae scraper exporter <span class="nb">help</span>
+scraper exporter commands:
+  answersengine scraper exporter list &lt;scraper_name&gt;
+  answersengine scraper exporter show &lt;scraper_name&gt; &lt;exporter_name&gt;
+  answersengine scraper exporter start &lt;scraper_name&gt; &lt;exporter_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-export-commands">
+<h3>Available Export Commands<a class="headerlink" href="#available-export-commands" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ae scraper <span class="nb">export</span> <span class="nb">help</span>
+scraper <span class="nb">export</span> commands:
+  answersengine scraper <span class="nb">export</span> download &lt;export_id&gt;
+  answersengine scraper <span class="nb">export</span> list                  <span class="c1"># Gets a list</span>
+  answersengine scraper <span class="nb">export</span> show &lt;export_id&gt;      <span class="c1"># Show an export</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="json-exporter">
+<h3>JSON Exporter<a class="headerlink" href="#json-exporter" title="Permalink to this headline">¶</a></h3>
+<p>Json exporter allows you to export a collection into json formatted file.
+Typically, a JSON Exporter looks like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your_exporter_name_here&gt;</span> <span class="c1"># Must be unique</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;collection_here&gt;</span>
+<span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span> <span class="c1"># can be `line`,`pretty`, `pretty_array`, or `array`</span>
+<span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
+<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
+<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+</pre></div>
+</div>
+<div class="section" id="json-write-modes">
+<h4>JSON Write Modes<a class="headerlink" href="#json-write-modes" title="Permalink to this headline">¶</a></h4>
+<p>The JSON exporter supports four different write modes, based on your needs: line, pretty, pretty_array, and array.</p>
+<p>Write mode of <cite>line</cite> will export a file with the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Write mode of <cite>pretty</cite> will export a file with the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Write mode of <cite>pretty_array</cite> will export the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<p>Write mode of <cite>array</cite> will export the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">},</span>
+<span class="p">{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">},</span>
+<span class="p">{</span><span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="csv-exporter">
+<h3>CSV Exporter<a class="headerlink" href="#csv-exporter" title="Permalink to this headline">¶</a></h3>
+<p>CSV exporter allows you to export a collection into a CSV formatted file.
+Typically, a CSV Exporter looks like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your_exporter_name_here&gt;</span> <span class="c1"># Must be unique</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;collection_here&gt;</span>
+<span class="nt">no_headers</span><span class="p">:</span> <span class="nt">false # Specifies if you want the headers row. Default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
+<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
+<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+<span class="nt">fields</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;gid&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_gid&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;some_value&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;some_value&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;some_nested_value&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;path.to.your.value&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="csv-fields">
+<h4>CSV Fields<a class="headerlink" href="#csv-fields" title="Permalink to this headline">¶</a></h4>
+<p>Pay careful attention to this fields configuration, as, this is where you need to specify the header and the path, so that the CSV exporter knows how to write the csv rows.
+A CSV Field, contains two attributes, Header, and Path.</p>
+<p>Header allows you to set the value of the csv header.</p>
+<p>Path allows the CSV exporter to traverse your output record in order to find the correct value based on the dot “.” deliminator.
+Take a look at the following output record:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;foo1&quot;</span><span class="p">:</span> <span class="s2">&quot;bar1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;foo2&quot;</span><span class="p">:</span>  <span class="p">{</span> <span class="nt">&quot;sub2&quot;</span> <span class="p">:</span> <span class="s2">&quot;subvalue2&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above example, the path “foo1” produces the value: “bar1”
+And the path “foo2.sub2” produces the value “subvalue2”</p>
+<p>With this combination of Header and Path, the CSV exporter should cover a lot of your use cases when it comes to exporting CSVs.
+However, if you feel that you have a rare scenario where you’re not able to traverse the output very well by using Path, you should code your parser scripts to output a simpler schema.</p>
+</div>
+</div>
+<div class="section" id="content-exporter">
+<h3>Content Exporter<a class="headerlink" href="#content-exporter" title="Permalink to this headline">¶</a></h3>
+<p>Content exporter allows you to export the actual content of the page that has been fetched for you. You can export any contents including html, pdf, images, etc.
+The difference between Content exporter and other exporters, is that, it exports from the list of Pages that you have on your scraper job.</p>
+<p>When the exported has done exporting, you will get the actual content files, as well as a CSV file that contains a list of all the contents that has been exported. You can use that CSV file, to know what content files has been exported. This is especially useful, if you want to ingest and process these content files in another system.</p>
+<p>Typically, a Content Exporter looks like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your_exporter_name_here&gt;</span> <span class="c1"># Must be unique</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
+<span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;page_type&gt;</span>
+<span class="nt">filename_var</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;filename_var&gt;</span> <span class="c1"># variable to refer to, when naming the file</span>
+<span class="nt">ignore_extensions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># filename will have no extension, if true</span>
+<span class="nt">include_failed_contents</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># self explanatory. Helpful for troubleshooting</span>
+<span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
+<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
+<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+</pre></div>
+</div>
+<div class="section" id="exporting-failed-contents">
+<h4>Exporting Failed Contents<a class="headerlink" href="#exporting-failed-contents" title="Permalink to this headline">¶</a></h4>
+<p>You can specify to export failed contents as well, this will come handy for troubleshooting purposes. On your exporter’s config, set the following to true:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">include_failed_contents</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>When you have specified this to be true, this exporter will save any failed contents in a separate directory.</p>
+<p>Note: Keep in mind that failed contents are not saved as a file with their GID as their default filename. They are saved with their CID(Content ID) as the filename. The reason is to remove duplication, as most failed requests to websites display the same exact content repetitiously.</p>
+</div>
+<div class="section" id="customizing-the-file-names">
+<h4>Customizing the File Names<a class="headerlink" href="#customizing-the-file-names" title="Permalink to this headline">¶</a></h4>
+<p>By default, the Content exporter export the content files, with a standard naming convention of:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;gid&gt;.&lt;ext&gt;
+</pre></div>
+</div>
+<p>If you want to specify a name for the files, you need to set that in the page’s variable, and tell our exporter about what variable it should be.
+For example, let’s say you have the following Page</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;gid&quot;</span><span class="p">:</span> <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By default, this will export the page content and save it with the following filename:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e.html
+</pre></div>
+</div>
+<p>Let’s say you want this file to be saved with this filename:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">9335</span>.html
+</pre></div>
+</div>
+<p>You would need to enqueue that page with a variable, like so:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+    <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;https://www.ebay.com/b/Apple-iPhone/9355/bn_319682&quot;</span><span class="p">,</span>
+    <span class="ss">vars</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">my_filename</span><span class="p">:</span> <span class="s2">&quot;9335&quot;</span><span class="p">,</span> <span class="c1"># notice we added a &quot;my_filename&quot; var</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>And then we would need to set the exporter’s filename_var config like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your_exporter_name_here&gt;</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
+<span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;page_type&gt;</span>
+<span class="nt">filename_var</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_filename</span> <span class="c1"># Need to tell the exporter how to name the file</span>
+</pre></div>
+</div>
+<p>And that’s it.
+This particular content will be then saved as a file with the following filename:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">9335</span>.html
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user_access.html" class="btn btn-neutral float-right" title="User Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fetch_doc.html" class="btn btn-neutral float-left" title="Answers Engine Fetch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Perry Danoesubroto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

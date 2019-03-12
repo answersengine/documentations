@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How-Tos &mdash; AnswersEngine  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Coding Tutorials" href="coding_tutorials.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AnswersEngine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_tutorials.html">Coding Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How-Tos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-a-scrapers-scheduler">Setting a scraper’s scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-a-scrapers-or-a-jobs-proxy-type">Changing a Scraper’s or a Job’s Proxy Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-a-specific-ruby-version">Setting a specific ruby version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-a-specific-ruby-gem">Setting a specific Ruby Gem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-a-scrapers-standard-worker-count">Changing a Scraper’s Standard worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-a-scrapers-browser-worker-count">Changing a Scraper’s Browser worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-an-existing-scrape-jobs-worker-count">Changing an existing scrape job’s worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enqueueing-a-page-to-browser-fetchers-queue">Enqueueing a page to Browser Fetcher’s queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-fetch-priority-to-a-job-page">Setting fetch priority to a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-a-user-agent-type-of-a-job-page">Setting a user-agent-type of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-request-method-of-a-job-page">Setting the request method of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-request-headers-of-a-job-page">Setting the request headers of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-request-body-of-a-job-page">Setting the request body of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-page-type-of-a-job-page">Setting the page_type of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reset-a-job-page">Reset a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-cookies">Handling cookies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#low-level-cookie-handling-using-request-response-headers">Low level cookie handling using Request/Response Headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-level-cookie-handling-using-the-cookie-jar">High level cookie handling using the Cookie Jar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#force-fetching-a-specific-unfresh-page">Force Fetching a specific unfresh page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-javascript">Handling JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#doing-dry-run-of-your-script-locally">Doing dry-run of your script locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executing-your-script-locally-and-uploading-to-fetch">Executing your script locally, and uploading to Fetch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#querying-scraper-outputs">Querying scraper outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#restart-a-scraping-job">Restart a scraping job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-a-custom-docker-image-for-the-scraper">Using a custom docker image for the scraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-failed-responses">Parsing Failed Responses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnswersEngine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>How-Tos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/how_tos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-tos">
+<h1>How-Tos<a class="headerlink" href="#how-tos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-a-scrapers-scheduler">
+<h2>Setting a scraper’s scheduler<a class="headerlink" href="#setting-a-scrapers-scheduler" title="Permalink to this headline">¶</a></h2>
+<p>You can schedule a scraper’s scheduler in as granular detail as you want. However, we only support granularity down to the Minute.
+We currently support the CRON syntax for scheduling.
+You can set the ‘schedule’ field or the ‘timezone’ to specify the timezone when the job will be started. If timezone is not specified, it will default to “UTC”. Timezone values are IANA format. Please see the list of available timezones.
+The scheduler also has the option to cancel current job, anytime it starts a new one. By default a scraper’s scheduler does not start a new job if there is an already existing job that is active.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create &lt;scraper_name&gt; &lt;git_repo&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span> --cancel-current-job
+$ answersengine scraper update &lt;scraper_name&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span>
+</pre></div>
+</div>
+<p>The following are allowed CRON values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="24%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Mandatory?</th>
+<th class="head">Allowed Values</th>
+<th class="head">Allowed Special Characters</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Minutes</td>
+<td>Yes</td>
+<td>0-59</td>
+<td><ul class="first last simple">
+<li>/ , -</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Hours</td>
+<td>Yes</td>
+<td>0-23</td>
+<td><ul class="first last simple">
+<li>/ , -</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Day of month</td>
+<td>Yes</td>
+<td>1-31</td>
+<td><ul class="first last simple">
+<li>/ , - L W</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Month</td>
+<td>Yes</td>
+<td>1-12 or JAN-DEC</td>
+<td><ul class="first last simple">
+<li>/ , -</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Day of week</td>
+<td>Yes</td>
+<td>0-6 or SUN-SAT</td>
+<td><ul class="first last simple">
+<li>/ , - L #</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Year</td>
+<td>No</td>
+<td>1970–2099</td>
+<td><ul class="first last simple">
+<li>/ , -</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">Asterisk ( * )</div>
+<div class="line">The asterisk indicates that the cron expression matches for all values of the field. E.g., using an asterisk in the 4th field (month) indicates every month.</div>
+</div>
+<div class="line-block">
+<div class="line">Slash ( / )</div>
+<div class="line">Slashes describe increments of ranges. For example 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter. The form */… is equivalent to the form “first-last/…”, that is, an increment over the largest possible range of the field.</div>
+</div>
+<div class="line-block">
+<div class="line">Comma ( , )</div>
+<div class="line">Commas are used to separate items of a list. For example, using MON,WED,FRI in the 5th field (day of week) means Mondays, Wednesdays and Fridays.</div>
+</div>
+<div class="line-block">
+<div class="line">Hyphen ( - )</div>
+<div class="line">Hyphens define ranges. For example, 2000-2010 indicates every year between 2000 and 2010 AD, inclusive.</div>
+</div>
+<div class="line-block">
+<div class="line">L</div>
+<div class="line">L stands for “last”. When used in the day-of-week field, it allows you to specify constructs such as “the last Friday” (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</div>
+</div>
+<div class="line-block">
+<div class="line">W</div>
+<div class="line">The W character is allowed for the day-of-month field. This character is used to specify the business day (Monday-Friday) nearest the given day. As an example, if you were to specify 15W as the value for the day-of-month field, the meaning is: “the nearest business day to the 15th of the month.”</div>
+</div>
+<p>So, if the 15th is a Saturday, the trigger fires on Friday the 14th. If the 15th is a Sunday, the trigger fires on Monday the 16th. If the 15th is a Tuesday, then it fires on Tuesday the 15th. However if you specify 1W as the value for day-of-month, and the 1st is a Saturday, the trigger fires on Monday the 3rd, as it does not ‘jump’ over the boundary of a month’s days.</p>
+<p>The W character can be specified only when the day-of-month is a single day, not a range or list of days.</p>
+<p>The W character can also be combined with L, i.e. LW to mean “the last business day of the month.”</p>
+<div class="line-block">
+<div class="line">Hash ( # )</div>
+<div class="line"># is allowed for the day-of-week field, and must be followed by a number between one and five. It allows you to specify constructs such as “the second Friday” of a given month.</div>
+</div>
+</div>
+<div class="section" id="changing-a-scrapers-or-a-jobs-proxy-type">
+<h2>Changing a Scraper’s or a Job’s Proxy Type<a class="headerlink" href="#changing-a-scrapers-or-a-jobs-proxy-type" title="Permalink to this headline">¶</a></h2>
+<p>We support many types of proxies to use:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Proxy Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>standard</td>
+<td>The standard rotating proxy that gets randomly used per request. This is the default.</td>
+</tr>
+<tr class="row-odd"><td>residential_sticky_1</td>
+<td>This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth.</td>
+</tr>
+<tr class="row-even"><td>residential_sticky_2</td>
+<td>This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth.</td>
+</tr>
+<tr class="row-odd"><td>residential_sticky_3</td>
+<td>This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth.</td>
+</tr>
+<tr class="row-even"><td>residential_sticky_4</td>
+<td>This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth.</td>
+</tr>
+<tr class="row-odd"><td>residential_sticky_5</td>
+<td>This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --proxy-type sticky1
+</pre></div>
+</div>
+<p>Keep in mind that the above will only take effect when a new scrape job is created.</p>
+<p>To change a proxy of an existing job, first cancel the job, and then change the proxy_type, and then resume the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt;
+$ answersengine scraper job update &lt;scraper_name&gt; --proxy-type sticky1
+$ answersengine scraper job resume &lt;scraper_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-a-specific-ruby-version">
+<h2>Setting a specific ruby version<a class="headerlink" href="#setting-a-specific-ruby-version" title="Permalink to this headline">¶</a></h2>
+<p>By default our ruby version that we use is 2.4.4, however if you want to specify a different ruby version you can do so by creating a .ruby-version file on the root of your project directory.</p>
+<p>NOTE: we currently only allow the following ruby versions:</p>
+<ul class="simple">
+<li>2.4.4</li>
+<li>2.5.3</li>
+<li>If you need a specific version other than these, please let us know</li>
+</ul>
+</div>
+<div class="section" id="setting-a-specific-ruby-gem">
+<h2>Setting a specific Ruby Gem<a class="headerlink" href="#setting-a-specific-ruby-gem" title="Permalink to this headline">¶</a></h2>
+<p>To add dependency to your code, we use Bundler. Simply create a Gemfile on the root of your project directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;gem &#39;roo&#39;, &#39;~&gt; 2.7.1&#39;&quot;</span> &gt; Gemfile
+$ bundle install <span class="c1"># this will create a Gemfile.lock</span>
+$ ls -alth <span class="p">|</span> grep Gemfile
+total <span class="m">32</span>
+-rw-r--r--   <span class="m">1</span> johndoe  staff    22B <span class="m">19</span> Dec <span class="m">23</span>:43 Gemfile
+-rw-r--r--   <span class="m">1</span> johndoe  staff   286B <span class="m">19</span> Dec <span class="m">22</span>:07 Gemfile.lock
+$ git add . <span class="c1"># and then you should commit the whole thing into Git repo</span>
+$ git commit -m <span class="s1">&#39;added Gemfile&#39;</span>
+$ git push origin
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-a-scrapers-standard-worker-count">
+<h2>Changing a Scraper’s Standard worker count<a class="headerlink" href="#changing-a-scrapers-standard-worker-count" title="Permalink to this headline">¶</a></h2>
+<p>The more workers you use on your scraper, the faster your scraper will be.
+You can use the command line to change a scraper’s worker count:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --workers N
+</pre></div>
+</div>
+<p>Keep in mind that this will only take effect when a new scrape job is created.</p>
+</div>
+<div class="section" id="changing-a-scrapers-browser-worker-count">
+<h2>Changing a Scraper’s Browser worker count<a class="headerlink" href="#changing-a-scrapers-browser-worker-count" title="Permalink to this headline">¶</a></h2>
+<p>The more workers you use on your scraper, the faster your scraper will be.
+You can use the command line to change a scraper’s worker count:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --browsers N
+</pre></div>
+</div>
+<p>NOTE: Keep in mind that this will only take effect when a new scrape job is created.</p>
+</div>
+<div class="section" id="changing-an-existing-scrape-jobs-worker-count">
+<h2>Changing an existing scrape job’s worker count<a class="headerlink" href="#changing-an-existing-scrape-jobs-worker-count" title="Permalink to this headline">¶</a></h2>
+<p>You can use the command line to change a scraper job’s worker count:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job update &lt;scraper_name&gt; --workers N --browsers N
+</pre></div>
+</div>
+<p>This will only take effect if you cancel, and resume the scrape job again:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt; <span class="c1"># cancel first</span>
+$ answersengine scraper job resume &lt;scraper_name <span class="c1"># then resume</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enqueueing-a-page-to-browser-fetchers-queue">
+<h2>Enqueueing a page to Browser Fetcher’s queue<a class="headerlink" href="#enqueueing-a-page-to-browser-fetchers-queue" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script. The following will enqueue a headless browser:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">fetch_type</span><span class="p">:</span> <span class="s2">&quot;browser&quot;</span> <span class="c1"># This will enqueue headless browser</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
+</pre></div>
+</div>
+<p>You can enqueue a page like so in your script. The following will enqueue a full browser (non-headless):</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">fetch_type</span><span class="p">:</span> <span class="s2">&quot;fullbrowser&quot;</span> <span class="c1"># This will enqueue headless browser</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type fullbrowser
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-fetch-priority-to-a-job-page">
+<h2>Setting fetch priority to a Job Page<a class="headerlink" href="#setting-fetch-priority-to-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>The following will enqueue a higher priority page.
+NOTE: You can only create a page that has priority, not update an existing page with a new priority value on the script. Also, updating a priority only works via the command line tool.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">priority</span><span class="p">:</span> <span class="mi">1</span> <span class="c1"># defaults to 0. Higher numbers means will get fetched sooner</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --priority N
+$ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-a-user-agent-type-of-a-job-page">
+<h2>Setting a user-agent-type of a Job Page<a class="headerlink" href="#setting-a-user-agent-type-of-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">ua_type</span><span class="p">:</span> <span class="s2">&quot;desktop&quot;</span> <span class="c1"># defaults to desktop, other available is mobile.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --ua-type mobile
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-request-method-of-a-job-page">
+<h2>Setting the request method of a Job Page<a class="headerlink" href="#setting-the-request-method-of-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="nb">method</span><span class="p">:</span> <span class="s2">&quot;POST&quot;</span> <span class="c1"># defaults to GET.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --method GET
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-request-headers-of-a-job-page">
+<h2>Setting the request headers of a Job Page<a class="headerlink" href="#setting-the-request-headers-of-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Cookie&quot;</span><span class="p">:</span> <span class="s2">&quot;name=value; name2=value2; name3=value3&quot;</span><span class="p">}</span> <span class="c1"># set this</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --headers <span class="s1">&#39;{&quot;Cookie&quot;: &quot;name=value; name2=value2; name3=value3&quot;}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-request-body-of-a-job-page">
+<h2>Setting the request body of a Job Page<a class="headerlink" href="#setting-the-request-body-of-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">body</span><span class="p">:</span> <span class="s2">&quot;your request body here&quot;</span> <span class="c1"># set this field</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --body <span class="s1">&#39;your request body here&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-page-type-of-a-job-page">
+<h2>Setting the page_type of a Job Page<a class="headerlink" href="#setting-the-page-type-of-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can enqueue a page like so in your script:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">page_type</span><span class="p">:</span> <span class="s2">&quot;page_type_here&quot;</span> <span class="c1"># set this field</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or use the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here
+</pre></div>
+</div>
+</div>
+<div class="section" id="reset-a-job-page">
+<h2>Reset a Job Page<a class="headerlink" href="#reset-a-job-page" title="Permalink to this headline">¶</a></h2>
+<p>You can reset a scrape-job page’s parsing and fetching from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;
+</pre></div>
+</div>
+<p>You can also reset a page from any parser or seeder script by setting the <cite>reset</cite> field to true while enqueueing it, like so:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">reset</span><span class="p">:</span> <span class="kp">true</span> <span class="c1"># set this field</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-cookies">
+<h2>Handling cookies<a class="headerlink" href="#handling-cookies" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways to handle cookies in Fetch, at a lower level via the Request and Response Headers, or at a higher level via the Cookie Jar.</p>
+<div class="section" id="low-level-cookie-handling-using-request-response-headers">
+<h3>Low level cookie handling using Request/Response Headers<a class="headerlink" href="#low-level-cookie-handling-using-request-response-headers" title="Permalink to this headline">¶</a></h3>
+<p>To handle cookie at a lower level, you can set the “cookie” on the request header:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Cookie&quot;</span><span class="p">:</span> <span class="s2">&quot;name=value; name2=value2; name3=value3&quot;</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can also read cookies by reading the “Set-Cookie” response headers:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;response_headers&#39;</span><span class="o">][</span><span class="s1">&#39;Set-Cookie&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="high-level-cookie-handling-using-the-cookie-jar">
+<h3>High level cookie handling using the Cookie Jar<a class="headerlink" href="#high-level-cookie-handling-using-the-cookie-jar" title="Permalink to this headline">¶</a></h3>
+<p>To handle cookie at a higher level, you can set the “cookie” field directly onto the page, and it will be saved onto the Cookie Jar during that request.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">cookie</span><span class="p">:</span> <span class="s2">&quot;name=value; name2=value2; name3=value3&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can also do so from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --cookie <span class="s2">&quot;name=value; name2=value2&quot;</span>
+</pre></div>
+</div>
+<p>You can then read the cookie from the cookiejar by:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;response_cookie&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>This method above is reading from the cookiejar. This is especially useful when a cookie is set by the target-server during redirection.</p>
+</div>
+</div>
+<div class="section" id="force-fetching-a-specific-unfresh-page">
+<h2>Force Fetching a specific unfresh page<a class="headerlink" href="#force-fetching-a-specific-unfresh-page" title="Permalink to this headline">¶</a></h2>
+<p>To enqueue a page and have it force fetch, you need to set freshness field, and force_fetch field. Freshness should only be now, or in the past. It cannot be in the future. Basically it is “how much time ago, that you consider this page as fresh”
+One thing to keep in mind, that this only resets the page fetch, it does nothing to your parsing of pages, whether the parser has executed or not.
+In your parser script you can do the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">freshness</span><span class="p">:</span> <span class="s2">&quot;2018-12-12T13:59:29.91741Z&quot;</span><span class="p">,</span> <span class="c1"># has to be this string format</span>
+  <span class="ss">force_fetch</span><span class="p">:</span> <span class="kp">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can do this to find one output result or use the command line to query an output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here --force-fetch --freshness <span class="s2">&quot;2018-12-12T13:59:29.91741Z&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-javascript">
+<h2>Handling JavaScript<a class="headerlink" href="#handling-javascript" title="Permalink to this headline">¶</a></h2>
+<p>To do javascript rendering, please use the Browser Fetcher.
+First you need to add a browser worker onto your scraper:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --browsers <span class="m">1</span>
+</pre></div>
+</div>
+<p>Next, for every page that you add, you need to specify the correct fetch_type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
+</pre></div>
+</div>
+<p>Or in the script, by doing the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+  <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;http://test.com&quot;</span><span class="p">,</span>
+  <span class="ss">fetch_type</span><span class="p">:</span> <span class="s2">&quot;browser&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="doing-dry-run-of-your-script-locally">
+<h2>Doing dry-run of your script locally<a class="headerlink" href="#doing-dry-run-of-your-script-locally" title="Permalink to this headline">¶</a></h2>
+<p>Using the <cite>try</cite> command will allow you dry-run a parser or a seeder script locally. How it works is, it downloads necessary data from the Fetch cloud, and then executes your script locally, but it does not upload any data back to the Fetch Cloud.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser try ebay parsers/details.rb
+$ answersengine seeder try ebay seeder/seeder.rb
+</pre></div>
+</div>
+</div>
+<div class="section" id="executing-your-script-locally-and-uploading-to-fetch">
+<h2>Executing your script locally, and uploading to Fetch<a class="headerlink" href="#executing-your-script-locally-and-uploading-to-fetch" title="Permalink to this headline">¶</a></h2>
+<p>Using the <cite>exec</cite> command will allow you execute a parser or a seeder script locally and upload the result to the Fetch cloud. It works by downloading the necessary data from the Fetch cloud, and executes it locally. When done it will upload the resulting output and pages back onto the Fetch cloud.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;gid&gt;
+$ answersengine seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;
+</pre></div>
+</div>
+<p>The <cite>exec</cite> command is really useful to do end-to-end testing on your script, to ensure that not only the execution works, but also if it properly uploads the resulting data to the Fetch cloud.
+Any errors that are generated during the exec command, will be logged onto the Fetch cloud’s log, so it is accessible in the following way</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$  answersengine scraper log &lt;scraper_name&gt;
+$  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;
+</pre></div>
+</div>
+<p>Once you’ve successfully executed the command locally using <cite>exec</cite> you can check your stats, and collection lists and outputs using the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats &lt;scraper_name&gt;
+$ answersengine scraper output collection &lt;scraper_name&gt;
+$ answersengine scraper output list &lt;scraper_name&gt; --collection &lt;collection_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="querying-scraper-outputs">
+<h2>Querying scraper outputs<a class="headerlink" href="#querying-scraper-outputs" title="Permalink to this headline">¶</a></h2>
+<p>We currently support the ability to query a scraper outputs based on arbitrary JSON key. Only exact matches are currently supported.
+In your parser script you can do the following to find many output results:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># find_outputs(collection=&#39;default&#39;, query={}, page=1, per_page=30)</span>
+<span class="c1"># will return an array of output records</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">find_outputs</span><span class="p">(</span><span class="s1">&#39;foo_collection&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;123&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Or you can do this to find one output result:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># find_output(collection=&#39;default&#39;, query={})</span>
+<span class="c1"># will return one output record</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">find_output</span><span class="p">(</span><span class="s1">&#39;foo_collection&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;123&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>Or use the command line, to query an output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list &lt;scraper_name&gt; --collection home --query <span class="s1">&#39;{&quot;_id&quot;:&quot;123&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>You can also query outputs from another scraper or job:
+To find output from another job, do the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">records</span> <span class="o">=</span> <span class="n">find_outputs</span><span class="p">(</span><span class="s1">&#39;foo_collection&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;123&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="ss">job_id</span><span class="p">:</span> <span class="mi">1234</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>To find output from another scraper, do the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">records</span> <span class="o">=</span> <span class="n">find_outputs</span><span class="p">(</span><span class="s1">&#39;foo_collection&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;123&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="ss">scraper_name</span><span class="p">:</span><span class="s1">&#39;my_scraper&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="restart-a-scraping-job">
+<h2>Restart a scraping job<a class="headerlink" href="#restart-a-scraping-job" title="Permalink to this headline">¶</a></h2>
+<p>To restart a job, you need to cancel an existing job first, then start a new one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt;
+$ answersengine scraper start &lt;scraper_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-a-custom-docker-image-for-the-scraper">
+<h2>Using a custom docker image for the scraper<a class="headerlink" href="#using-a-custom-docker-image-for-the-scraper" title="Permalink to this headline">¶</a></h2>
+<p>We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the AnswersEngine support know so that this can be created for you.</p>
+<p>IMPORTANT: Only docker images that are compatible with Fetch can be run. Please contact us for more info.</p>
+<p>Our base Docker image is based on Alpine 3.7:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">FROM</span> <span class="ss">alpine</span><span class="p">:</span><span class="mi">3</span><span class="o">.</span><span class="mi">7</span>
+</pre></div>
+</div>
+<p>So, if you want a package to be installed, make sure that it builds correctly on your local machine first.</p>
+<p>Once correctly built, please let us know what dockerfile commands to add to the custom image.
+The following format would be preferable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RUN apk add --update libreoffice
+</pre></div>
+</div>
+<p>Once we have built the image for you, you can use this custom image by modifying your config.yaml file and include the following line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scraper_image: &lt;url-to-your-docker-image&gt;
+</pre></div>
+</div>
+<p>When you have modified this and deploy this, you need to restart your job.</p>
+</div>
+<div class="section" id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parsing-failed-responses">
+<h3>Parsing Failed Responses<a class="headerlink" href="#parsing-failed-responses" title="Permalink to this headline">¶</a></h3>
+<p>Fetch comes with a lot of safety harnesses to make scraping easy and delightful for developers. What this means is, we only allow for successfully fetched pages to be parsed.
+However, if you do need to go down into the detail and deal with your own failed pages, or other type of responses, we allow you to do so.
+On your config.yaml, add the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">parse_failed_pages</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>After doing the above, don’t forget to deploy your scraper, and restart your job.</p>
+<p>We have now removed your safety harnesses.
+From now on, you have to deal with your own page reset, and page response statuses.
+Typically, you should have your parser deal with two kinds of responses, successful and failed ones.
+Look at the following example parser file on how we deal with the different responses in the same parser:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">page</span><span class="o">[</span><span class="s1">&#39;response_status_code&#39;</span><span class="o">]</span> <span class="c1"># if response is successful</span>
+   <span class="n">body</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="k">elsif</span> <span class="n">page</span><span class="o">[</span><span class="s1">&#39;failed_response_status_code&#39;</span><span class="o">]</span> <span class="c1"># if response is not successful</span>
+   <span class="n">body</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">failed_content</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="ss">text</span><span class="p">:</span> <span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+   <span class="ss">url</span><span class="p">:</span> <span class="n">page</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
+<span class="p">}</span>
+
+<span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="n">doc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="coding_tutorials.html" class="btn btn-neutral float-left" title="Coding Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Perry Danoesubroto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

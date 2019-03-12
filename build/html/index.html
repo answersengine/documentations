@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Answers Engine Fetch documentation &mdash; AnswersEngine  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Answers Engine Fetch" href="fetch_doc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> AnswersEngine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_tutorials.html">Coding Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AnswersEngine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Answers Engine Fetch documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="answers-engine-fetch-documentation">
+<h1>Answers Engine Fetch documentation<a class="headerlink" href="#answers-engine-fetch-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound" id="mastertoc">
+<p class="caption"><span class="caption-text">Table of Contents</span><a class="headerlink" href="#mastertoc" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fetch_doc.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#install-answersengine-command-line-interface-using-rubygems">Install AnswersEngine Command Line Interface using rubygems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#get-your-access-token">Get your access token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#set-environment-variable-of-your-access-token">Set environment variable of your access token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#create-the-scraper">Create the scraper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#deploying-the-scraper">Deploying the scraper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#run-the-scraper">Run the scraper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#viewing-the-job-stats">Viewing the Job Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#viewing-the-job-pages">Viewing the Job Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#viewing-a-global-page-content">Viewing a Global Page Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#view-the-scraper-output">View the scraper output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fetch_doc.html#view-the-scraper-logs">View the scraper logs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#scrapers">Scrapers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#available-commands">Available commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#global-pages">Global Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id1">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#jobs">Jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id2">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#job-workers">Job Workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#job-pages">Job Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id3">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#job-outputs">Job Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id4">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#job-error-logs">Job Error Logs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id5">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#parsers">Parsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#reserved-words-or-methods-in-parser-scripts">Reserved words or methods in parser scripts:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id6">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#seeder">Seeder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#reserved-words-or-methods-in-seeder-scripts">Reserved words or methods in seeder scripts:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#id7">Available Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="high_level.html#exporters">Exporters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#available-exporter-commands">Available Exporter Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#available-export-commands">Available Export Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#json-exporter">JSON Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="high_level.html#json-write-modes">JSON Write Modes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#csv-exporter">CSV Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="high_level.html#csv-fields">CSV Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="high_level.html#content-exporter">Content Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="high_level.html#exporting-failed-contents">Exporting Failed Contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="high_level.html#customizing-the-file-names">Customizing the File Names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_tutorials.html">Coding Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="coding_tutorials.html#simple-ebay-scraper-ruby">Simple Ebay scraper (Ruby)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="coding_tutorials.html#exercise-1-create-a-base-scraper-locally">Exercise 1: Create a base scraper locally.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coding_tutorials.html#exercise-2-run-the-scraper-on-fetch">Exercise 2: Run the scraper on Fetch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coding_tutorials.html#exercise-3-create-parser-script">Exercise 3. Create parser script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coding_tutorials.html#exercise-4-enqueue-more-pages-and-pass-variables-to-the-next-pages">Exercise 4: Enqueue more pages, and pass variables to the next pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coding_tutorials.html#exercise-5-exporting-outputs">Exercise 5: Exporting outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-a-scrapers-scheduler">Setting a scraper’s scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#changing-a-scrapers-or-a-jobs-proxy-type">Changing a Scraper’s or a Job’s Proxy Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-a-specific-ruby-version">Setting a specific ruby version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-a-specific-ruby-gem">Setting a specific Ruby Gem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#changing-a-scrapers-standard-worker-count">Changing a Scraper’s Standard worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#changing-a-scrapers-browser-worker-count">Changing a Scraper’s Browser worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#changing-an-existing-scrape-jobs-worker-count">Changing an existing scrape job’s worker count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#enqueueing-a-page-to-browser-fetchers-queue">Enqueueing a page to Browser Fetcher’s queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-fetch-priority-to-a-job-page">Setting fetch priority to a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-a-user-agent-type-of-a-job-page">Setting a user-agent-type of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-the-request-method-of-a-job-page">Setting the request method of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-the-request-headers-of-a-job-page">Setting the request headers of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-the-request-body-of-a-job-page">Setting the request body of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#setting-the-page-type-of-a-job-page">Setting the page_type of a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#reset-a-job-page">Reset a Job Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#handling-cookies">Handling cookies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_tos.html#low-level-cookie-handling-using-request-response-headers">Low level cookie handling using Request/Response Headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_tos.html#high-level-cookie-handling-using-the-cookie-jar">High level cookie handling using the Cookie Jar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#force-fetching-a-specific-unfresh-page">Force Fetching a specific unfresh page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#handling-javascript">Handling JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#doing-dry-run-of-your-script-locally">Doing dry-run of your script locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#executing-your-script-locally-and-uploading-to-fetch">Executing your script locally, and uploading to Fetch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#querying-scraper-outputs">Querying scraper outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#restart-a-scraping-job">Restart a scraping job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#using-a-custom-docker-image-for-the-scraper">Using a custom docker image for the scraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_tos.html#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how_tos.html#parsing-failed-responses">Parsing Failed Responses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fetch_doc.html" class="btn btn-neutral float-right" title="Answers Engine Fetch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Perry Danoesubroto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
