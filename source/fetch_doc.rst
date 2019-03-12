@@ -19,7 +19,7 @@ Install AnswersEngine Command Line Interface using rubygems
 
 .. code-block:: bash
 
-   $ gem install answersengine --source https://Q34T4-cZG2rRRuLMNmG2zvwZsIJl7W5g@gem.fury.io/answersengine/
+   $ gem install answersengine
    Successfully installed answersengine-0.2.3
    Parsing documentation for answersengine-0.2.3
    Done installing documentation for answersengine after 0 seconds
