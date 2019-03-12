@@ -181,7 +181,7 @@ Fetch is like curl, where you have lower level control of HTTP request, such as 
 <p>In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into AnswerEngine Fetch. Currently we support ruby 2.4.4 and 2.5.3.</p>
 <div class="section" id="install-answersengine-command-line-interface-using-rubygems">
 <h3>Install AnswersEngine Command Line Interface using rubygems<a class="headerlink" href="#install-answersengine-command-line-interface-using-rubygems" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gem install answersengine --source https://Q34T4-cZG2rRRuLMNmG2zvwZsIJl7W5g@gem.fury.io/answersengine/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gem install answersengine
 Successfully installed answersengine-0.2.3
 Parsing documentation <span class="k">for</span> answersengine-0.2.3
 Done installing documentation <span class="k">for</span> answersengine after <span class="m">0</span> seconds
@@ -203,21 +203,21 @@ The difference between the two is an “account_admin” token can create other 
 </div>
 <div class="section" id="create-the-scraper">
 <h3>Create the scraper<a class="headerlink" href="#create-the-scraper" title="Permalink to this headline">¶</a></h3>
-<p>In this step we will create a scraper on AnswersEngine, by specifying the scraper name, and the git repository where the scraper script comes from</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create summitprice1 git@git.answersengine.com:scrapers/summitracing-prices.git --workers <span class="m">1</span>
+<p>In this step we will create a scraper on AnswersEngine, by specifying the scraper name, and the git repository where the scraper script comes from:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers <span class="m">1</span>
 <span class="o">{</span>
- <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;summitprice1&quot;</span>,
- <span class="s2">&quot;id&quot;</span>: <span class="m">18</span>,
+ <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
+ <span class="s2">&quot;id&quot;</span>: <span class="m">54</span>,
  <span class="s2">&quot;account_id&quot;</span>: <span class="m">1</span>,
  <span class="s2">&quot;force_fetch&quot;</span>: false,
  <span class="s2">&quot;freshness_type&quot;</span>: <span class="s2">&quot;any&quot;</span>,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T03:28:22.037768Z&quot;</span>,
- <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:28:22.037768Z&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
  <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
- <span class="s2">&quot;deployed_git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+ <span class="s2">&quot;deployed_git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
  <span class="s2">&quot;deployed_git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
  <span class="s2">&quot;deployed_commit_hash&quot;</span>: <span class="s2">&quot;e7d77d7622e7b71c32300eafd2d44a8429142fe3&quot;</span>,
- <span class="s2">&quot;deployed_at&quot;</span>: <span class="s2">&quot;2018-11-26T04:58:29.922676Z&quot;</span>,
+ <span class="s2">&quot;deployed_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:28:22.037768Z&quot;</span>,
  <span class="s2">&quot;worker_count&quot;</span>: <span class="m">1</span>,
  <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
   <span class="s2">&quot;parsers&quot;</span>: <span class="o">[</span>
@@ -255,17 +255,17 @@ Let’s look at the list of scrapers that you have now:</p>
 </pre></div>
 </div>
 <p>Or if you’d like to see your specific scraper, you can do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper show summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper show walmart-movies
 <span class="o">{</span>
- <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;summitprice1&quot;</span>,
+ <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;id&quot;</span>: <span class="m">18</span>,
  <span class="s2">&quot;account_id&quot;</span>: <span class="m">1</span>,
  <span class="s2">&quot;force_fetch&quot;</span>: false,
  <span class="s2">&quot;freshness_type&quot;</span>: <span class="s2">&quot;any&quot;</span>,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-26T03:28:22.037768Z&quot;</span>,
- <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:28:22.037768Z&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
  <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
- <span class="s2">&quot;deployed_git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+ <span class="s2">&quot;deployed_git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
 ...
 </pre></div>
 </div>
@@ -274,17 +274,17 @@ Let’s look at the list of scrapers that you have now:</p>
 <div class="section" id="deploying-the-scraper">
 <h3>Deploying the scraper<a class="headerlink" href="#deploying-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>Once we have created the scraper, let’s deploy it from the git repo that you have specified.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy walmart-movies
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
  <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;e7d77d7622e7b71c32300eafd2d44a8429142fe3&quot;</span>,
- <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+ <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
  <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
  <span class="s2">&quot;errors&quot;</span>: null,
  <span class="s2">&quot;success&quot;</span>: true,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:10:53.374802Z&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:48:22.037768Z&quot;</span>,
  <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
   <span class="s2">&quot;parsers&quot;</span>: <span class="o">[</span>
    <span class="o">{</span>
@@ -300,13 +300,13 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Let’s see if the list of deployments, if you’re curious to know your deployment history.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deployment list summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deployment list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
   <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
   <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;e7d77d7622e7b71c32300eafd2d44a8429142fe3&quot;</span>,
-  <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/summitracing-prices.git&quot;</span>,
+  <span class="s2">&quot;git_repository&quot;</span>: <span class="s2">&quot;git@git.answersengine.com:scrapers/walmart-movies.git&quot;</span>,
   <span class="s2">&quot;git_branch&quot;</span>: <span class="s2">&quot;master&quot;</span>,
 ...
 </pre></div>
@@ -315,12 +315,12 @@ Deploying scraper. This may take a <span class="k">while</span>...
 <div class="section" id="run-the-scraper">
 <h3>Run the scraper<a class="headerlink" href="#run-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>Now that the scraper codes has been deployed, let’s run it.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper start summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper start walmart-movies
 Starting a scrape job...
 <span class="o">{</span>
- <span class="s2">&quot;id&quot;</span>: <span class="m">93</span>,
+ <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:11:56.657034Z&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:52:22.037768Z&quot;</span>,
  <span class="s2">&quot;freshness&quot;</span>: null,
  <span class="s2">&quot;force_fetch&quot;</span>: false,
  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;active&quot;</span>,
@@ -336,23 +336,23 @@ Starting a scrape job...
 </div>
 <p>This will now then create a scraping job, which will start fetching pages for you, and parsing them into the outputs.</p>
 <p>You can also see all jobs that was created on the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job list summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
-  <span class="s2">&quot;id&quot;</span>: <span class="m">93</span>,
-  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;summitprice1&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
+  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
   <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
-  <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:11:56.657034Z&quot;</span>,
+  <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:48:22.037768Z&quot;</span>,
 ...
 </pre></div>
 </div>
 <p>To view the current job on the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job show summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job show walmart-movies
 <span class="o">{</span>
- <span class="s2">&quot;id&quot;</span>: <span class="m">93</span>,
- <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;summitprice1&quot;</span>,
+ <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
+ <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:11:56.657034Z&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:48:22.037768Z&quot;</span>,
 ...
 </pre></div>
 </div>
@@ -360,9 +360,9 @@ Starting a scrape job...
 <div class="section" id="viewing-the-job-stats">
 <h3>Viewing the Job Stats<a class="headerlink" href="#viewing-the-job-stats" title="Permalink to this headline">¶</a></h3>
 <p>While the job is running, let’s look how the job is doing by looking at the stats. You’ll first need to get the ID form the job list command above.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats walmart-movies
 <span class="o">{</span>
- <span class="s2">&quot;job_id&quot;</span>: <span class="m">93</span>,
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;pages&quot;</span>: <span class="m">822</span>,
  <span class="s2">&quot;fetched_pages&quot;</span>: <span class="m">822</span>,
  <span class="s2">&quot;to_fetch&quot;</span>: <span class="m">0</span>,
@@ -375,7 +375,7 @@ Starting a scrape job...
  <span class="s2">&quot;outputs&quot;</span>: <span class="m">0</span>,
  <span class="s2">&quot;output_collections&quot;</span>: <span class="m">0</span>,
  <span class="s2">&quot;workers&quot;</span>: <span class="m">1</span>,
- <span class="s2">&quot;time_stamp&quot;</span>: <span class="s2">&quot;2018-11-28T15:13:17.437174Z&quot;</span>
+ <span class="s2">&quot;time_stamp&quot;</span>: <span class="s2">&quot;2019-03-12T10:48:22.037768Z&quot;</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -383,15 +383,16 @@ Starting a scrape job...
 <div class="section" id="viewing-the-job-pages">
 <h3>Viewing the Job Pages<a class="headerlink" href="#viewing-the-job-pages" title="Permalink to this headline">¶</a></h3>
 <p>Let’s see the pages that has been added by the seeder script into this job.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page list summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
-  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.summitracing.com-ffac364b31eb3484a6a952c1c273144a&quot;</span>,
-  <span class="s2">&quot;job_id&quot;</span>: <span class="m">93</span>,
-  <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;part&quot;</span>,
+  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>, <span class="c1"># Global ID</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">135</span>,
+  <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
   <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
-  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;http://www.summitracing.com/parts/avs-25544&quot;</span>,
-  <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://www.summitracing.com/parts/avs-25544&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://www.walmart.com/browse/movies-tv-shows/4096?facet=new_releases:Last+90+Days&quot;</span>,
+  <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://www.walmart.com/browse/movies-tv-shows/4096?facet=new_releases:Last+90+Days&quot;</span>,
+  <span class="s2">&quot;headers&quot;</span>: <span class="s2">&quot;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;</span>,
 ...
 </pre></div>
 </div>
@@ -401,7 +402,7 @@ Starting a scrape job...
 <p>You may be wondering what is a Global Page.
 A Global Page acts like a shared-cache that AnswersEngine fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.</p>
 <p>Now that you’ve seen the pages that has been added into this job, let’s see the content of the page by copying and pasting a page’s GID(Global ID) into the following command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage content www.summitracing.com-9038c8a06696a3053cbcb393e78ceef4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
 Preview content url: <span class="s2">&quot;https://fetch.answersengine.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4=&quot;</span>
 </pre></div>
 </div>
@@ -410,34 +411,38 @@ Preview content url: <span class="s2">&quot;https://fetch.answersengine.com/publ
 <h3>View the scraper output<a class="headerlink" href="#view-the-scraper-output" title="Permalink to this headline">¶</a></h3>
 <p>Job Outputs are stored in collections. If none is specified, it will be stored in the “default” collection.
 Let’s view the outputs of a scraper job by first seeing what collections the scraper outputs to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output collection summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output collection walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
-  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;parts&quot;</span>,
-  <span class="s2">&quot;count&quot;</span>: <span class="m">14</span>
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;count&quot;</span>: <span class="m">72</span>
  <span class="o">}</span>
 <span class="o">]</span>
 </pre></div>
 </div>
-<p>In the result of the command line above, you will see the collection called “parts”. Let’s look at the outputs inside the “parts” collection :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list summitprice1 --collection parts
+<p>In the result of the command line above, you will see the collection called “products.” Let’s look at the outputs inside the “products” collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list walmart-movies --collection products
 <span class="o">[</span>
  <span class="o">{</span>
-  <span class="s2">&quot;AAIABrandCode&quot;</span>: <span class="s2">&quot;BBCG&quot;</span>,
-  <span class="s2">&quot;ManufacturerPartNumber&quot;</span>: <span class="s2">&quot;10530&quot;</span>,
-  <span class="s2">&quot;PartNumber&quot;</span>: <span class="s2">&quot;10530&quot;</span>,
-  <span class="s2">&quot;Price&quot;</span>: <span class="s2">&quot;</span><span class="nv">$15</span><span class="s2">.99&quot;</span>,
-  <span class="s2">&quot;ProductLine&quot;</span>: <span class="s2">&quot;Air Lift Air Line Cutters&quot;</span>,
-  <span class="s2">&quot;SitePartNumber&quot;</span>: <span class="s2">&quot;AIR-10530&quot;</span>,
-  <span class="s2">&quot;TimeStamp&quot;</span>: <span class="s2">&quot;2018-11-12T23:16:20.248094Z&quot;</span>,
-  <span class="s2">&quot;Title&quot;</span>: <span class="s2">&quot;Air Lift Air Line Cutters 10530&quot;</span>,
-  <span class="s2">&quot;UPC&quot;</span>: <span class="s2">&quot;729199105302&quot;</span>,
-  <span class="s2">&quot;URL&quot;</span>: <span class="s2">&quot;http://www.summitracing.com/parts/air-10530&quot;</span>,
-  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;parts&quot;</span>,
-  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:13:38.400001Z&quot;</span>,
-  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.summitracing.com-d0279bd12cf9f2dc5968b6a56aa20104&quot;</span>,
-  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;df638cb643414074ac32dd8fc9a106f2&quot;</span>,
-  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">93</span>
+  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:50:44.037768Z&quot;</span>,
+  <span class="s2">&quot;_gid&quot;</span>: <span class="s2">&quot;www.walmart.com-a2232af59a8d52c356136f6674f532c5&quot;</span>,
+  <span class="s2">&quot;_id&quot;</span>: <span class="s2">&quot;3de2e6b6e16749879f7e9bdd1ea3f0fc&quot;</span>,
+  <span class="s2">&quot;_job_id&quot;</span>: <span class="m">1341</span>,
+  <span class="s2">&quot;categories&quot;</span>: <span class="o">[</span>
+   <span class="s2">&quot;Movies &amp; TV Shows&quot;</span>,
+   <span class="s2">&quot;Movies&quot;</span>,
+   <span class="s2">&quot;Documentaries&quot;</span>,
+   <span class="s2">&quot;All Documentaries&quot;</span>
+  <span class="o">]</span>,
+  <span class="s2">&quot;current_price&quot;</span>: <span class="m">21</span>.89,
+  <span class="s2">&quot;img_url&quot;</span>: <span class="s2">&quot;https://i5.walmartimages.com/asr/5064efdd-9c84-4f17-a107-2669a34b54ff_1.474fdc2d2d1ea64e45def9c0c5afb4c0.jpeg&quot;</span>,
+  <span class="s2">&quot;original_price&quot;</span>: null,
+  <span class="s2">&quot;publisher&quot;</span>: <span class="s2">&quot;Kino Lorber&quot;</span>,
+  <span class="s2">&quot;rating&quot;</span>: null,
+  <span class="s2">&quot;reviews_count&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;International Sweethearts of Rhythm (DVD)&quot;</span>,
+  <span class="s2">&quot;walmart_number&quot;</span>: <span class="s2">&quot;572439718&quot;</span>
  <span class="o">}</span>,
 ...
 </pre></div>
@@ -447,24 +452,24 @@ Let’s view the outputs of a scraper job by first seeing what collections the s
 <h3>View the scraper logs<a class="headerlink" href="#view-the-scraper-logs" title="Permalink to this headline">¶</a></h3>
 <p>If there is an error that occured it will be shown in the job log.
 Let’s see what’s in the log.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper log summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper log walmart-movies
 </pre></div>
 </div>
 <p>You can view the log of what happens.</p>
 <p>Congratulations! You’ve created and ran your first scraper.</p>
 <p>Let’s now cleanup from this Getting Started section by canceling that running job.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel summitprice1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel walmart-movies
 <span class="o">{</span>
- <span class="s2">&quot;id&quot;</span>: <span class="m">93</span>,
- <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;summitprice1&quot;</span>,
+ <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
+ <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;scraper_id&quot;</span>: <span class="m">18</span>,
- <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:11:56.657034Z&quot;</span>,
+ <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:48:22.058468Z&quot;</span>,
  <span class="s2">&quot;freshness&quot;</span>: null,
  <span class="s2">&quot;force_fetch&quot;</span>: false,
  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;cancelled&quot;</span>,
- <span class="s2">&quot;seeding_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:12:14.388469Z&quot;</span>,
+ <span class="s2">&quot;seeding_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:49:42.035968Z&quot;</span>,
  <span class="s2">&quot;seeding_failed_at&quot;</span>: null,
- <span class="s2">&quot;seeded_at&quot;</span>: <span class="s2">&quot;2018-11-28T15:13:23.9002Z&quot;</span>,
+ <span class="s2">&quot;seeded_at&quot;</span>: <span class="s2">&quot;2019-03-12T10:50:23.057768Z&quot;</span>,
  <span class="s2">&quot;seeding_try_count&quot;</span>: <span class="m">1</span>,
  <span class="s2">&quot;seeding_fail_count&quot;</span>: <span class="m">0</span>,
  <span class="s2">&quot;seeding_error_count&quot;</span>: <span class="m">0</span>,
@@ -497,7 +502,7 @@ Let’s see what’s in the log.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Perry Danoesubroto
+        &copy; Copyright 2019, answersengine.com
 
     </p>
   </div>
