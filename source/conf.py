@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = u'AnswersEngine'
-copyright = u'2019, Perry Danoesubroto'
-author = u'Perry Danoesubroto'
+copyright = u'2019, answersengine.com'
+author = u'Parama Danoesubroto'
 
 # The short X.Y version
 version = u''
