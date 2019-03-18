@@ -76,7 +76,7 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-html_logo = '_static/answers-engine-logo.png'
+#html_logo = '_static/answers-engine-logo.png'
 #html_sidebars = {
 #   '**': ['sourcelink.html']
 #}
