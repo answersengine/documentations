@@ -1523,8 +1523,35 @@ Create another file, called `products_csv.yaml` with the following content:
 
 Since you’ve done this a couple of times now, go ahead and commit and deploy this exporter by yourself. Don’t forget to add the path to this file, into your config.yaml file.
 
-We’re nearing the end of the exercise, but before that, I want to show you one more thing.
-Let’s look at a list of all the exports that were exported from all scrapers in your account:
+We’re nearing the end of the exercise, but before that, I want to show you two more things.
+
+First, Fetch allows you to automatically run the exporter when the scrape job is done.
+To do this, simply add ```start_on_job_done: true``` to your exporter configuration. 
+Let's update the file `products_csv.yaml` so that it looks like following content:
+
+.. code-block:: yaml
+
+   exporter_name: products_csv
+   exporter_type: csv
+   collection: products
+   start_on_job_done: true # we added this field
+   fields:
+    - header: "gid"
+      path: "_gid"
+    - header: "created_at"
+      path: "_created_at"
+    - header: "title"
+      path: "title"
+    - header: "price"
+      path: "price"
+    - header: "feedback"
+      path: "feedback"
+    - header: "seller"
+      path: "seller"
+
+Now that you've done the above, whenever your scrape job is done, the products_csv exporter will automatically be run.
+
+Last thing to show before you go. Let’s look at a list of all the exports that were exported from all scrapers in your account:
 
 .. code-block:: bash
 
