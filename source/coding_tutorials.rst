@@ -1526,7 +1526,7 @@ Since you’ve done this a couple of times now, go ahead and commit and deploy t
 We’re nearing the end of the exercise, but before that, I want to show you two more things.
 
 First, Fetch allows you to automatically run the exporter when the scrape job is done.
-To do this, simply add ```start_on_job_done: true``` to your exporter configuration. 
+To do this, simply add ``start_on_job_done: true`` to your exporter configuration. 
 Let's update the file `products_csv.yaml` so that it looks like following content:
 
 .. code-block:: yaml
