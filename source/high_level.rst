@@ -281,14 +281,12 @@ To add an exporter, you simply just add some lines of code under your `exporters
       limit: 100
       offset: 10
       order: asc
-      start_on_job_done: true # starts this exporter when scrape job is done
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
       page_type: details
       limit: 100
       offset: 10
       order: desc
-      start_on_job_done: true # starts this exporter when scrape job is done
 
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
 IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.
@@ -314,6 +312,34 @@ Available Export Commands
      answersengine scraper export download <export_id>
      answersengine scraper export list                  # Gets a list
      answersengine scraper export show <export_id>      # Show an export
+
+Automatically Start Exporters
+-----------------------------
+You can automatically start any exporter as soon as the scrape job is done. To do this, simply add ``start_on_job_done: true`` to your exporter configuration. The following is an example config file that has the exporters ready to auto-start.
+
+.. code-block:: yaml
+
+   seeder:
+   ...
+   parsers:
+   ...
+   # the following lines define exporters...
+   exporters:
+    - exporter_name: products_json_short # Example JSON Exporter
+      exporter_type: json
+      collection: products
+      write_mode: line
+      limit: 100
+      offset: 10
+      order: asc
+      start_on_job_done: true # This field will auto start this exporter
+    - exporter_name: details_content_short # Example Content Exporter
+      exporter_type: content
+      page_type: details
+      limit: 100
+      offset: 10
+      order: desc
+      start_on_job_done: true # This field will auto start this exporter
 
 JSON Exporter
 -------------
