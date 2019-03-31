@@ -281,12 +281,14 @@ To add an exporter, you simply just add some lines of code under your `exporters
       limit: 100
       offset: 10
       order: asc
+      start_on_job_done: true # starts this exporter when scrape job is done
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
       page_type: details
       limit: 100
       offset: 10
       order: desc
+      start_on_job_done: true # starts this exporter when scrape job is done
 
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
 IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.
@@ -328,6 +330,7 @@ Typically, a JSON Exporter looks like this:
    limit: 100 # limits to how many records to export
    offset: 10 # offset to where the exported record will start from
    order: asc # can be ascending `asc` or descending `desc`
+   start_on_job_done: true
 
 JSON Write Modes
 ^^^^^^^^^^^^^^^^
@@ -393,6 +396,7 @@ Typically, a CSV Exporter looks like this:
    limit: 100 # limits to how many records to export
    offset: 10 # offset to where the exported record will start from
    order: asc # can be ascending `asc` or descending `desc`
+   start_on_job_done: true
    fields:
     - header: "gid"
       path: "_gid"
@@ -446,6 +450,7 @@ Typically, a Content Exporter looks like this:
    limit: 100 # limits to how many records to export
    offset: 10 # offset to where the exported record will start from
    order: asc # can be ascending `asc` or descending `desc`
+   start_on_job_done: true
 
 Exporting Failed Contents
 ^^^^^^^^^^^^^^^^^^^^^^^^^
