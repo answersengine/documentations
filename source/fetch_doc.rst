@@ -47,7 +47,7 @@ In this step we will create a scraper on AnswersEngine, by specifying the scrape
 
 .. code-block:: bash
 
-   $ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers 1
+   $ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers 1 --browsers 1
    {
     "name": "walmart-movies",
     "id": 54,
