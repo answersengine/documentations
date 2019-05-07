@@ -70,16 +70,6 @@ We support many types of proxies to use:
 +========================+=========================================================================================================================================+
 | standard               | The standard rotating proxy that gets randomly used per request. This is the default.                                                   |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| residential_sticky_1   | This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth. |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| residential_sticky_2   | This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth. |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| residential_sticky_3   | This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth. |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| residential_sticky_4   | This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth. |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| residential_sticky_5   | This proxy sticks with one IP for a duration of 5 minutes, and then it changes to a new one every 5 minutes. Price is per GB bandwidth. |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code-block:: bash
 
