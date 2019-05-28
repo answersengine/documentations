@@ -50,11 +50,14 @@
           
 
           
-
-          
             <a href="index.html" class="icon icon-home"> AnswersEngine
           
+
+          
           </a>
+
+          <br/>
+          <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
 
           
             
@@ -73,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -104,6 +108,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -1451,8 +1456,31 @@ Create another file, called <cite>products_csv.yaml</cite> with the following co
 </pre></div>
 </div>
 <p>Since you’ve done this a couple of times now, go ahead and commit and deploy this exporter by yourself. Don’t forget to add the path to this file, into your config.yaml file.</p>
-<p>We’re nearing the end of the exercise, but before that, I want to show you one more thing.
-Let’s look at a list of all the exports that were exported from all scrapers in your account:</p>
+<p>We’re nearing the end of the exercise, but before that, I want to show you two more things.</p>
+<p>First, Fetch allows you to automatically run the exporter when the scrape job is done.
+To do this, simply add <code class="docutils literal notranslate"><span class="pre">start_on_job_done:</span> <span class="pre">true</span></code> to your exporter configuration.
+Let’s update the file <cite>products_csv.yaml</cite> so that it looks like following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_csv</span>
+<span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+<span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># we added this field</span>
+<span class="nt">fields</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;gid&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_gid&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;created_at&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_created_at&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;title&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;title&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;price&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;price&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;feedback&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;feedback&quot;</span>
+ <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;seller&quot;</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;seller&quot;</span>
+</pre></div>
+</div>
+<p>Now that you’ve done the above, whenever your scrape job is done, the products_csv exporter will automatically be run.</p>
+<p>Last thing to show before you go. Let’s look at a list of all the exports that were exported from all scrapers in your account:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">export</span> list
 <span class="o">[</span>
  <span class="o">{</span>

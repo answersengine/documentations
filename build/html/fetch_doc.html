@@ -50,11 +50,14 @@
           
 
           
-
-          
             <a href="index.html" class="icon icon-home"> AnswersEngine
           
+
+          
           </a>
+
+          <br/>
+          <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
 
           
             
@@ -73,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,6 +114,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -204,7 +209,7 @@ The difference between the two is an “account_admin” token can create other 
 <div class="section" id="create-the-scraper">
 <h3>Create the scraper<a class="headerlink" href="#create-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>In this step we will create a scraper on AnswersEngine, by specifying the scraper name, and the git repository where the scraper script comes from:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers <span class="m">1</span> --browsers <span class="m">1</span>
 <span class="o">{</span>
  <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;id&quot;</span>: <span class="m">54</span>,

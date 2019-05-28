@@ -50,11 +50,14 @@
           
 
           
-
-          
             <a href="index.html" class="icon icon-home"> AnswersEngine
           
+
+          
           </a>
+
+          <br/>
+          <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
 
           
             
@@ -73,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -122,6 +126,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#exporters">Exporters</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-exporter-commands">Available Exporter Commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#available-export-commands">Available Export Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automatically-start-exporters">Automatically Start Exporters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#json-exporter">JSON Exporter</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#json-write-modes">JSON Write Modes</a></li>
 </ul>
@@ -149,6 +154,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -501,6 +507,33 @@ scraper <span class="nb">export</span> commands:
 </pre></div>
 </div>
 </div>
+<div class="section" id="automatically-start-exporters">
+<h3>Automatically Start Exporters<a class="headerlink" href="#automatically-start-exporters" title="Permalink to this headline">¶</a></h3>
+<p>You can automatically start any exporter as soon as the scrape job is done. To do this, simply add <code class="docutils literal notranslate"><span class="pre">start_on_job_done:</span> <span class="pre">true</span></code> to your exporter configuration. The following is an example config file that has the exporters ready to auto-start.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+<span class="nn">...</span>
+<span class="nt">parsers</span><span class="p">:</span>
+<span class="nn">...</span>
+<span class="c1"># the following lines define exporters...</span>
+<span class="nt">exporters</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products_json_short</span> <span class="c1"># Example JSON Exporter</span>
+   <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+   <span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
+   <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span>
+   <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+   <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span>
+   <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># This field will auto start this exporter</span>
+ <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details_content_short</span> <span class="c1"># Example Content Exporter</span>
+   <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
+   <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+   <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+   <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span>
+   <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># This field will auto start this exporter</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="json-exporter">
 <h3>JSON Exporter<a class="headerlink" href="#json-exporter" title="Permalink to this headline">¶</a></h3>
 <p>Json exporter allows you to export a collection into json formatted file.
@@ -512,6 +545,7 @@ Typically, a JSON Exporter looks like this:</p>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
 <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
 <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+<span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <div class="section" id="json-write-modes">
@@ -566,6 +600,7 @@ Typically, a CSV Exporter looks like this:</p>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
 <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
 <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+<span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">fields</span><span class="p">:</span>
  <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;gid&quot;</span>
    <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;_gid&quot;</span>
@@ -609,6 +644,7 @@ The difference between Content exporter and other exporters, is that, it exports
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
 <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
 <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+<span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <div class="section" id="exporting-failed-contents">
