@@ -17,4 +17,5 @@ Answers Engine Fetch documentation
    scraper_dev_workflow
    scraper_maintenance_workflow
    coding_tutorials
+   advanced_tutorials
    how_tos

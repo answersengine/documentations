@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Tutorials &mdash; AnswersEngine  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How-Tos" href="how_tos.html" />
+    <link rel="prev" title="Coding Tutorials" href="coding_tutorials.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AnswersEngine
+          
+
+          
+          </a>
+
+          <br/>
+          <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_tutorials.html">Coding Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-write-a-qa-script-to-ingest-and-parse-outputs-from-multiple-scrapers">How to write a QA script to ingest and parse outputs from multiple scrapers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-setup">Step 1: Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-seeding">Step 2: Seeding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-qa-validation-rules">Step 3: QA Validation Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-validation-rules">Additional Validation Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-validations">Group Validations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thresholds">Thresholds</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnswersEngine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Advanced Tutorials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/advanced_tutorials.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-tutorials">
+<h1>Advanced Tutorials<a class="headerlink" href="#advanced-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-write-a-qa-script-to-ingest-and-parse-outputs-from-multiple-scrapers">
+<h2>How to write a QA script to ingest and parse outputs from multiple scrapers<a class="headerlink" href="#how-to-write-a-qa-script-to-ingest-and-parse-outputs-from-multiple-scrapers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-setup">
+<h3>Step 1: Setup<a class="headerlink" href="#step-1-setup" title="Permalink to this headline">¶</a></h3>
+<p>In this tutorial we are going to go over the steps to do QA (Quality Assurance) on the output from your scrapers
+so you can validate that the data you scrape is correct. We do this by creating another “QA” scraper that will ingest
+the output from your initial scraper and perform QA on it using rules that you define.</p>
+<p>For this example, we are going to be creating a QA scraper for the, “Simple Ebay scraper” that we previously
+created in, “Coding Tutorials.” Let’s create an empty directory and name it ‘ebay-scraper-qa’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir ebay-scraper-qa
+</pre></div>
+</div>
+<p>Next let’s go into the directory and initialize it as a Git repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ebay-scraper-qa
+$ git init .
+Initialized empty Git repository in /Users/workspace/ebay-scraper-qa/.git/
+</pre></div>
+</div>
+<p>Create a file called Gemfile inside the ebay-scraper-qa directory with the following line.
+This will add the ae_easy-qa Gem, which is the Gem that handles the QA.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;ae_easy-qa&#39;</span>
+</pre></div>
+</div>
+<p>Now run the following command in the ebay-scraper-qa directory to install this gem:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle
+</pre></div>
+</div>
+<p>Next let’s make a yaml file that will contain the configuration for the QA. Create a file called ae_easy.yaml inside
+the ebay-scraper-qa directory with the following contents:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
+  <span class="nt">scrapers</span><span class="p">:</span>
+    <span class="nt">ebay-scraper</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+</pre></div>
+</div>
+<p>This is the configuration we use to tell the QA what scrapers to use and which collections within each scraper to
+perform QA on. In this example, we are going to be doing QA on our ebay-scraper scraper and, more specifically,
+the listings collection. You can add as many scrapers and as many collections here as you want, but keep in mind that
+the same QA validation rules will be applied to all of them. Basically, whatever scrapers and collections you add
+should have similar output. If you have another scraper that has different output and different validation rules, you
+will need to create a separate QA scraper.</p>
+</div>
+<div class="section" id="step-2-seeding">
+<h3>Step 2: Seeding<a class="headerlink" href="#step-2-seeding" title="Permalink to this headline">¶</a></h3>
+<p>Now, let’s create a seeder script. This is where we will iterate through the scrapers that we just defined and seed them
+to Fetch. In this example we will just seed one scraper.</p>
+<p>Create the seeder directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir seeder
+</pre></div>
+</div>
+<p>Next, let’s create a ruby script called seeder.rb in the seeder directory with the following content:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">config_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;ae_easy.yaml&#39;</span><span class="p">,</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">))</span><span class="o">[</span><span class="s1">&#39;qa&#39;</span><span class="o">]</span>
+<span class="n">config</span><span class="o">[</span><span class="s1">&#39;scrapers&#39;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">scraper_name</span><span class="p">,</span> <span class="n">collections</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">collections</span>
+    <span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+      <span class="ss">url</span><span class="p">:</span> <span class="s2">&quot;https://fetchtest.datahen.com/?scraper=</span><span class="si">#{</span><span class="n">scraper_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="nb">method</span><span class="p">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+      <span class="ss">page_type</span><span class="p">:</span> <span class="s2">&quot;qa&quot;</span><span class="p">,</span>
+      <span class="ss">vars</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">scraper_name</span><span class="p">:</span> <span class="n">scraper_name</span><span class="p">,</span>
+        <span class="ss">collections</span><span class="p">:</span> <span class="n">collections</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This will create a page on Fetch with the scraper (ebay-scraper) and collection (listings) that we want
+to validate saved in the vars. We will eventually create a parser that will send these values to the
+ae_easy-qa gem which will load the relevant data from Fetch and perform QA on it using rules that we will
+eventually define as well.</p>
+<p>Let’s go back into the root directory of the project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+$ ls -alth
+total <span class="m">0</span>
+drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</span> Nov <span class="m">16</span>:19 .git
+drwxr-xr-x   <span class="m">3</span> johndoe  staff    96B <span class="m">26</span> Nov <span class="m">16</span>:15 seeder
+drwxr-xr-x   <span class="m">1</span> johndoe  staff    57B <span class="m">26</span> Nov <span class="m">16</span>:15 Gemfile
+drwxr-xr-x   <span class="m">4</span> johndoe  staff   128B <span class="m">26</span> Nov <span class="m">16</span>:15 .
+drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</span> Nov <span class="m">15</span>:59 ..
+</pre></div>
+</div>
+<p>Now that we’ve created the seeder script, let’s see if there are any syntax error in it by trying the seeder
+script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine seeder try ebay-example-qa seeder/seeder.rb
+Trying seeder <span class="nv">script</span>
+<span class="o">===========</span> Seeding <span class="nv">Executed</span> <span class="o">===========</span>
+----------------------------------------
+Would have saved <span class="m">1</span> out of <span class="m">1</span> Pages
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://fetchtest.datahen.com/?scraper=ebay-scraper&quot;</span>,
+    <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+    <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;qa&quot;</span>,
+    <span class="s2">&quot;force_fetch&quot;</span>: true,
+    <span class="s2">&quot;vars&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay-scraper&quot;</span>,
+      <span class="s2">&quot;collections&quot;</span>: <span class="o">[</span>
+        <span class="s2">&quot;listings&quot;</span>
+      <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Looks like our seeder script test was successful. Let’s now create the config file to tell Fetch about our seeder.
+Create a config.yaml file in the root project directory with the following content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>seeder:
+ file: ./seeder/seeder.rb
+ disabled: <span class="nb">false</span> <span class="c1"># Optional. Set it to true if you want to disable execution of this file</span>
+</pre></div>
+</div>
+<p>The config above simply tells Fetch where the seeder file is, so that it can be executed.</p>
+<p>Let’s now commit our files with git and push them to Github. Add all of the current files with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;create inital qa files&#39;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 7632be0<span class="o">]</span> create initial qa files
+ <span class="m">1</span> file changed, <span class="m">5</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> seeder/seeder.rb
+ create mode <span class="m">100644</span> Gemfile
+ create mode <span class="m">100644</span> Gemfile.lock
+ create mode <span class="m">100644</span> ae_easy.yaml
+ create mode <span class="m">100644</span> config.yaml
+</pre></div>
+</div>
+<p>Next, let’s push it to an online git repository provider. In this case let’s push this to Github. In the example below it is
+using our git repository, you should push to your own repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/answersengine/ebay-scraper-qa.git
+$ git push -u origin master
+Counting objects: <span class="m">4</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">382</span> bytes <span class="p">|</span> <span class="m">382</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote:
+remote: Create a pull request <span class="k">for</span> <span class="s1">&#39;master&#39;</span> on GitHub by visiting:
+remote:      https://github.com/answersengine/ebay-scraper-qa/pull/new/master
+remote:
+To https://github.com/answersengine/ebay-scraper-qa.git
+ * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+Branch <span class="s1">&#39;master&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;master&#39;</span> from <span class="s1">&#39;origin&#39;</span>.
+</pre></div>
+</div>
+<p>Congratulations, you’ve successfully seeded the scraper collections we want to validate with QA and are ready to
+define some validation rules, which we will do in the next step.</p>
+</div>
+<div class="section" id="step-3-qa-validation-rules">
+<h3>Step 3: QA Validation Rules<a class="headerlink" href="#step-3-qa-validation-rules" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have seeded a page to Fetch with info about the scraper that we want to perform QA on, we can define
+some validation rules. Add some lines to the ae_easy.yaml file so that it looks like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
+  <span class="nt">scrapers</span><span class="p">:</span>
+    <span class="nt">ebay-example</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+  <span class="nt">individual_validations</span><span class="p">:</span>
+    <span class="nt">url</span><span class="p">:</span>
+      <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Url</span>
+    <span class="nt">title</span><span class="p">:</span>
+      <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+</pre></div>
+</div>
+<p>Basically this will tell the QA gem to perform the following validations on the listings collection of our ebay-example scraper.
+It will make sure the url and the title are both present and it will make sure that the url output
+is actually a url and that the title output is a string. If any of these validations fail, the failure will be
+returned in a summary and the specific listing will be returned with the corresponding failure.</p>
+<p>Next we need to create a parser, which will parse the page that has our scraper (ebay-example) and collection (listings) info
+saved in vars, and use the ae_easy-qa gem to perform QA. In our seeder we set the page_type to qa, so lets create a parser
+named qa.rb inside a folder named parsers.</p>
+<p>First lets create the parsers directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir parsers
+</pre></div>
+</div>
+<p>Next create a file called qa.rb inside this parsers directory with the following lines:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;ae_easy/qa&#39;</span>
+<span class="no">AeEasy</span><span class="o">::</span><span class="no">Qa</span><span class="o">::</span><span class="no">Validator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">validate_internal</span><span class="p">(</span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we are telling the QA gem to validate internal scrapers on Fetch and are passing the details of these scrapers inside
+the vars. We also pass the outputs array which is a special reserved word in Fetch that is an array of job output to be saved.
+This way the QA gem will be able to save the QA output to Fetch for you to see.</p>
+<p>Let’s retrieve the GID of the page that we seeded earlier so we can try it out locally. Run the following command in the project
+root directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list ebay-example-qa
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2&quot;</span>,
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">9793</span>,
+  <span class="s2">&quot;job_status&quot;</span>: <span class="s2">&quot;active&quot;</span>,
+  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;parsing_failed&quot;</span>,
+  <span class="s2">&quot;fetch_type&quot;</span>: <span class="s2">&quot;standard&quot;</span>,
+  <span class="s2">&quot;page_type&quot;</span>: <span class="s2">&quot;qa&quot;</span>,
+  <span class="s2">&quot;priority&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;GET&quot;</span>,
+  <span class="s2">&quot;url&quot;</span>: <span class="s2">&quot;https://fetchtest.datahen.com/?scraper=ebay-example&quot;</span>,
+  <span class="s2">&quot;effective_url&quot;</span>: <span class="s2">&quot;https://fetchtest.datahen.com/?scraper=ebay-example&quot;</span>,
+  <span class="s2">&quot;headers&quot;</span>: null,
+  <span class="s2">&quot;cookie&quot;</span>: null,
+  <span class="s2">&quot;body&quot;</span>: null,
+  <span class="s2">&quot;created_at&quot;</span>: <span class="s2">&quot;2019-08-09T21:44:18.709737Z&quot;</span>,
+  <span class="s2">&quot;no_redirect&quot;</span>: false,
+  <span class="s2">&quot;ua_type&quot;</span>: <span class="s2">&quot;desktop&quot;</span>,
+  <span class="s2">&quot;freshness&quot;</span>: <span class="s2">&quot;2019-08-09T21:44:18.735754Z&quot;</span>,
+  <span class="s2">&quot;fresh&quot;</span>: true,
+  <span class="s2">&quot;parsing_at&quot;</span>: null,
+  <span class="s2">&quot;parsing_failed_at&quot;</span>: <span class="s2">&quot;2019-08-09T22:05:30.684121Z&quot;</span>,
+  <span class="s2">&quot;parsed_at&quot;</span>: null,
+  <span class="s2">&quot;parsing_try_count&quot;</span>: <span class="m">3</span>,
+  <span class="s2">&quot;parsing_fail_count&quot;</span>: <span class="m">3</span>,
+  <span class="s2">&quot;fetched_at&quot;</span>: <span class="s2">&quot;2019-08-09T21:45:10.312099Z&quot;</span>,
+  <span class="s2">&quot;fetching_try_count&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;to_fetch&quot;</span>: <span class="s2">&quot;2019-08-09T21:44:18.73264Z&quot;</span>,
+  <span class="s2">&quot;fetched_from&quot;</span>: <span class="s2">&quot;web&quot;</span>,
+  <span class="s2">&quot;response_checksum&quot;</span>: <span class="s2">&quot;9d650deb8d3fd908de452f27e148293d&quot;</span>,
+  <span class="s2">&quot;response_status&quot;</span>: <span class="s2">&quot;200 OK&quot;</span>,
+  <span class="s2">&quot;response_status_code&quot;</span>: <span class="m">200</span>,
+  <span class="s2">&quot;response_proto&quot;</span>: <span class="s2">&quot;HTTP/1.1&quot;</span>,
+  <span class="s2">&quot;content_type&quot;</span>: <span class="s2">&quot;text/html; charset=utf-8&quot;</span>,
+  <span class="s2">&quot;content_size&quot;</span>: <span class="m">555</span>,
+  <span class="s2">&quot;vars&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;collections&quot;</span>: <span class="o">[</span>
+    <span class="s2">&quot;listings&quot;</span>
+   <span class="o">]</span>,
+   <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay-example&quot;</span>
+  <span class="o">}</span>,
+  <span class="s2">&quot;failed_response_status_code&quot;</span>: null,
+  <span class="s2">&quot;failed_response_headers&quot;</span>: null,
+  <span class="s2">&quot;failed_response_cookie&quot;</span>: null,
+  <span class="s2">&quot;failed_effective_url&quot;</span>: null,
+  <span class="s2">&quot;failed_at&quot;</span>: null,
+  <span class="s2">&quot;failed_content_type&quot;</span>: null,
+  <span class="s2">&quot;force_fetch&quot;</span>: <span class="nb">false</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>We can see the scraper name and collection are both present in “vars,” but what we are interested in is the gid which
+will look something like, “fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2.”
+We can use the gid to try out our parser, which will perform the QA, on this page.</p>
+<p>Run the following command, replacing the &lt;gid&gt; part with your gid value:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine parser try ebay-example-qa parsers/qa.rb &lt;gid&gt;
+</pre></div>
+</div>
+<p>The output should look something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Trying parser script
+getting Job Page
+<span class="m">1</span>
+<span class="m">2</span>
+validating scraper: ebay-example
+Validating collection: listings
+data count <span class="nv">42</span>
+<span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
+----------------------------------------
+Would have saved <span class="m">1</span> out of <span class="m">1</span> Outputs
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;pass&quot;</span>: <span class="s2">&quot;true&quot;</span>,
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;ebay-example_listings_summary&quot;</span>,
+    <span class="s2">&quot;total_items&quot;</span>: <span class="m">42</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>This means that our validation rules in ea_easy.yaml have passed for each of the 42 items. This also means that you have
+successfully performed basic QA on your scraper! We will look at more advanced settings in the next section.</p>
+</div>
+<div class="section" id="additional-validation-rules">
+<h3>Additional Validation Rules<a class="headerlink" href="#additional-validation-rules" title="Permalink to this headline">¶</a></h3>
+<p>These are examples of all the available validation rules. You use them by adding them to ae_easy.yaml nested under ‘individual_validations.’
+For example, here is a validation rule that makes sure a field named, “Title” is present, is a string, and has a length of 10.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
+  <span class="nt">individual_validations</span><span class="p">:</span>
+    <span class="nt">Title</span><span class="p">:</span>
+      <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+      <span class="nt">length</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+<p>Here are all the possible validation rules and values:</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">length</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+</pre></div>
+</div>
+<p>Validates the length of a field value. The field value can be an Integer, Float, or a String.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+</pre></div>
+</div>
+<p>Validates that a value is a String.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Integer</span>
+</pre></div>
+</div>
+<p>Validates that a value is an Integer. The value can be a number in a String. Examples that would pass: 10, ‘10’, ‘1,000’.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Float</span>
+</pre></div>
+</div>
+<p>Validates that a value is a Float (a number with a decimal point). The value can be a number with decimal points in a String.
+Examples that would pass: 2.0, ‘3.14’, ‘99.99’.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Date</span>
+<span class="nt">format</span><span class="p">:</span> <span class="s">&#39;%d-%m-%Y&#39;</span>
+</pre></div>
+</div>
+<p>Validates that a value is a date. A format is required using <a class="reference external" href="https://apidock.com/ruby/DateTime/strftime">Ruby strftime</a>.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Url</span>
+</pre></div>
+</div>
+<p>Validates that a value is a valid url.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">value</span><span class="p">:</span>
+  <span class="nt">equal</span><span class="p">:</span> <span class="s">&#39;test&#39;</span>
+</pre></div>
+</div>
+<p>You can also add validations that validate the value of a field itself. For example, the above validation will validate
+that a field is equal to the string, ‘test’.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">value</span><span class="p">:</span>
+  <span class="nt">less_than</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+</pre></div>
+</div>
+<p>You can also verify that a field is less than something.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">value</span><span class="p">:</span>
+  <span class="nt">greater_than</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+</pre></div>
+</div>
+<p>You can also verify that a field is more than something.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">value</span><span class="p">:</span>
+  <span class="nt">regex</span><span class="p">:</span> <span class="s">&quot;^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$&quot;</span>
+</pre></div>
+</div>
+<p>Validates the value of a field using a regular expression. For example, you could validate that a value is a
+phone number or a day of the week like the above example.</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span>
+  <span class="nt">value</span><span class="p">:</span>
+    <span class="nt">equal</span><span class="p">:</span> <span class="s">&#39;Test</span><span class="nv"> </span><span class="s">title&#39;</span>
+    <span class="nt">if</span><span class="p">:</span>
+      <span class="nt">search_input</span><span class="p">:</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&#39;Search&#39;</span>
+</pre></div>
+</div>
+<p>You can also implement conditions on value validations. For instance, the above example validates that the value of
+a field named, ‘title’ has a value equal to ‘Test title’ only if the value of the field named, ‘search_input’ has
+a value equal to, ‘Search.’</p>
+</div>
+<div class="section" id="group-validations">
+<h3>Group Validations<a class="headerlink" href="#group-validations" title="Permalink to this headline">¶</a></h3>
+<p>In addition to these individual validations you can also perform more complicated validations on the data as a whole.
+For example, you may want to ensure that a specific field has ranked values and are in order. To add group validations
+create a file named group_validations.rb in your QA scraper root directory with the following (data is an array of the
+items you are performing QA on):</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="nn">GroupValidations</span>
+  <span class="k">def</span> <span class="nf">validate_count</span>
+    <span class="n">errors</span><span class="o">[</span><span class="ss">:group_validation</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">failure</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span> <span class="p">}</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">100</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This example would create an error if the total number of items is greater than 100. Let’s look at another another example.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="nn">GroupValidations</span>
+  <span class="k">def</span> <span class="nf">validate_count</span>
+    <span class="n">errors</span><span class="o">[</span><span class="ss">:group_validation</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">failure</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span> <span class="p">}</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">100</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">validate_unique_ids</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">collect</span><span class="p">{</span><span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="n">item</span><span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">errors</span><span class="o">[</span><span class="ss">:group_validation</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">failure</span><span class="p">:</span> <span class="s1">&#39;unique_ids&#39;</span> <span class="p">}</span> <span class="k">if</span> <span class="n">ids</span><span class="o">.</span><span class="n">uniq</span><span class="o">.</span><span class="n">count</span> <span class="o">!=</span> <span class="n">ids</span><span class="o">.</span><span class="n">count</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This would add another validation that checks to make sure all item ‘id’ values are unique. You can edit these examples
+to create your own.</p>
+</div>
+<div class="section" id="thresholds">
+<h3>Thresholds<a class="headerlink" href="#thresholds" title="Permalink to this headline">¶</a></h3>
+<p>Thresholds are useful if you want to suppress errors based on frequency. You can suppress errors on the basis of the number of
+errors relative to the number of items you are performing QA on. The threshold itself is a number between 0 and 1 where 1
+means that if any error occurs, the error will show. A threshold of 0 means we are ignoring all errors. There are multiple
+ways you can set a threshold which we will go through below.</p>
+<p>We can set a threshold on a per field basis which will apply to all scrapers. This can be done by adding “threshold” to the
+ae_easy.yaml file to a specific field just like a rule. For example, the following will add a threshold that will only show
+errors on the “Title” field for every scraper if the occurance rate is above 60%.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
+  <span class="nt">individual_validations</span><span class="p">:</span>
+    <span class="nt">Title</span><span class="p">:</span>
+      <span class="nt">threshold</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.6</span>
+      <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+      <span class="nt">length</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+<p>We can also set thresholds on a per field and a per scraper scraper basis at the same time. Using the “Title” field example, this means you could
+have a threshold of 0.6 for the Title on one scraper and have 1.0 for another scraper. In order to implement different thresholds for individual scrapers
+you can create a file called thresholds.yaml in your scraper root directory. Here is an example of a thresholds.yaml file that would apply different
+thresholds for a scraper named ebay1 and a scraper named ebay2.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">ebay1</span><span class="p">:</span>
+   <span class="nt">Title</span><span class="p">:</span>
+     <span class="nt">threshold</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.6</span>
+     <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="nt">ebay2</span><span class="p">:</span>
+   <span class="nt">Title</span><span class="p">:</span>
+     <span class="nt">threshold</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+     <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="how_tos.html" class="btn btn-neutral float-right" title="How-Tos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="coding_tutorials.html" class="btn btn-neutral float-left" title="Coding Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, answersengine.com
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
