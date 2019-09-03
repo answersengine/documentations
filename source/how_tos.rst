@@ -495,6 +495,66 @@ To restart a job, you need to cancel an existing job first, then start a new one
    $ answersengine scraper job cancel <scraper_name>
    $ answersengine scraper start <scraper_name>
 
+Setting Environment Variables and Secrets on your account.
+==========================================================
+
+You can set any environment variables and secrets in your account, that you can then use in any of your scrapers.
+There are similarities between environment variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
+The difference is, secrets are encrypted. 
+Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
+
+Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository. 
+This will make your code more secure and more reusable.
+
+There are three steps that you need to do in order to use environment variables and secrets:
+
+1. Set the environment variable or secrets on your account.
+-----------------------------------------------------------
+To set an environment variable using command line:
+
+.. code-block:: bash
+
+   $ answersengine var set <var_name> <value>
+
+To set a secret environment variable using command line:
+
+.. code-block:: bash
+
+   $ answersengine var set <var_name> <value> --secret
+
+
+2. Change your config.yaml to use the variables or secrets.
+-----------------------------------------------------------
+
+Add the following to your config.yaml file.
+
+.. code-block:: yaml
+   
+   env_vars:
+    - name: foo 
+      global_name: bar # Optional. If specified, refers to your account's environment variable of this name.
+      disabled: false # Optional
+    - name: baz
+
+In the example above, this will search for your account's environment variable of ``bar`` and then make it available to your script as ``ENV['foo']``.
+The above example also will search for ``baz`` variable on your account, and make it available to your script as ``ENV['baz']``.
+
+IMPORTANT: The name of the env var must be the same as the env var that you have specified in your account in step 1. If You intend to use a different variable name in the scraper vs in the account, use ``global_name``.
+
+
+
+3. Access the environment variables and secrets in your script.
+---------------------------------------------------------------
+
+You can access environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
+
+.. code-block:: ruby
+
+   ENV['your_env_var_here']
+
+
+
+
 Using a custom docker image for the scraper
 ===========================================
 
