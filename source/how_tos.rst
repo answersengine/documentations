@@ -508,6 +508,8 @@ Secrets are useful to store things such as, passwords, or connection strings if 
 Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository. 
 This will make your code more secure and more reusable.
 
+This `example scraper <https://github.com/answersengine/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
+
 There are three steps that you need to do in order to use environment variables and secrets:
 
 1. Set the environment variable or secrets on your account.
