@@ -499,8 +499,10 @@ Setting Environment Variables and Secrets on your account.
 ==========================================================
 
 You can set any environment variables and secrets in your account, that you can then use in any of your scrapers.
+
 There are similarities between environment variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
 The difference is, secrets are encrypted. 
+
 Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
 
 Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository. 
@@ -546,7 +548,7 @@ IMPORTANT: The name of the env var must be the same as the env var that you have
 3. Access the environment variables and secrets in your script.
 ---------------------------------------------------------------
 
-You can access environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
+Once you've done step 1 and 2 above, you can then access the environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
 
 .. code-block:: ruby
 
