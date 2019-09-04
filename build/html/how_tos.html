@@ -119,6 +119,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#executing-your-script-locally-and-uploading-to-fetch">Executing your script locally, and uploading to Fetch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#querying-scraper-outputs">Querying scraper outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#restart-a-scraping-job">Restart a scraping job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-environment-variables-and-secrets-on-your-account">Setting Environment Variables and Secrets on your account.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-the-environment-variable-or-secrets-on-your-account">1. Set the environment variable or secrets on your account.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-your-config-yaml-to-use-the-variables-or-secrets">2. Change your config.yaml to use the variables or secrets.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-the-environment-variables-and-secrets-in-your-script">3. Access the environment variables and secrets in your script.</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#using-a-custom-docker-image-for-the-scraper">Using a custom docker image for the scraper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#parsing-failed-responses">Parsing Failed Responses</a></li>
@@ -629,6 +635,49 @@ To find output from another job, do the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt;
 $ answersengine scraper start &lt;scraper_name&gt;
 </pre></div>
+</div>
+</div>
+<div class="section" id="setting-environment-variables-and-secrets-on-your-account">
+<h2>Setting Environment Variables and Secrets on your account.<a class="headerlink" href="#setting-environment-variables-and-secrets-on-your-account" title="Permalink to this headline">¶</a></h2>
+<p>You can set any environment variables and secrets in your account, that you can then use in any of your scrapers.</p>
+<p>There are similarities between environment variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
+The difference is, secrets are encrypted.</p>
+<p>Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.</p>
+<p>Another benefit of using environment variables and secret is so that you don’t have to store any values in the Git repository.
+This will make your code more secure and more reusable.</p>
+<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/env_vars">example scraper</a> shows usage of environment variables.</p>
+<p>There are three steps that you need to do in order to use environment variables and secrets:</p>
+<div class="section" id="set-the-environment-variable-or-secrets-on-your-account">
+<h3>1. Set the environment variable or secrets on your account.<a class="headerlink" href="#set-the-environment-variable-or-secrets-on-your-account" title="Permalink to this headline">¶</a></h3>
+<p>To set an environment variable using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+</pre></div>
+</div>
+<p>To set a secret environment variable using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-your-config-yaml-to-use-the-variables-or-secrets">
+<h3>2. Change your config.yaml to use the variables or secrets.<a class="headerlink" href="#change-your-config-yaml-to-use-the-variables-or-secrets" title="Permalink to this headline">¶</a></h3>
+<p>Add the following to your config.yaml file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">env_vars</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">foo</span>
+   <span class="nt">global_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span> <span class="c1"># Optional. If specified, refers to your account&#39;s environment variable of this name.</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional</span>
+ <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">baz</span>
+</pre></div>
+</div>
+<p>In the example above, this will search for your account’s environment variable of <code class="docutils literal notranslate"><span class="pre">bar</span></code> and then make it available to your script as <code class="docutils literal notranslate"><span class="pre">ENV['foo']</span></code>.
+The above example also will search for <code class="docutils literal notranslate"><span class="pre">baz</span></code> variable on your account, and make it available to your script as <code class="docutils literal notranslate"><span class="pre">ENV['baz']</span></code>.</p>
+<p>IMPORTANT: The name of the env var must be the same as the env var that you have specified in your account in step 1. If You intend to use a different variable name in the scraper vs in the account, use <code class="docutils literal notranslate"><span class="pre">global_name</span></code>.</p>
+</div>
+<div class="section" id="access-the-environment-variables-and-secrets-in-your-script">
+<h3>3. Access the environment variables and secrets in your script.<a class="headerlink" href="#access-the-environment-variables-and-secrets-in-your-script" title="Permalink to this headline">¶</a></h3>
+<p>Once you’ve done step 1 and 2 above, you can then access the environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;your_env_var_here&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="using-a-custom-docker-image-for-the-scraper">

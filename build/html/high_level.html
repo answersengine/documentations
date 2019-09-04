@@ -312,9 +312,10 @@ scraper job commands:
 </div>
 <div class="section" id="paused-jobs">
 <h3>Paused Jobs<a class="headerlink" href="#paused-jobs" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes you may find that the status of your job has changed to “paused” on its own. This is a result of
-your scraper not having any more pages to process because the remaining pages are either in the parsed or failed queue.
-Specifically, a job will pause if there are no more pages remaining in the following queues:</p>
+<p>Sometimes you may find that the status of your job has changed to “paused” on its own.
+This is a result of your scraper not having any more pages to process because the remaining
+pages are either in the parsed or failed queue. Specifically, a job will pause if there are
+no more pages remaining in the following queues:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>to_fetch
 fetching
 to_parse
@@ -326,17 +327,37 @@ parsing
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper stats &lt;scraper_name&gt;
 </pre></div>
 </div>
-<p>You should look at the “fetching_failed” count and if there are failed pages, you will need to
-fix the pages and resume the scraper job. You can use the following
-command to list all the pages and find the failed ones:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list &lt;scraper_name&gt;
+<p>You should look at the following failed queue counters and if there are failed pages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fetching_failed
+fetching_dequeue_failed
+parsing_failed
+parsing_dequeue_failed
 </pre></div>
 </div>
-<p>Then, once you have updated your scraper to fix any issues, you can reset the pages individually:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;
+<p>Next step is to fix those failed pages and resume your job. You can use the following
+commands to list those pages and find the failed ones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to list fetch failed pages</span>
+answersengine scraper page list &lt;scraper_name&gt; --fetch-fail
+<span class="c1"># to list parse failed pages</span>
+answersengine scraper page list &lt;scraper_name&gt; --parse-fail
 </pre></div>
 </div>
-<p>After resetting specific pages, you can resume the job:</p>
+<p>Then, once you have updated your scraper to fix any issues, you can refetch or reparse
+these pages using these commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># when want refetch a specific page</span>
+answersengine scraper page refetch &lt;scraper_name&gt; --gid &lt;gid&gt;
+<span class="c1"># when want refetch all fetch failed pages</span>
+answersengine scraper page refetch &lt;scraper_name&gt; --fetch-fail
+<span class="c1"># when want refetch all parse failed pages</span>
+answersengine scraper page refetch &lt;scraper_name&gt; --parse-fail
+
+<span class="c1"># when want to reparse a specific page</span>
+answersengine scraper page reparse &lt;scraper_name&gt; --gid &lt;gid&gt;
+<span class="c1"># when want to reparse all parse failed pages</span>
+answersengine scraper page reparse &lt;scraper_name&gt; --parse-fail
+</pre></div>
+</div>
+<p>After resetting at least one page, you can resume the job:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper resume &lt;scraper_name&gt;
 </pre></div>
 </div>

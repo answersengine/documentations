@@ -88,9 +88,10 @@ Available Commands
 Paused Jobs
 -----------
 
-Sometimes you may find that the status of your job has changed to "paused" on its own. This is a result of
-your scraper not having any more pages to process because the remaining pages are either in the parsed or failed queue.
-Specifically, a job will pause if there are no more pages remaining in the following queues:
+Sometimes you may find that the status of your job has changed to “paused” on its own.
+This is a result of your scraper not having any more pages to process because the remaining
+pages are either in the parsed or failed queue. Specifically, a job will pause if there are
+no more pages remaining in the following queues:
 
 .. code-block:: bash
 
@@ -106,21 +107,43 @@ To check if there are any pages in the failed queue you can use the following st
 
    answersengine scraper stats <scraper_name>
 
-You should look at the "fetching_failed" count and if there are failed pages, you will need to
-fix the pages and resume the scraper job. You can use the following
-command to list all the pages and find the failed ones:
+You should look at the following failed queue counters and if there are failed pages:
 
 .. code-block:: bash
 
-   answersengine scraper page list <scraper_name>
+   fetching_failed
+   fetching_dequeue_failed
+   parsing_failed
+   parsing_dequeue_failed
 
-Then, once you have updated your scraper to fix any issues, you can reset the pages individually:
+Next step is to fix those failed pages and resume your job. You can use the following
+commands to list those pages and find the failed ones:
 
 .. code-block:: bash
 
-   answersengine scraper page reset <scraper_name> <gid>
+   # to list fetch failed pages
+   answersengine scraper page list <scraper_name> --fetch-fail
+   # to list parse failed pages
+   answersengine scraper page list <scraper_name> --parse-fail
 
-After resetting specific pages, you can resume the job:
+Then, once you have updated your scraper to fix any issues, you can refetch or reparse
+these pages using these commands:
+
+.. code-block:: bash
+
+   # when want refetch a specific page
+   answersengine scraper page refetch <scraper_name> --gid <gid>
+   # when want refetch all fetch failed pages
+   answersengine scraper page refetch <scraper_name> --fetch-fail
+   # when want refetch all parse failed pages
+   answersengine scraper page refetch <scraper_name> --parse-fail
+
+   # when want to reparse a specific page
+   answersengine scraper page reparse <scraper_name> --gid <gid>
+   # when want to reparse all parse failed pages
+   answersengine scraper page reparse <scraper_name> --parse-fail
+
+After resetting at least one page, you can resume the job:
 
 .. code-block:: bash
 
