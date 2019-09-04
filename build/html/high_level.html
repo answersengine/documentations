@@ -98,6 +98,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#jobs">Jobs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Available Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paused-jobs">Paused Jobs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#job-workers">Job Workers</a></li>
@@ -306,6 +307,37 @@ scraper job commands:
   answersengine scraper job resume &lt;scraper_name&gt;  <span class="c1"># resumes a scraper&#39;s current job</span>
   answersengine scraper job show &lt;scraper_name&gt;    <span class="c1"># Show a scraper&#39;s current job</span>
   answersengine scraper job update &lt;scraper_name&gt;  <span class="c1"># updates a scraper&#39;s current job</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="paused-jobs">
+<h3>Paused Jobs<a class="headerlink" href="#paused-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you may find that the status of your job has changed to “paused” on its own. This is a result of
+your scraper not having any more pages to process because the remaining pages are either in the parsed or failed queue.
+Specifically, a job will pause if there are no more pages remaining in the following queues:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>to_fetch
+fetching
+to_parse
+parsing_started
+parsing
+</pre></div>
+</div>
+<p>To check if there are any pages in the failed queue you can use the following stats command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper stats &lt;scraper_name&gt;
+</pre></div>
+</div>
+<p>You should look at the “fetching_failed” count and if there are failed pages, you will need to
+fix the pages and resume the scraper job. You can use the following
+command to list all the pages and find the failed ones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list &lt;scraper_name&gt;
+</pre></div>
+</div>
+<p>Then, once you have updated your scraper to fix any issues, you can reset the pages individually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;
+</pre></div>
+</div>
+<p>After resetting specific pages, you can resume the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper resume &lt;scraper_name&gt;
 </pre></div>
 </div>
 </div>

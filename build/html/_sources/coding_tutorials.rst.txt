@@ -1882,5 +1882,13 @@ command:
      "job_id": 10066,
      "collection": "summary",
      "outputs": 1
+    },
+    {
+     "pass": "true",
+     "collection": "ebay_listings_summary",
+     "total_items": 39
     }
    ]
+
+Great, it looks like we now have our summary as well as our QA summary present, which means the finisher script has run
+successfully.

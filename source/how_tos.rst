@@ -151,7 +151,7 @@ This will only take effect if you cancel, and resume the scrape job again:
 .. code-block:: bash
 
    $ answersengine scraper job cancel <scraper_name> # cancel first
-   $ answersengine scraper job resume <scraper_name # then resume
+   $ answersengine scraper job resume <scraper_name> # then resume
 
 Enqueueing a page to Browser Fetcher’s queue
 ============================================

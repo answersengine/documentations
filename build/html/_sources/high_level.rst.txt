@@ -85,6 +85,47 @@ Available Commands
      answersengine scraper job show <scraper_name>    # Show a scraper's current job
      answersengine scraper job update <scraper_name>  # updates a scraper's current job
 
+Paused Jobs
+-----------
+
+Sometimes you may find that the status of your job has changed to "paused" on its own. This is a result of
+your scraper not having any more pages to process because the remaining pages are either in the parsed or failed queue.
+Specifically, a job will pause if there are no more pages remaining in the following queues:
+
+.. code-block:: bash
+
+   to_fetch
+   fetching
+   to_parse
+   parsing_started
+   parsing
+
+To check if there are any pages in the failed queue you can use the following stats command.
+
+.. code-block:: bash
+
+   answersengine scraper stats <scraper_name>
+
+You should look at the "fetching_failed" count and if there are failed pages, you will need to
+fix the pages and resume the scraper job. You can use the following
+command to list all the pages and find the failed ones:
+
+.. code-block:: bash
+
+   answersengine scraper page list <scraper_name>
+
+Then, once you have updated your scraper to fix any issues, you can reset the pages individually:
+
+.. code-block:: bash
+
+   answersengine scraper page reset <scraper_name> <gid>
+
+After resetting specific pages, you can resume the job:
+
+.. code-block:: bash
+
+   answersengine scraper resume <scraper_name>
+
 Job Workers
 ===========
 
