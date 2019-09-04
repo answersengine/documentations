@@ -121,33 +121,25 @@ commands to list those pages and find the failed ones:
 
 .. code-block:: bash
 
-   # to list fetch failed pages
-   answersengine scraper page list <scraper_name> --fetch-fail
-   # to list parse failed pages
-   answersengine scraper page list <scraper_name> --parse-fail
+   answersengine scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
+   answersengine scraper page list <scraper_name> --parse-fail  # to list parse failed pages
 
 Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:
 
 .. code-block:: bash
 
-   # when want refetch a specific page
-   answersengine scraper page refetch <scraper_name> --gid <gid>
-   # when want refetch all fetch failed pages
-   answersengine scraper page refetch <scraper_name> --fetch-fail
-   # when want refetch all parse failed pages
-   answersengine scraper page refetch <scraper_name> --parse-fail
-
-   # when want to reparse a specific page
-   answersengine scraper page reparse <scraper_name> --gid <gid>
-   # when want to reparse all parse failed pages
-   answersengine scraper page reparse <scraper_name> --parse-fail
+   answersengine scraper page refetch <scraper_name> --gid <gid>   # refetch an specific page
+   answersengine scraper page refetch <scraper_name> --fetch-fail  # refetch all fetch failed pages
+   answersengine scraper page refetch <scraper_name> --parse-fail  # refetch all parse failed pages
+   answersengine scraper page reparse <scraper_name> --gid <gid>   # reparse an specific page
+   answersengine scraper page reparse <scraper_name> --parse-fail  # reparse all parse failed pages
 
 After resetting at least one page, you can resume the job:
 
 .. code-block:: bash
 
-   answersengine scraper resume <scraper_name>
+   answersengine scraper job resume <scraper_name>
 
 Job Workers
 ===========

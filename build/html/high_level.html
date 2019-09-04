@@ -336,29 +336,21 @@ parsing_dequeue_failed
 </div>
 <p>Next step is to fix those failed pages and resume your job. You can use the following
 commands to list those pages and find the failed ones:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to list fetch failed pages</span>
-answersengine scraper page list &lt;scraper_name&gt; --fetch-fail
-<span class="c1"># to list parse failed pages</span>
-answersengine scraper page list &lt;scraper_name&gt; --parse-fail
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list &lt;scraper_name&gt; --fetch-fail  <span class="c1"># to list fetch failed pages</span>
+answersengine scraper page list &lt;scraper_name&gt; --parse-fail  <span class="c1"># to list parse failed pages</span>
 </pre></div>
 </div>
 <p>Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># when want refetch a specific page</span>
-answersengine scraper page refetch &lt;scraper_name&gt; --gid &lt;gid&gt;
-<span class="c1"># when want refetch all fetch failed pages</span>
-answersengine scraper page refetch &lt;scraper_name&gt; --fetch-fail
-<span class="c1"># when want refetch all parse failed pages</span>
-answersengine scraper page refetch &lt;scraper_name&gt; --parse-fail
-
-<span class="c1"># when want to reparse a specific page</span>
-answersengine scraper page reparse &lt;scraper_name&gt; --gid &lt;gid&gt;
-<span class="c1"># when want to reparse all parse failed pages</span>
-answersengine scraper page reparse &lt;scraper_name&gt; --parse-fail
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page refetch &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># refetch an specific page</span>
+answersengine scraper page refetch &lt;scraper_name&gt; --fetch-fail  <span class="c1"># refetch all fetch failed pages</span>
+answersengine scraper page refetch &lt;scraper_name&gt; --parse-fail  <span class="c1"># refetch all parse failed pages</span>
+answersengine scraper page reparse &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># reparse an specific page</span>
+answersengine scraper page reparse &lt;scraper_name&gt; --parse-fail  <span class="c1"># reparse all parse failed pages</span>
 </pre></div>
 </div>
 <p>After resetting at least one page, you can resume the job:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper resume &lt;scraper_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper job resume &lt;scraper_name&gt;
 </pre></div>
 </div>
 </div>
