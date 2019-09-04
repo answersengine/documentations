@@ -280,13 +280,11 @@ To add an exporter, you simply just add some lines of code under your `exporters
       write_mode: line
       limit: 100
       offset: 10
-      order: asc
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
       page_type: details
       limit: 100
       offset: 10
-      order: desc
 
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
 IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.
@@ -331,14 +329,12 @@ You can automatically start any exporter as soon as the scrape job is done. To d
       write_mode: line
       limit: 100
       offset: 10
-      order: asc
       start_on_job_done: true # This field will auto start this exporter
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
       page_type: details
       limit: 100
       offset: 10
-      order: desc
       start_on_job_done: true # This field will auto start this exporter
 
 JSON Exporter
@@ -354,8 +350,7 @@ Typically, a JSON Exporter looks like this:
    collection: <collection_here>
    write_mode: line # can be `line`,`pretty`, `pretty_array`, or `array`
    limit: 100 # limits to how many records to export
-   offset: 10 # offset to where the exported record will start from
-   order: asc # can be ascending `asc` or descending `desc`
+   offset: 10
    start_on_job_done: true
 
 JSON Write Modes
@@ -420,8 +415,6 @@ Typically, a CSV Exporter looks like this:
    collection: <collection_here>
    no_headers: false # Specifies if you want the headers row. Default: false
    limit: 100 # limits to how many records to export
-   offset: 10 # offset to where the exported record will start from
-   order: asc # can be ascending `asc` or descending `desc`
    start_on_job_done: true
    fields:
     - header: "gid"
@@ -474,8 +467,6 @@ Typically, a Content Exporter looks like this:
    ignore_extensions: false # filename will have no extension, if true
    include_failed_contents: false # self explanatory. Helpful for troubleshooting
    limit: 100 # limits to how many records to export
-   offset: 10 # offset to where the exported record will start from
-   order: asc # can be ascending `asc` or descending `desc`
    start_on_job_done: true
 
 Exporting Failed Contents
@@ -548,3 +539,27 @@ This particular content will be then saved as a file with the following filename
 .. code-block:: bash
 
    9335.html
+
+Finisher
+========
+
+Finisher script is a script that is executed at the end of any job. This allows you to perform actions
+after your scraper job is done such as creating summaries and starting exporters.
+
+Reserved words or methods in finisher scripts:
+----------------------------------------------
+
+.. code-block:: bash
+
+   job_id # The id of the job that has just finished
+
+Available Commands
+------------------
+
+.. code-block:: bash
+
+   answersengine finisher help
+   Commands:
+     answersengine finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
+     answersengine finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
+     answersengine finisher try <scraper_name> <finisher_file>   # Tries a finisher file

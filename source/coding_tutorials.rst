@@ -10,8 +10,8 @@ In this tutorial, we will go step by step in creating a scraper that scrapes an 
 
 If you want to see the the exercise solutions, please refer to the branches in https://github.com/answersengine/ebay-scraper
 
-Exercise 1: Create a base scraper locally.
-------------------------------------------
+Exercise 1: Create a base scraper locally
+-----------------------------------------
 
 In this exercise we will create a base scraper. At minimum a scraper needs a seeder script for it to run.
 After that we will commit and deploy to Fetch.
@@ -1137,7 +1137,6 @@ Next let’s put the following content into the products_last10_json.yaml file:
    write_mode: pretty_array # can be `line`,`pretty`, `pretty_array`, or `array`
    limit: 10 # limits to how many records to export
    offset: 0 # offset to where the exported record will start from
-   order: desc # can be ascending `asc` or descending `desc`
 
 The above exporter means, we want to export only the last 10 outputs from the `products` collection
 
@@ -1199,7 +1198,6 @@ Let’s now deploy the scraper.
        "exporter_type": "json",
        "limit": 10,
        "offset": 0,
-       "order": "desc",
        "write_mode": "pretty_array"
       }
      ],
@@ -1220,7 +1218,6 @@ To make sure that the exporters are deployed correctly, you can check a list of 
      "exporter_type": "json",
      "limit": 10,
      "offset": 0,
-     "order": "desc",
      "write_mode": "pretty_array"
     }
    ]
@@ -1242,7 +1239,6 @@ Next, let’s start the exporter:
      "exporter_type": "json",
      "limit": 10,
      "offset": 0,
-     "order": "desc",
      "write_mode": "pretty_array"
     },
     "status": "enqueued", # the status of the export
@@ -1324,7 +1320,7 @@ This is a very simple process, you just need to create another exporter file cal
    exporter_type: json
    collection: products
 
-Notice how we’re not putting anything such as `limit`, and `offset`, and even `write_mode`. This is because the default value for `write_mode` is `pretty_array`.
+Notice how we’re not putting anything such as `limit`, `offset`, and even `write_mode`. This is because the default value for `write_mode` is `pretty_array`.
 
 Don’t forget to update the config.yaml file to look like the following:
 
@@ -1352,7 +1348,7 @@ Let’s now commit and push this to the remote repos:
 .. code-block:: bash
 
    $ git add .
-   $ git commit -m'added full products exporter'
+   $ git commit -m 'added full products exporter'
    [master 2f453eb] added full products exporter
     2 files changed, 5 insertions(+)
     create mode 100644 exporters/products_json.yaml
@@ -1382,7 +1378,6 @@ Let’s now deploy it:
        "exporter_type": "json",
        "limit": 10,
        "offset": 0,
-       "order": "desc",
        "write_mode": "pretty_array"
       },
       {
@@ -1408,7 +1403,6 @@ Once deployed, let’s see what exporters are available to be used on the scrape
      "exporter_type": "json",
      "limit": 10,
      "offset": 0,
-     "order": "desc",
      "write_mode": "pretty_array"
     },
     {
@@ -1587,3 +1581,314 @@ Fetch offers several kinds of exporters including CSV that exports to the CSV fo
 For more information please visit the documentation
 
 The source codes that we’ve built throughout the exercise are located here https://github.com/answersengine/ebay-scraper/tree/exercise5.
+
+Exercise 6: Create a finisher script
+------------------------------------
+
+In the last exercise we went through creating an exporter to export scraper output. In this exercise we are going to take a look at
+creating a finisher script. A finisher script is a script that runs after a scraper job is done. With a finisher script you can do things like
+create summaries or run QA on your scraped data. Both of which we will show you how to do.
+Let's first create a finisher script to create a summary that shows the total number of listings. Create a folder called finisher in your project
+root directory and then create a file called finisher.rb inside with the following:
+
+.. code-block:: ruby
+
+   collections = AnswersEngine::Client::ScraperJobOutput.new.collections("ebay")
+   collection = collections.find{|collection| collection['collection'] == "listings" }
+   if collection
+     total = collection["outputs"]
+      outputs << {
+        "_collection" => "summary",
+        "total_listings" => total
+      }
+   else
+      puts "no listings collection found"
+   end
+
+
+Basically we are using the AnswersEngine gem to find all the collections for our ebay scraper and selecting the, "listings" collection.
+We then get the total number of listings inside this collection and save it to a new collection called, "summary." Next, let's add our
+finisher to the config.yaml file so that it looks like the following:
+
+.. code-block:: yaml
+
+   seeder:
+    file: ./seeder/seeder.rb
+    disabled: false
+   parsers:
+    - page_type: listings
+      file: ./parsers/listings.rb
+      disabled: false
+    - page_type: details
+      file: ./parsers/details.rb
+      disabled: false
+   exporters:
+    - file: ./exporters/products_last10_json.yaml
+      disabled: false
+    - file: ./exporters/products_json.yaml
+      disabled: false
+   finisher:
+     file: ./finisher/finisher.rb
+     disabled: false
+
+Now that we have updated our config, let's give this finisher a try by running the following:
+
+.. code-block:: bash
+
+   answersengine finisher try ebay finisher/finisher.rb
+
+   Trying seeder script
+   =========== Seeding Executed ===========
+   ----------------------------------------
+   Would have saved 1 out of 1 Outputs
+   [
+     {
+       "_collection": "summary",
+       "total_listings": 39
+     }
+   ]
+
+Looks like this worked! The finisher would have saved a summary collection with the total number of listings.
+Let’s now commit and push this to the remote repos:
+
+.. code-block:: bash
+
+   $ git add .
+   $ git commit -m 'added finisher script'
+   [master 2f453eb] added finisher script
+    1 files changed, 5 insertions(+)
+    create mode 100644 finisher/finisher.rb
+   $ git push origin master
+   Counting objects: 5, done.
+   Delta compression using up to 8 threads.
+   Compressing objects: 100% (5/5), done.
+   Writing objects: 100% (5/5), 569 bytes | 569.00 KiB/s, done.
+   Total 5 (delta 1), reused 0 (delta 0)
+   remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+   To https://github.com/answersengine/ebay-scraper.git
+      ab7ab52..2f453eb  master -> master
+
+Let’s now deploy it:
+
+.. code-block:: bash
+
+   $ answersengine scraper deploy ebay
+   Deploying scraper. This may take a while...
+   {
+    ...
+    "config": {
+      "finisher": {
+      "file": "./finisher/finisher.rb"
+     },
+     ...
+   }
+
+And then start the scraper.
+
+.. code-block:: bash
+
+   $ answersengine scraper start ebay
+   Starting a scrape job...
+
+Give the scraper a few minutes and then check the status. We are looking for the "finisher_status" to be "done." It should
+look something like the following:
+
+.. code-block:: bash
+
+   answersengine scraper stats ebay
+   {
+    "scraper_name": "ebay",
+    "job_id": 10066,
+    "job_status": "done",
+    "seeding_status": "done",
+    "finisher_status": "done",
+    "pages": 40,
+    "to_fetch": 0,
+    "fetching": 0,
+    "fetching_failed": 0,
+    "fetching_dequeue_failed": 0,
+    "to_parse": 0,
+    "parsing_started": 0,
+    "parsing": 0,
+    "parsed": 40,
+    "parsing_failed": 0,
+    "parsing_dequeue_failed": 0,
+    "limbo": 0,
+    "fetched": 40,
+    "fetched_from_web": 0,
+    "fetched_from_cache": 40,
+    "outputs": 79,
+    "output_collections": 0,
+    "standard_workers": 1,
+    "browser_workers": 0,
+    "time_stamp": "2019-08-15T17:32:48.771103Z"
+   }
+
+Once the finisher has run we can check our collections with the following:
+
+.. code-block:: bash
+
+   answersengine scraper output collections ebay
+   [
+    {
+     "job_id": 10066,
+     "collection": "listings",
+     "outputs": 39
+    },
+    {
+     "job_id": 10066,
+     "collection": "products",
+     "outputs": 39
+    },
+    {
+     "job_id": 10066,
+     "collection": "summary",
+     "outputs": 1
+    }
+   ]
+
+Looks like our finisher script worked! We now have a summary collection which shows the number
+of listings.
+
+Next let's take a look at adding some QA to our finisher so we can validate the scraper results.
+We will use the 'ae_easy-qa' Gem which is a Ruby Gem that allows for doing QA on AnswersEngine script outputs.
+First, create a file called Gemfile in the project root directory with the following:
+
+.. code-block:: bash
+
+   gem 'ae_easy-qa'
+
+After creating this file, run the following command in the project root directory:
+
+.. code-block:: bash
+
+   bundle
+
+This will install the 'ae_easy-qa' Gem. You should see something like the following output.
+
+.. code-block:: bash
+
+   Resolving dependencies...
+   Using ae_easy-qa 0.0.26
+   Using bundler 1.17.3
+   Bundle complete! 1 Gemfile dependency, 2 gems now installed.
+
+Now we need to create a file called ae_easy.yaml, also in the project root directory, with the following:
+
+.. code-block:: bash
+
+   qa:
+     individual_validations:
+       url:
+         required: true
+         type: Url
+       title:
+         required: true
+         type: String
+
+This ae_easy.yaml file is where we can define validations for the 'ae_easy-qa' Gem to use. In this example,
+we are going to do validation on the listings collection output. Specifically, we are validating that the "url"
+field is present and is of type "Url" and that the "title" field is present and is a String.
+
+Next, we just need to add some code to make the validator run in our finisher script. Update the finisher.rb file so
+it looks like the following:
+
+.. code-block:: ruby
+
+   require "ae_easy/qa'
+
+   collections = AnswersEngine::Client::ScraperJobOutput.new.collections("ebay")
+   collection = collections.find{|collection| collection['collection'] == "listings" }
+   if collection
+     total = collection["outputs"]
+      outputs << {
+        "_collection" => "summary",
+        "total_listings" => total
+      }
+   else
+      puts "no listings collection found"
+   end
+
+   vars = { "scraper_name" => "ebay", "collections" => ["listings"]}
+   AeEasy::Qa::Validator.new.validate_internal(vars, outputs)
+
+We are adding a line that loads the "ae_easy-qa" Gem using require and then doing validation on the listings
+collection of our ebay scraper. Let's try our finisher again. Run the following:
+
+.. code-block:: bash
+
+   answersengine finisher try ebay finisher/finisher.rb
+
+   Trying finisher script
+   1
+   2
+   validating scraper: ebay
+   Validating collection: listings
+   data count 39
+   =========== Finisher Executed ===========
+   ----------------------------------------
+   Would have saved 2 out of 2 Outputs
+   [
+     {
+       "_collection": "summary",
+       "total_listings": 39
+     },
+     {
+       "pass": "true",
+       "_collection": "ebay_listings_summary",
+       "total_items": 39
+     }
+   ]
+
+Ok, great! The "pass": "true" means that the validations all passed. Feel free to edit validation rules in the
+ae_easy.yaml file. There are more details and rules in the, "How to write a QA script to ingest and parse outputs
+from multiple scrapers" tutorial in the, "Advanced Tutorials" section.
+
+Let's now commit this update, push it to master, deploy it, and start the scraper again by running the following
+commands:
+
+.. code-block:: bash
+
+   $ git add .
+   $ git commit -m 'added qa to listings in finisher script'
+   $ git push origin master
+   $ answersengine scraper deploy ebay
+   $ answersengine scraper start ebay
+
+Give the scraper a few minutes to finish. You can check the status with the following:
+
+.. code-block:: bash
+
+   answersengine scraper stats ebay
+
+Once the "finisher_status" if "done," we can check the collections again for the QA summary with the following
+command:
+
+.. code-block:: bash
+
+   answersengine scraper output collections ebay
+   [
+    {
+     "job_id": 10066,
+     "collection": "listings",
+     "outputs": 39
+    },
+    {
+     "job_id": 10066,
+     "collection": "products",
+     "outputs": 39
+    },
+    {
+     "job_id": 10066,
+     "collection": "summary",
+     "outputs": 1
+    },
+    {
+     "pass": "true",
+     "collection": "ebay_listings_summary",
+     "total_items": 39
+    }
+   ]
+
+Great, it looks like we now have our summary as well as our QA summary present, which means the finisher script has run
+successfully.

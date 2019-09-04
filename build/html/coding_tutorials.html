@@ -93,11 +93,12 @@
 <li class="toctree-l1"><a class="reference internal" href="scraper_maintenance_workflow.html">Scraper Maintenance workflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Coding Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#simple-ebay-scraper-ruby">Simple Ebay scraper (Ruby)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise-1-create-a-base-scraper-locally">Exercise 1: Create a base scraper locally.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-1-create-a-base-scraper-locally">Exercise 1: Create a base scraper locally</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercise-2-run-the-scraper-on-fetch">Exercise 2: Run the scraper on Fetch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercise-3-create-parser-script">Exercise 3. Create parser script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercise-4-enqueue-more-pages-and-pass-variables-to-the-next-pages">Exercise 4: Enqueue more pages, and pass variables to the next pages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercise-5-exporting-outputs">Exercise 5: Exporting outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-6-create-a-finisher-script">Exercise 6: Create a finisher script</a></li>
 </ul>
 </li>
 </ul>
@@ -177,7 +178,7 @@
 In this tutorial, we will go step by step in creating a scraper that scrapes an ebay listing page, and loop through each of the pages to extract some related information from it. You will also get familiarized with the basic usage of developing on the Fetch platform.</p>
 <p>If you want to see the the exercise solutions, please refer to the branches in <a class="reference external" href="https://github.com/answersengine/ebay-scraper">https://github.com/answersengine/ebay-scraper</a></p>
 <div class="section" id="exercise-1-create-a-base-scraper-locally">
-<h3>Exercise 1: Create a base scraper locally.<a class="headerlink" href="#exercise-1-create-a-base-scraper-locally" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 1: Create a base scraper locally<a class="headerlink" href="#exercise-1-create-a-base-scraper-locally" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise we will create a base scraper. At minimum a scraper needs a seeder script for it to run.
 After that we will commit and deploy to Fetch.</p>
 <p>Let’s create an empty directory first, and name it ‘ebay-scraper’</p>
@@ -1120,7 +1121,6 @@ drwxr-xr-x  <span class="m">7</span> johndoe  staff   224B <span class="m">13</s
 <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pretty_array</span> <span class="c1"># can be `line`,`pretty`, `pretty_array`, or `array`</span>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># limits to how many records to export</span>
 <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span> <span class="c1"># offset to where the exported record will start from</span>
-<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
 </pre></div>
 </div>
 <p>The above exporter means, we want to export only the last 10 outputs from the <cite>products</cite> collection</p>
@@ -1174,7 +1174,6 @@ Deploying scraper. This may take a <span class="k">while</span>...
     <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
     <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
     <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
-    <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
     <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
    <span class="o">}</span>
   <span class="o">]</span>,
@@ -1192,7 +1191,6 @@ Deploying scraper. This may take a <span class="k">while</span>...
   <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
   <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
   <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
-  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
   <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
  <span class="o">}</span>
 <span class="o">]</span>
@@ -1212,7 +1210,6 @@ Deploying scraper. This may take a <span class="k">while</span>...
   <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
   <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
   <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
-  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
   <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
  <span class="o">}</span>,
  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;enqueued&quot;</span>, <span class="c1"># the status of the export</span>
@@ -1280,7 +1277,7 @@ Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-f
 <span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">products</span>
 </pre></div>
 </div>
-<p>Notice how we’re not putting anything such as <cite>limit</cite>, and <cite>offset</cite>, and even <cite>write_mode</cite>. This is because the default value for <cite>write_mode</cite> is <cite>pretty_array</cite>.</p>
+<p>Notice how we’re not putting anything such as <cite>limit</cite>, <cite>offset</cite>, and even <cite>write_mode</cite>. This is because the default value for <cite>write_mode</cite> is <cite>pretty_array</cite>.</p>
 <p>Don’t forget to update the config.yaml file to look like the following:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
  <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
@@ -1302,7 +1299,7 @@ Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-f
 </div>
 <p>Let’s now commit and push this to the remote repos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
-$ git commit -m<span class="s1">&#39;added full products exporter&#39;</span>
+$ git commit -m <span class="s1">&#39;added full products exporter&#39;</span>
 <span class="o">[</span>master 2f453eb<span class="o">]</span> added full products exporter
  <span class="m">2</span> files changed, <span class="m">5</span> insertions<span class="o">(</span>+<span class="o">)</span>
  create mode <span class="m">100644</span> exporters/products_json.yaml
@@ -1330,7 +1327,6 @@ Deploying scraper. This may take a <span class="k">while</span>...
     <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
     <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
     <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
-    <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
     <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
    <span class="o">}</span>,
    <span class="o">{</span>
@@ -1354,7 +1350,6 @@ Deploying scraper. This may take a <span class="k">while</span>...
   <span class="s2">&quot;exporter_type&quot;</span>: <span class="s2">&quot;json&quot;</span>,
   <span class="s2">&quot;limit&quot;</span>: <span class="m">10</span>,
   <span class="s2">&quot;offset&quot;</span>: <span class="m">0</span>,
-  <span class="s2">&quot;order&quot;</span>: <span class="s2">&quot;desc&quot;</span>,
   <span class="s2">&quot;write_mode&quot;</span>: <span class="s2">&quot;pretty_array&quot;</span>
  <span class="o">}</span>,
  <span class="o">{</span>
@@ -1510,6 +1505,271 @@ Let’s update the file <cite>products_csv.yaml</cite> so that it looks like fol
 <p>Fetch offers several kinds of exporters including CSV that exports to the CSV format, and Content exporter that allows you to export contents, such as files, images, pdf, etc.
 For more information please visit the documentation</p>
 <p>The source codes that we’ve built throughout the exercise are located here <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/exercise5">https://github.com/answersengine/ebay-scraper/tree/exercise5</a>.</p>
+</div>
+<div class="section" id="exercise-6-create-a-finisher-script">
+<h3>Exercise 6: Create a finisher script<a class="headerlink" href="#exercise-6-create-a-finisher-script" title="Permalink to this headline">¶</a></h3>
+<p>In the last exercise we went through creating an exporter to export scraper output. In this exercise we are going to take a look at
+creating a finisher script. A finisher script is a script that runs after a scraper job is done. With a finisher script you can do things like
+create summaries or run QA on your scraped data. Both of which we will show you how to do.
+Let’s first create a finisher script to create a summary that shows the total number of listings. Create a folder called finisher in your project
+root directory and then create a file called finisher.rb inside with the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span> <span class="o">=</span> <span class="no">AnswersEngine</span><span class="o">::</span><span class="no">Client</span><span class="o">::</span><span class="no">ScraperJobOutput</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">collections</span><span class="p">(</span><span class="s2">&quot;ebay&quot;</span><span class="p">)</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">find</span><span class="p">{</span><span class="o">|</span><span class="n">collection</span><span class="o">|</span> <span class="n">collection</span><span class="o">[</span><span class="s1">&#39;collection&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;listings&quot;</span> <span class="p">}</span>
+<span class="k">if</span> <span class="n">collection</span>
+  <span class="n">total</span> <span class="o">=</span> <span class="n">collection</span><span class="o">[</span><span class="s2">&quot;outputs&quot;</span><span class="o">]</span>
+   <span class="n">outputs</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
+     <span class="s2">&quot;_collection&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;summary&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;total_listings&quot;</span> <span class="o">=&gt;</span> <span class="n">total</span>
+   <span class="p">}</span>
+<span class="k">else</span>
+   <span class="nb">puts</span> <span class="s2">&quot;no listings collection found&quot;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Basically we are using the AnswersEngine gem to find all the collections for our ebay scraper and selecting the, “listings” collection.
+We then get the total number of listings inside this collection and save it to a new collection called, “summary.” Next, let’s add our
+finisher to the config.yaml file so that it looks like the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
+ <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./seeder/seeder.rb</span>
+ <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">parsers</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">listings</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/listings.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+ <span class="p p-Indicator">-</span> <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
+   <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./parsers/details.rb</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">exporters</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./exporters/products_last10_json.yaml</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+ <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./exporters/products_json.yaml</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">finisher</span><span class="p">:</span>
+  <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./finisher/finisher.rb</span>
+  <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>Now that we have updated our config, let’s give this finisher a try by running the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine finisher try ebay finisher/finisher.rb
+
+Trying seeder <span class="nv">script</span>
+<span class="o">===========</span> Seeding <span class="nv">Executed</span> <span class="o">===========</span>
+----------------------------------------
+Would have saved <span class="m">1</span> out of <span class="m">1</span> Outputs
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;summary&quot;</span>,
+    <span class="s2">&quot;total_listings&quot;</span>: <span class="m">39</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Looks like this worked! The finisher would have saved a summary collection with the total number of listings.
+Let’s now commit and push this to the remote repos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added finisher script&#39;</span>
+<span class="o">[</span>master 2f453eb<span class="o">]</span> added finisher script
+ <span class="m">1</span> files changed, <span class="m">5</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> finisher/finisher.rb
+$ git push origin master
+Counting objects: <span class="m">5</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">8</span> threads.
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="m">569</span> bytes <span class="p">|</span> <span class="m">569</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">5</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To https://github.com/answersengine/ebay-scraper.git
+   ab7ab52..2f453eb  master -&gt; master
+</pre></div>
+</div>
+<p>Let’s now deploy it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper deploy ebay
+Deploying scraper. This may take a <span class="k">while</span>...
+<span class="o">{</span>
+ ...
+ <span class="s2">&quot;config&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;finisher&quot;</span>: <span class="o">{</span>
+   <span class="s2">&quot;file&quot;</span>: <span class="s2">&quot;./finisher/finisher.rb&quot;</span>
+  <span class="o">}</span>,
+  ...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And then start the scraper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper start ebay
+Starting a scrape job...
+</pre></div>
+</div>
+<p>Give the scraper a few minutes and then check the status. We are looking for the “finisher_status” to be “done.” It should
+look something like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper stats ebay
+<span class="o">{</span>
+ <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
+ <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+ <span class="s2">&quot;job_status&quot;</span>: <span class="s2">&quot;done&quot;</span>,
+ <span class="s2">&quot;seeding_status&quot;</span>: <span class="s2">&quot;done&quot;</span>,
+ <span class="s2">&quot;finisher_status&quot;</span>: <span class="s2">&quot;done&quot;</span>,
+ <span class="s2">&quot;pages&quot;</span>: <span class="m">40</span>,
+ <span class="s2">&quot;to_fetch&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetching&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetching_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetching_dequeue_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;to_parse&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsing_started&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsing&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsed&quot;</span>: <span class="m">40</span>,
+ <span class="s2">&quot;parsing_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;parsing_dequeue_failed&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;limbo&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetched&quot;</span>: <span class="m">40</span>,
+ <span class="s2">&quot;fetched_from_web&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;fetched_from_cache&quot;</span>: <span class="m">40</span>,
+ <span class="s2">&quot;outputs&quot;</span>: <span class="m">79</span>,
+ <span class="s2">&quot;output_collections&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;standard_workers&quot;</span>: <span class="m">1</span>,
+ <span class="s2">&quot;browser_workers&quot;</span>: <span class="m">0</span>,
+ <span class="s2">&quot;time_stamp&quot;</span>: <span class="s2">&quot;2019-08-15T17:32:48.771103Z&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Once the finisher has run we can check our collections with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper output collections ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">39</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">39</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;summary&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">1</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Looks like our finisher script worked! We now have a summary collection which shows the number
+of listings.</p>
+<p>Next let’s take a look at adding some QA to our finisher so we can validate the scraper results.
+We will use the ‘ae_easy-qa’ Gem which is a Ruby Gem that allows for doing QA on AnswersEngine script outputs.
+First, create a file called Gemfile in the project root directory with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;ae_easy-qa&#39;</span>
+</pre></div>
+</div>
+<p>After creating this file, run the following command in the project root directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle
+</pre></div>
+</div>
+<p>This will install the ‘ae_easy-qa’ Gem. You should see something like the following output.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Resolving dependencies...
+Using ae_easy-qa <span class="m">0</span>.0.26
+Using bundler <span class="m">1</span>.17.3
+Bundle complete! <span class="m">1</span> Gemfile dependency, <span class="m">2</span> gems now installed.
+</pre></div>
+</div>
+<p>Now we need to create a file called ae_easy.yaml, also in the project root directory, with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qa:
+  individual_validations:
+    url:
+      required: <span class="nb">true</span>
+      type: Url
+    title:
+      required: <span class="nb">true</span>
+      type: String
+</pre></div>
+</div>
+<p>This ae_easy.yaml file is where we can define validations for the ‘ae_easy-qa’ Gem to use. In this example,
+we are going to do validation on the listings collection output. Specifically, we are validating that the “url”
+field is present and is of type “Url” and that the “title” field is present and is a String.</p>
+<p>Next, we just need to add some code to make the validator run in our finisher script. Update the finisher.rb file so
+it looks like the following:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s2">&quot;ae_easy/qa&#39;</span>
+
+<span class="s2">collections = AnswersEngine::Client::ScraperJobOutput.new.collections(&quot;</span><span class="n">ebay</span><span class="s2">&quot;)</span>
+<span class="s2">collection = collections.find{|collection| collection[&#39;collection&#39;] == &quot;</span><span class="n">listings</span><span class="s2">&quot; }</span>
+<span class="s2">if collection</span>
+<span class="s2">  total = collection[&quot;</span><span class="n">outputs</span><span class="s2">&quot;]</span>
+<span class="s2">   outputs &lt;&lt; {</span>
+<span class="s2">     &quot;</span><span class="n">_collection</span><span class="s2">&quot; =&gt; &quot;</span><span class="n">summary</span><span class="s2">&quot;,</span>
+<span class="s2">     &quot;</span><span class="n">total_listings</span><span class="s2">&quot; =&gt; total</span>
+<span class="s2">   }</span>
+<span class="s2">else</span>
+<span class="s2">   puts &quot;</span><span class="n">no</span> <span class="n">listings</span> <span class="n">collection</span> <span class="n">found</span><span class="s2">&quot;</span>
+<span class="s2">end</span>
+
+<span class="s2">vars = { &quot;</span><span class="n">scraper_name</span><span class="s2">&quot; =&gt; &quot;</span><span class="n">ebay</span><span class="s2">&quot;, &quot;</span><span class="n">collections</span><span class="s2">&quot; =&gt; [&quot;</span><span class="n">listings</span><span class="s2">&quot;]}</span>
+<span class="s2">AeEasy::Qa::Validator.new.validate_internal(vars, outputs)</span>
+</pre></div>
+</div>
+<p>We are adding a line that loads the “ae_easy-qa” Gem using require and then doing validation on the listings
+collection of our ebay scraper. Let’s try our finisher again. Run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine finisher try ebay finisher/finisher.rb
+
+Trying finisher script
+<span class="m">1</span>
+<span class="m">2</span>
+validating scraper: ebay
+Validating collection: listings
+data count <span class="nv">39</span>
+<span class="o">===========</span> Finisher <span class="nv">Executed</span> <span class="o">===========</span>
+----------------------------------------
+Would have saved <span class="m">2</span> out of <span class="m">2</span> Outputs
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;summary&quot;</span>,
+    <span class="s2">&quot;total_listings&quot;</span>: <span class="m">39</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">&quot;pass&quot;</span>: <span class="s2">&quot;true&quot;</span>,
+    <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;ebay_listings_summary&quot;</span>,
+    <span class="s2">&quot;total_items&quot;</span>: <span class="m">39</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Ok, great! The “pass”: “true” means that the validations all passed. Feel free to edit validation rules in the
+ae_easy.yaml file. There are more details and rules in the, “How to write a QA script to ingest and parse outputs
+from multiple scrapers” tutorial in the, “Advanced Tutorials” section.</p>
+<p>Let’s now commit this update, push it to master, deploy it, and start the scraper again by running the following
+commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s1">&#39;added qa to listings in finisher script&#39;</span>
+$ git push origin master
+$ answersengine scraper deploy ebay
+$ answersengine scraper start ebay
+</pre></div>
+</div>
+<p>Give the scraper a few minutes to finish. You can check the status with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper stats ebay
+</pre></div>
+</div>
+<p>Once the “finisher_status” if “done,” we can check the collections again for the QA summary with the following
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper output collections ebay
+<span class="o">[</span>
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">39</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">39</span>
+ <span class="o">}</span>,
+ <span class="o">{</span>
+  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
+  <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;summary&quot;</span>,
+  <span class="s2">&quot;outputs&quot;</span>: <span class="m">1</span>
+ <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

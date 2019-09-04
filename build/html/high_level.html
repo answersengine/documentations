@@ -142,6 +142,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#finisher">Finisher</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reserved-words-or-methods-in-finisher-scripts">Reserved words or methods in finisher scripts:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Available Commands</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
@@ -477,13 +482,11 @@ To add an exporter, you simply just add some lines of code under your <cite>expo
    <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span>
    <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
    <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span>
  <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details_content_short</span> <span class="c1"># Example Content Exporter</span>
    <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
    <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
    <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
    <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span>
 </pre></div>
 </div>
 <p>Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
@@ -523,14 +526,12 @@ scraper <span class="nb">export</span> commands:
    <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span>
    <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
    <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span>
    <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># This field will auto start this exporter</span>
  <span class="p p-Indicator">-</span> <span class="nt">exporter_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details_content_short</span> <span class="c1"># Example Content Exporter</span>
    <span class="nt">exporter_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">content</span>
    <span class="nt">page_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">details</span>
    <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
    <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-   <span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">desc</span>
    <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># This field will auto start this exporter</span>
 </pre></div>
 </div>
@@ -544,8 +545,7 @@ Typically, a JSON Exporter looks like this:</p>
 <span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;collection_here&gt;</span>
 <span class="nt">write_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span> <span class="c1"># can be `line`,`pretty`, `pretty_array`, or `array`</span>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
-<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
-<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
+<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
 <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
@@ -599,8 +599,6 @@ Typically, a CSV Exporter looks like this:</p>
 <span class="nt">collection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;collection_here&gt;</span>
 <span class="nt">no_headers</span><span class="p">:</span> <span class="nt">false # Specifies if you want the headers row. Default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
-<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
-<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
 <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">fields</span><span class="p">:</span>
  <span class="p p-Indicator">-</span> <span class="nt">header</span><span class="p">:</span> <span class="s">&quot;gid&quot;</span>
@@ -643,8 +641,6 @@ The difference between Content exporter and other exporters, is that, it exports
 <span class="nt">ignore_extensions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># filename will have no extension, if true</span>
 <span class="nt">include_failed_contents</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># self explanatory. Helpful for troubleshooting</span>
 <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># limits to how many records to export</span>
-<span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># offset to where the exported record will start from</span>
-<span class="nt">order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">asc</span> <span class="c1"># can be ascending `asc` or descending `desc`</span>
 <span class="nt">start_on_job_done</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
@@ -700,6 +696,27 @@ This particular content will be then saved as a file with the following filename
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">9335</span>.html
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="finisher">
+<h2>Finisher<a class="headerlink" href="#finisher" title="Permalink to this headline">¶</a></h2>
+<p>Finisher script is a script that is executed at the end of any job. This allows you to perform actions
+after your scraper job is done such as creating summaries and starting exporters.</p>
+<div class="section" id="reserved-words-or-methods-in-finisher-scripts">
+<h3>Reserved words or methods in finisher scripts:<a class="headerlink" href="#reserved-words-or-methods-in-finisher-scripts" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>job_id <span class="c1"># The id of the job that has just finished</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Available Commands<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine finisher <span class="nb">help</span>
+Commands:
+  answersengine finisher <span class="nb">exec</span> &lt;scraper_name&gt; &lt;finisher_file&gt;  <span class="c1"># Executes a finisher script onto a scraper&#39;s current job.</span>
+  answersengine finisher <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                       <span class="c1"># Describe subcommands or one specific subcommand</span>
+  answersengine finisher try &lt;scraper_name&gt; &lt;finisher_file&gt;   <span class="c1"># Tries a finisher file</span>
+</pre></div>
 </div>
 </div>
 </div>
