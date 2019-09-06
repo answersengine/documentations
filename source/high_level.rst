@@ -608,6 +608,8 @@ Reserved words or methods in finisher scripts:
 .. code-block:: bash
 
    job_id # The id of the job that has just finished
+   outputs # => []. the array of job output to be saved
+   save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
 
 Available Commands
 ------------------
