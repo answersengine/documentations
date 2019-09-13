@@ -673,6 +673,20 @@ Once we have built the image for you, you can use this custom image by modifying
 
 When you have modified this and deploy this, you need to restart your job.
 
+How to use shared code libraries from other Git repositories using Git Submodule
+======================
+
+Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories. 
+Luckly Fetch supports Git Submodules, which enables this scenario.
+
+You simply just deploy a scraper as usual, and Fetch will take care of initating and checking out the submodules recursively.
+
+This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git-Tools-Submodules`_ that shows the usage in depth.
+
+This `example scraper <https://github.com/answersengine/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
+
+
+
 Advanced Usage
 ==============
 
