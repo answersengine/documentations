@@ -628,7 +628,7 @@ Add the following to your config.yaml file.
     - name: baz
 
 In the example above, this will search for your scrape job's input variable of ``starting_url`` and then make it available to your script as ``ENV['starting_url']``.
-The above example also will search for ``baz`` variable on your account, and make it available to your script as ``ENV['baz']``.
+The above example also will search for ``baz`` variable on your scrape job, and make it available to your script as ``ENV['baz']``.
 
 
 3. Access the input variables and secrets in your script.
