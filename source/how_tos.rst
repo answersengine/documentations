@@ -592,6 +592,23 @@ To set a secret input variable on a scraper using command line:
 
    $ answersengine scraper var set <var_name> <value> --secret
 
+To set an input variable on a scrape job using command line:
+
+.. code-block:: bash
+
+   $ answersengine scraper job var set <var_name> <value>
+
+IMPORTANT: For this to take effect. You must pause and resume the job
+
+
+To set a secret input variable on a scraper job using command line:
+
+.. code-block:: bash
+
+   $ answersengine scraper job var set <var_name> <value> --secret
+
+IMPORTANT: For this to take effect. You must pause and resume the job
+
 
 2. Change your config.yaml to use the variables or secrets.
 -----------------------------------------------------------
