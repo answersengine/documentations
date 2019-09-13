@@ -539,6 +539,7 @@ Add the following to your config.yaml file.
       global_name: bar # Optional. If specified, refers to your account's environment variable of this name.
       disabled: false # Optional
     - name: baz
+      default: bazvalue
 
 In the example above, this will search for your account's environment variable of ``bar`` and then make it available to your script as ``ENV['foo']``.
 The above example also will search for ``baz`` variable on your account, and make it available to your script as ``ENV['baz']``.
@@ -556,6 +557,71 @@ Once you've done step 1 and 2 above, you can then access the environment variabl
 
    ENV['your_env_var_here']
 
+
+
+Setting Input Variables and Secrets on your scraper and scrape job.
+==========================================================
+
+You can set any input variables and secrets on your scraper, similar to how you use environment variables.
+
+There are similarities between input variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
+The difference is, secrets are encrypted. 
+
+Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
+
+Another benefit of using input variables and secret is so that you don't have to store any values in the Git repository. 
+This will make your code more secure and more reusable.
+
+When you've specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper's input variables.
+
+This `example scraper <https://github.com/answersengine/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
+
+There are three steps that you need to do in order to use input variables and secrets:
+
+1. Set the input variable or secrets on your scraper.
+-----------------------------------------------------------
+To set an input variable on a scraper using command line:
+
+.. code-block:: bash
+
+   $ answersengine scraper var set <var_name> <value>
+
+To set a secret input variable on a scraper using command line:
+
+.. code-block:: bash
+
+   $ answersengine scraper var set <var_name> <value> --secret
+
+
+2. Change your config.yaml to use the variables or secrets.
+-----------------------------------------------------------
+
+Add the following to your config.yaml file.
+
+.. code-block:: yaml
+   
+   input_vars:
+    - name: starting_url 
+      title: Starting URL # Optional
+      description: Enter the starting URL for the scraper to run # optional
+      default: https://www.ebay.com/sch/i.html?_nkw=macbooks # optional.
+      input_type: text # Available values include: string, text, secret, date, datetime. This will display the appropriate input on the form.
+      required: true # Optional. This will make the input field in the form, required
+      disabled: false # Optional
+    - name: baz
+
+In the example above, this will search for your scrape job's input variable of ``starting_url`` and then make it available to your script as ``ENV['starting_url']``.
+The above example also will search for ``baz`` variable on your account, and make it available to your script as ``ENV['baz']``.
+
+
+3. Access the input variables and secrets in your script.
+---------------------------------------------------------------
+
+Once you've done step 1 and 2 above, you can then access the input variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
+
+.. code-block:: ruby
+
+   ENV['your_input_var_here']
 
 
 
