@@ -677,7 +677,7 @@ How to use shared code libraries from other Git repositories using Git Submodule
 ======================
 
 Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories. 
-Luckly Fetch supports Git Submodules, which enables this scenario.
+Luckily Fetch supports Git Submodules, which enables this scenario.
 
 You simply just deploy a scraper as usual, and Fetch will take care of initating and checking out the submodules recursively.
 
