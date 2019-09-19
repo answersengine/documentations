@@ -420,7 +420,7 @@ You can also verify that a field is more than something.
      regex: "^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$"
 
 Validates the value of a field using a regular expression. For example, you could validate that a value is a
-phone number or a day of the week like the above example.
+phone number or a day of the week like the above example. Regex uses case ignore by default.
 
 ------------
 
@@ -431,11 +431,13 @@ phone number or a day of the week like the above example.
        equal: 'Test title'
        if:
          search_input:
-           value: 'Search'
+           value:
+             equal: 'Search'
 
 You can also implement conditions on value validations. For instance, the above example validates that the value of
 a field named, 'title' has a value equal to 'Test title' only if the value of the field named, 'search_input' has
-a value equal to, 'Search.'
+a value equal to, 'Search.' If statements currently support value checks with the same options as a normal value
+check (less_than, greater_than, regex, and equal).
 
 Group Validations
 -----------------
