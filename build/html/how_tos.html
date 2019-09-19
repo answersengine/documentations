@@ -125,7 +125,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#access-the-environment-variables-and-secrets-in-your-script">3. Access the environment variables and secrets in your script.</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-input-variables-and-secrets-on-your-scraper-and-scrape-job">Setting Input Variables and Secrets on your scraper and scrape job.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-the-input-variable-or-secrets-on-your-scraper">1. Set the input variable or secrets on your scraper.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. Change your config.yaml to use the variables or secrets.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-the-input-variables-and-secrets-in-your-script">3. Access the input variables and secrets in your script.</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#using-a-custom-docker-image-for-the-scraper">Using a custom docker image for the scraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-shared-code-libraries-from-other-git-repositories-using-git-submodule">How to use shared code libraries from other Git repositories using Git Submodule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#parsing-failed-responses">Parsing Failed Responses</a></li>
 </ul>
@@ -666,6 +673,7 @@ This will make your code more secure and more reusable.</p>
    <span class="nt">global_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span> <span class="c1"># Optional. If specified, refers to your account&#39;s environment variable of this name.</span>
    <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional</span>
  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">baz</span>
+   <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bazvalue</span>
 </pre></div>
 </div>
 <p>In the example above, this will search for your account’s environment variable of <code class="docutils literal notranslate"><span class="pre">bar</span></code> and then make it available to your script as <code class="docutils literal notranslate"><span class="pre">ENV['foo']</span></code>.
@@ -676,6 +684,63 @@ The above example also will search for <code class="docutils literal notranslate
 <h3>3. Access the environment variables and secrets in your script.<a class="headerlink" href="#access-the-environment-variables-and-secrets-in-your-script" title="Permalink to this headline">¶</a></h3>
 <p>Once you’ve done step 1 and 2 above, you can then access the environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;your_env_var_here&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-input-variables-and-secrets-on-your-scraper-and-scrape-job">
+<h2>Setting Input Variables and Secrets on your scraper and scrape job.<a class="headerlink" href="#setting-input-variables-and-secrets-on-your-scraper-and-scrape-job" title="Permalink to this headline">¶</a></h2>
+<p>You can set any input variables and secrets on your scraper, similar to how you use environment variables.</p>
+<p>There are similarities between input variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
+The difference is, secrets are encrypted.</p>
+<p>Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.</p>
+<p>Another benefit of using input variables and secret is so that you don’t have to store any values in the Git repository.
+This will make your code more secure and more reusable.</p>
+<p>When you’ve specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper’s input variables.</p>
+<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/input_vars">example scraper</a> shows usage of input variables.</p>
+<p>There are three steps that you need to do in order to use input variables and secrets:</p>
+<div class="section" id="set-the-input-variable-or-secrets-on-your-scraper">
+<h3>1. Set the input variable or secrets on your scraper.<a class="headerlink" href="#set-the-input-variable-or-secrets-on-your-scraper" title="Permalink to this headline">¶</a></h3>
+<p>To set an input variable on a scraper using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+</pre></div>
+</div>
+<p>To set a secret input variable on a scraper using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+</pre></div>
+</div>
+<p>To set an input variable on a scrape job using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+</pre></div>
+</div>
+<p>IMPORTANT: For this to take effect. You must pause and resume the job</p>
+<p>To set a secret input variable on a scraper job using command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+</pre></div>
+</div>
+<p>IMPORTANT: For this to take effect. You must pause and resume the job</p>
+</div>
+<div class="section" id="id2">
+<h3>2. Change your config.yaml to use the variables or secrets.<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Add the following to your config.yaml file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_vars</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">starting_url</span>
+   <span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Starting URL</span> <span class="c1"># Optional</span>
+   <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Enter the starting URL for the scraper to run</span> <span class="c1"># optional</span>
+   <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://www.ebay.com/sch/i.html?_nkw=macbooks</span> <span class="c1"># optional.</span>
+   <span class="nt">type</span><span class="p">:</span> <span class="nt">text # Available values include</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string, text, secret, date, datetime. This will display the appropriate input on the form.</span>
+   <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># Optional. This will make the input field in the form, required</span>
+   <span class="nt">disabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Optional</span>
+ <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">baz</span>
+</pre></div>
+</div>
+<p>In the example above, this will search for your scrape job’s input variable of <code class="docutils literal notranslate"><span class="pre">starting_url</span></code> and then make it available to your script as <code class="docutils literal notranslate"><span class="pre">ENV['starting_url']</span></code>.
+The above example also will search for <code class="docutils literal notranslate"><span class="pre">baz</span></code> variable on your scrape job, and make it available to your script as <code class="docutils literal notranslate"><span class="pre">ENV['baz']</span></code>.</p>
+</div>
+<div class="section" id="access-the-input-variables-and-secrets-in-your-script">
+<h3>3. Access the input variables and secrets in your script.<a class="headerlink" href="#access-the-input-variables-and-secrets-in-your-script" title="Permalink to this headline">¶</a></h3>
+<p>Once you’ve done step 1 and 2 above, you can then access the input variables or secrets from any of your seeder, parser, finisher scripts, by doing so:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;your_input_var_here&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -699,6 +764,14 @@ The following format would be preferable:</p>
 </pre></div>
 </div>
 <p>When you have modified this and deploy this, you need to restart your job.</p>
+</div>
+<div class="section" id="how-to-use-shared-code-libraries-from-other-git-repositories-using-git-submodule">
+<h2>How to use shared code libraries from other Git repositories using Git Submodule<a class="headerlink" href="#how-to-use-shared-code-libraries-from-other-git-repositories-using-git-submodule" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories.
+Luckily Fetch supports Git Submodules, which enables this scenario.</p>
+<p>You simply just deploy a scraper as usual, and Fetch will take care of initating and checking out the submodules recursively.</p>
+<p>This is <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">the documentation on Git Submodules</a> that shows the usage in depth.</p>
+<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/submodule">example scraper</a> shows usage of git submodules.</p>
 </div>
 <div class="section" id="advanced-usage">
 <h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h2>

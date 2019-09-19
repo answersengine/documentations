@@ -751,6 +751,8 @@ after your scraper job is done such as creating summaries and starting exporters
 <div class="section" id="reserved-words-or-methods-in-finisher-scripts">
 <h3>Reserved words or methods in finisher scripts:<a class="headerlink" href="#reserved-words-or-methods-in-finisher-scripts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>job_id <span class="c1"># The id of the job that has just finished</span>
+outputs <span class="c1"># =&gt; []. the array of job output to be saved</span>
+save_outputs<span class="o">(</span>outputs<span class="o">)</span> <span class="c1"># Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the &quot;outputs&quot; variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory</span>
 </pre></div>
 </div>
 </div>

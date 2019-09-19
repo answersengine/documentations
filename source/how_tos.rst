@@ -560,7 +560,7 @@ Once you've done step 1 and 2 above, you can then access the environment variabl
 
 
 Setting Input Variables and Secrets on your scraper and scrape job.
-==========================================================
+===================================================================
 
 You can set any input variables and secrets on your scraper, similar to how you use environment variables.
 
@@ -674,7 +674,7 @@ Once we have built the image for you, you can use this custom image by modifying
 When you have modified this and deploy this, you need to restart your job.
 
 How to use shared code libraries from other Git repositories using Git Submodule
-======================
+================================================================================
 
 Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories. 
 Luckily Fetch supports Git Submodules, which enables this scenario.
