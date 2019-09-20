@@ -439,6 +439,20 @@ a field named, 'title' has a value equal to 'Test title' only if the value of th
 a value equal to, 'Search.' If statements currently support value checks with the same options as a normal value
 check (less_than, greater_than, regex, and equal).
 
+------------
+
+.. code-block:: yaml
+
+   title:
+     required: true
+     if:
+       search_input:
+         value:
+           regex: '(One|Two|Three)'
+
+You can also implement an if condition on 'required.' The above example will only check if the 'title' field is required
+if the field named, 'search_input' has a value equal to: 'One,' 'Two,' or 'Three.'
+
 Group Validations
 -----------------
 
