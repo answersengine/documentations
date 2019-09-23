@@ -685,9 +685,9 @@ This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git
 
 This `example scraper <https://github.com/answersengine/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
 
-Page fetch debugging
-====================
-Page fetching debugging can be both easy and hard, depending on how much work you need to find the cause of the problem. You will find here some common and uncommon page fetching issues that happens on websites along it's fixes:
+How to debug page fetch
+=======================
+Debugging page fetch can be both easy and hard, depending on how much work you need to find the cause of the problem. You will find here some common and uncommon page fetching issues that happens on websites along it's fixes:
 
 `no_url_decode: true`
 ---------------------
