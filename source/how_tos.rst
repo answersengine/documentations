@@ -694,36 +694,35 @@ Debugging page fetch can be both easy and hard, depending on how much work you n
 This option forces a page to keep it's url as is, since v2 decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
 
 **Example:**
-```
-pages << {
-  'url' => 'https://example.com/?my_sensitive_value'
-}
-# => url is re-encoded as "https://example.com/?my_sensitive_value="
+.. code-block:: ruby
+   pages << {
+     'url' => 'https://example.com/?my_sensitive_value'
+   }
+   # => url is re-encoded as "https://example.com/?my_sensitive_value="
 
-pages << {
-  'url' => 'https://example.com/?my_sensitive_value',
-  'no_url_encode' => true
-}
-# => url is left as is "https://example.com/?my_sensitive_value"
-```
+   pages << {
+     'url' => 'https://example.com/?my_sensitive_value',
+     'no_url_encode' => true
+   }
+   # => url is left as is "https://example.com/?my_sensitive_value"
 
 `http2: true`
 -------------
 This change the standard fetch from HTTP/1 to HTTP/2, which not only makes fetch faster on websites that support it, but also helps to bypass some anti-scrape tech that usually blocks HTTP/1 requests.
 
 **Example:**
-```
-pages << {
-  'url' => 'https://example.com'
-}
-# => page fetching will use HTTP/1
+.. code-block:: ruby
+   pages << {
+     'url' => 'https://example.com'
+   }
+   # => page fetching will use HTTP/1
 
-pages << {
-  'url' => 'https://example.com',
-  'http2' => true
-}
-# => page fetching will use HTTP/2
-```
+   pages << {
+     'url' => 'https://example.com',
+     'http2' => true
+   }
+   # => page fetching will use HTTP/2
+
 
 response headers and request headers are different
 --------------------------------------------------
@@ -731,24 +730,25 @@ There has been a few times on that a dev includes a response header within  `hea
 
 **Example:**
 let's say a page enqueues this way
-```
-pages << {'url' => '[https://www.example.com](https://www.example.com/)'}
-```
+.. code-block:: ruby
+   pages << {'url' => '[https://www.example.com](https://www.example.com/)'}
+
 then it fetch from v2, and then got response_headers like
-```
-response_headers: {
-  'content-type' => 'json'
-}
-```
+.. code-block:: ruby
+   response_headers: {
+     'content-type' => 'json'
+   }
+
 so on next page you enqueue the following page adding one or more response headers by mistake
-```
-pages << {
-  'url' => 'https://www.example.com/abc'
-  'headers' => {
-    'content-type' => 'json'
-  }
-}
-```
+
+.. code-block:: ruby
+   pages << {
+     'url' => 'https://www.example.com/abc'
+     'headers' => {
+       'content-type' => 'json'
+     }
+   }
+
 On this example, using `content-type` is fine on request as long as it is POST method, but this one is GET, so on this case this would be invalid and a website that validates the headers will fail.
 
 bzip compression headers
