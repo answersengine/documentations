@@ -694,7 +694,9 @@ Debugging page fetch can be both easy and hard, depending on how much work you n
 This option forces a page to keep it's url as is, since v2 decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
 
 **Example:**
+
 .. code-block:: ruby
+
    pages << {
      'url' => 'https://example.com/?my_sensitive_value'
    }
@@ -711,7 +713,9 @@ This option forces a page to keep it's url as is, since v2 decode and re-encode 
 This change the standard fetch from HTTP/1 to HTTP/2, which not only makes fetch faster on websites that support it, but also helps to bypass some anti-scrape tech that usually blocks HTTP/1 requests.
 
 **Example:**
+
 .. code-block:: ruby
+
    pages << {
      'url' => 'https://example.com'
    }
@@ -730,11 +734,15 @@ There has been a few times on that a dev includes a response header within  `hea
 
 **Example:**
 let's say a page enqueues this way
+
 .. code-block:: ruby
+
    pages << {'url' => '[https://www.example.com](https://www.example.com/)'}
 
 then it fetch from v2, and then got response_headers like
+
 .. code-block:: ruby
+
    response_headers: {
      'content-type' => 'json'
    }
@@ -742,6 +750,7 @@ then it fetch from v2, and then got response_headers like
 so on next page you enqueue the following page adding one or more response headers by mistake
 
 .. code-block:: ruby
+
    pages << {
      'url' => 'https://www.example.com/abc'
      'headers' => {
