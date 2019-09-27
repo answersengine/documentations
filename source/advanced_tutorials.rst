@@ -453,6 +453,27 @@ check (less_than, greater_than, regex, and equal).
 You can also implement an if condition on 'required.' The above example will only check if the 'title' field is required
 if the field named, 'search_input' has a value equal to: 'One,' 'Two,' or 'Three.'
 
+------------
+
+.. code-block:: yaml
+
+   title:
+     required: true
+     if:
+       and:
+         -
+          field1:
+            value:
+              regex: '(One|Two)'
+         -
+          field2:
+            value:
+              less_than: 100
+
+If conditions can also take 'and' and 'or' operators. The above example shows a validation that will only check if the 'title'
+field is required if the field named, 'field1' has a value equal to: 'One' or 'Two' and the field named, 'field2' has a value
+that is less than 100.
+
 Group Validations
 -----------------
 

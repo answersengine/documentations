@@ -536,6 +536,24 @@ check (less_than, greater_than, regex, and equal).</p>
 </div>
 <p>You can also implement an if condition on ‘required.’ The above example will only check if the ‘title’ field is required
 if the field named, ‘search_input’ has a value equal to: ‘One,’ ‘Two,’ or ‘Three.’</p>
+<hr class="docutils" />
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span>
+  <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">if</span><span class="p">:</span>
+    <span class="nt">and</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span>
+       <span class="nt">field1</span><span class="p">:</span>
+         <span class="nt">value</span><span class="p">:</span>
+           <span class="nt">regex</span><span class="p">:</span> <span class="s">&#39;(One|Two)&#39;</span>
+      <span class="p p-Indicator">-</span>
+       <span class="nt">field2</span><span class="p">:</span>
+         <span class="nt">value</span><span class="p">:</span>
+           <span class="nt">less_than</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+</pre></div>
+</div>
+<p>If conditions can also take ‘and’ and ‘or’ operators. The above example shows a validation that will only check if the ‘title’
+field is required if the field named, ‘field1’ has a value equal to: ‘One’ or ‘Two’ and the field named, ‘field2’ has a value
+that is less than 100.</p>
 </div>
 <div class="section" id="group-validations">
 <h3>Group Validations<a class="headerlink" href="#group-validations" title="Permalink to this headline">¶</a></h3>
