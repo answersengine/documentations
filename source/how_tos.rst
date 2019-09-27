@@ -685,6 +685,85 @@ This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git
 
 This `example scraper <https://github.com/answersengine/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
 
+How to debug page fetch
+=======================
+Debugging page fetch can be both easy and hard, depending on how much work you need to find the cause of the problem. You will find here some common and uncommon page fetching issues that happens on websites along it's fixes:
+
+`no_url_decode: true`
+---------------------
+This option forces a page to keep it's url as is, since v2 decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
+
+**Example:**
+
+.. code-block:: ruby
+
+   pages << {
+     'url' => 'https://example.com/?my_sensitive_value'
+   }
+   # => url is re-encoded as "https://example.com/?my_sensitive_value="
+
+   pages << {
+     'url' => 'https://example.com/?my_sensitive_value',
+     'no_url_encode' => true
+   }
+   # => url is left as is "https://example.com/?my_sensitive_value"
+
+`http2: true`
+-------------
+This change the standard fetch from HTTP/1 to HTTP/2, which not only makes fetch faster on websites that support it, but also helps to bypass some anti-scrape tech that usually blocks HTTP/1 requests.
+
+**Example:**
+
+.. code-block:: ruby
+
+   pages << {
+     'url' => 'https://example.com'
+   }
+   # => page fetching will use HTTP/1
+
+   pages << {
+     'url' => 'https://example.com',
+     'http2' => true
+   }
+   # => page fetching will use HTTP/2
+
+
+response headers and request headers are different
+--------------------------------------------------
+There has been a few times on that a dev includes a response header within  `headers: {}`  causing the fetch to fail on websites that validates the headers it receives, so try to check which headers your browser shows on dev tools to see if an extra header is being used by mistake.
+
+**Example:**
+let's say a page enqueues this way
+
+.. code-block:: ruby
+
+   pages << {'url' => '[https://www.example.com](https://www.example.com/)'}
+
+then it fetch from v2, and then got response_headers like
+
+.. code-block:: ruby
+
+   response_headers: {
+     'content-type' => 'json'
+   }
+
+so on next page you enqueue the following page adding one or more response headers by mistake
+
+.. code-block:: ruby
+
+   pages << {
+     'url' => 'https://www.example.com/abc'
+     'headers' => {
+       'content-type' => 'json'
+     }
+   }
+
+On this example, using `content-type` is fine on request as long as it is POST method, but this one is GET, so on this case this would be invalid and a website that validates the headers will fail.
+
+bzip compression headers
+------------------------
+Most browsers will include a headers indicating to compress the page to bzip or other compression format, most of the times it will not affect anything, but there are a few on which including these headers, will cause the content to fail.
+
 
 
 Advanced Usage

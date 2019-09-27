@@ -316,6 +316,38 @@ Available Commands
      answersengine seeder help [COMMAND]                     # Describe subcommands or one specific subcommand
      answersengine seeder try <scraper_name> <seeder_file>                  # Tries a seeder file
 
+
+Finisher
+========
+
+Finisher script is a script that is executed at the end of any job. This allows you to perform actions
+after your scraper job is done such as creating summaries and starting exporters.
+
+Reserved words or methods in finisher scripts:
+----------------------------------------------
+
+.. code-block:: bash
+
+   job_id # The id of the job that has just finished
+   outputs # => []. the array of job output to be saved
+   save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
+
+Available Commands
+------------------
+
+.. code-block:: bash
+
+   answersengine finisher help
+   Commands:
+     answersengine finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
+     answersengine finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
+     answersengine finisher try <scraper_name> <finisher_file>   # Tries a finisher file
+   
+   answersengine scraper finisher help
+   scraper finisher commands:
+     answersengine scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
+     answersengine scraper finisher reset <scraper_name>  # Reset finisher on a scraper's current job
+
 Exporters
 =========
 
@@ -595,29 +627,3 @@ This particular content will be then saved as a file with the following filename
 .. code-block:: bash
 
    9335.html
-
-Finisher
-========
-
-Finisher script is a script that is executed at the end of any job. This allows you to perform actions
-after your scraper job is done such as creating summaries and starting exporters.
-
-Reserved words or methods in finisher scripts:
-----------------------------------------------
-
-.. code-block:: bash
-
-   job_id # The id of the job that has just finished
-   outputs # => []. the array of job output to be saved
-   save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
-
-Available Commands
-------------------
-
-.. code-block:: bash
-
-   answersengine finisher help
-   Commands:
-     answersengine finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
-     answersengine finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
-     answersengine finisher try <scraper_name> <finisher_file>   # Tries a finisher file
