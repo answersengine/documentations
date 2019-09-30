@@ -295,6 +295,15 @@ Seeder
 
 Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by AnswersEngine.
 
+To Add a seeder, you simply add the following to your config.yaml file:
+.. code-block:: yaml
+
+   seeder:
+     file: ./seeder/seeder.rb
+     disabled: false
+
+
+
 Reserved words or methods in seeder scripts:
 --------------------------------------------
 
@@ -322,6 +331,14 @@ Finisher
 
 Finisher script is a script that is executed at the end of any job. This allows you to perform actions
 after your scraper job is done such as creating summaries and starting exporters.
+
+To Add a finisher, you simply add the following to your config.yaml file:
+.. code-block:: yaml
+
+   finisher:
+     file: ./finisher/finisher.rb
+     disabled: false
+
 
 Reserved words or methods in finisher scripts:
 ----------------------------------------------
