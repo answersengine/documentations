@@ -651,19 +651,21 @@ This particular content will be then saved as a file with the following filename
 Schemas
 =========
 
-For output records that needs to follow a certain schema, we support the use of json-schema v4, v6, and v7 to validate your collection outputs.
+For output records that needs to follow a certain schema, we support the use of `json-schema.org <https://json-schema.org>`_ v4, v6, and v7 to validate your collection outputs.
 
-To learn more on how to write your schema files, please visit `Understanding JSON Schema <https://json-schema.org/understanding-json-schema/>`_ 
+To learn more on how to write your schema files, please visit `Understanding JSON Schema <https://json-schema.org/understanding-json-schema/>`_. 
 
-You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_ . Doing so will make it much easier to get started with building your schema files.
+You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_. Doing so will make it much easier to get started with building your schema files.
+
+To see an example of how a scraper uses a schema, visit the `following project <https://github.com/answersengine/ebay-scraper/tree/schema_config>`_.
 
 To specify any schema to collection(s), you need to do the following steps:
 
 1. Create the json schema file
 ------------------------------
 
-Ideally the convention to organize your schema files is to create a directory called `./schemas` in the root project directory, and then put all the related files inside.
-In this example let's create a schema file that will validate contact information. In this case, you can create the file `./schemas/contact.json` with the following content:  
+Ideally the convention to organize your schema files is to create a directory called ``./schemas`` in the root project directory, and then put all the related files inside.
+In this example let's create a schema file that will validate contact information. In this case, you can create the file ``./schemas/contact.json`` with the following content:  
 
 .. code-block:: json
 
@@ -683,7 +685,7 @@ This file contains the actual json-schema that will be used to validate an outpu
 2. Create the schema config file and list the schema file that will be used to validate the collection(s)
 ---------------------------------------------------------------------------------------------------------
 
-Once you've created the schema file in step 1, you now need to create a schema config file. Let's create the file `./schemas/schema_config.yaml` file with the following content:
+Once you've created the schema file in step 1, you now need to create a schema config file. Let's create the file ``./schemas/schema_config.yaml`` file with the following content:
 
 .. code-block:: yaml
 
@@ -696,7 +698,7 @@ Once you've created the schema file in step 1, you now need to create a schema c
 3. Update your config.yaml file to include the schema config file.
 ------------------------------------------------------------------
 
-Once you've created the schema config file, you now need to refer to this schema config file from your project's main config.yaml file. Add the following content to your `./config.yaml`
+Once you've created the schema config file, you now need to refer to this schema config file from your project's main config YAML file. Now, add the following content to your ``./config.yaml``
 
 .. code-block:: yaml
 
