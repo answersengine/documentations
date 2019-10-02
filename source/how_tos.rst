@@ -691,7 +691,7 @@ Debugging page fetch can be both easy and hard, depending on how much work you n
 
 `no_url_decode: true`
 ---------------------
-This option forces a page to keep it's url as is, since v2 decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
+This option forces a page to keep it's url as is, since Fetch decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
 
 **Example:**
 
@@ -739,7 +739,7 @@ let's say a page enqueues this way
 
    pages << {'url' => '[https://www.example.com](https://www.example.com/)'}
 
-then it fetch from v2, and then got response_headers like
+then it will fetch, and then got response_headers like
 
 .. code-block:: ruby
 
