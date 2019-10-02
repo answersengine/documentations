@@ -646,3 +646,64 @@ This particular content will be then saved as a file with the following filename
 .. code-block:: bash
 
    9335.html
+
+
+Schemas
+=========
+
+For output records that needs to follow a certain schema, we support the use of json-schema v4, v6, and v7 to validate your collection outputs.
+
+To learn more on how to write your schema files, please visit `Understanding JSON Schema <https://json-schema.org/understanding-json-schema/>`_ 
+
+You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_ . Doing so will make it much easier to get started with building your schema files.
+
+To specify any schema to collection(s), you need to do the following steps:
+
+1. Create the json schema file
+------------------------------
+
+Ideally the convention to organize your schema files is to create a directory called `./schemas` in the root project directory, and then put all the related files inside.
+In this example let's create a schema file that will validate contact information. In this case, you can create the file `./schemas/contact.json` with the following content:  
+
+.. code-block:: json
+
+  {
+    "type": "object",
+    "properties": {
+      "name":      { "type": "string" },
+      "email":     { "type": "string" },
+      "address":   { "type": "string" },
+      "telephone": { "type": "string" }
+    },
+    "required": ["name", "email"]
+  }
+
+This file contains the actual json-schema that will be used to validate an output record.
+
+2. Create the schema config file and list the schema file that will be used to validate the collection(s)
+---------------------------------------------------------------------------------------------------------
+
+Once you've created the schema file in step 1, you now need to create a schema config file. Let's create the file `./schemas/schema_config.yaml` file with the following content:
+
+.. code-block:: yaml
+
+   schemas:
+    - file: ./schemas/contacts.json
+      collections: "contacts,contacts1,contacts2" # you can put multiple collections to be validated by the same schema file
+      disabled: false
+
+
+3. Update your config.yaml file to include the schema config file.
+------------------------------------------------------------------
+
+Once you've created the schema config file, you now need to refer to this schema config file from your project's main config.yaml file. Add the following content to your `./config.yaml`
+
+.. code-block:: yaml
+
+    schema_config: 
+      file: ./schemas/schema_config.yaml
+      disabled: false
+
+
+Once this is done, and you've deployed your scraper, any time your script will try to save any output into your specified collections, they will be validated based on the schemas that you've specified.
+
