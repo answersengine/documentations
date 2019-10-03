@@ -685,7 +685,7 @@ This file contains the actual json-schema that will be used to validate an outpu
 2. Create the schema config file and list the schema file that will be used to validate the collection(s)
 ---------------------------------------------------------------------------------------------------------
 
-Once you've created the schema file in step 1, you now need to create a schema config file. Let's create the file ``./schemas/schema_config.yaml`` file with the following content:
+Once you've created the schema file in step 1, you now need to create a schema config file. Let's create the file ``./schemas/config.yaml`` file with the following content:
 
 .. code-block:: yaml
 
@@ -703,7 +703,7 @@ Once you've created the schema config file, you now need to refer to this schema
 .. code-block:: yaml
 
     schema_config: 
-      file: ./schemas/schema_config.yaml
+      file: ./schemas/config.yaml
       disabled: false
 
 
