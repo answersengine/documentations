@@ -548,3 +548,55 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.
         threshold: 1.0
         required: true
         type: String
+
+External sources
+----------------
+
+In addition to performing validation on scrapers that run on Answers Engine (internal sources) you can also perform validation on external sources.
+For example, if you have a scraper that runs somewhere else, you can validate it by ingesting a json endpoint. Here is an example seeder
+for an external source:
+
+.. code-block:: ruby
+
+   pages << {
+      url: "http://dummy.restapiexample.com/api/v1/employees",
+      method: "GET",
+      force_fetch: true,
+      freshness: Time.now.iso8601,
+      vars: {
+        collection_id: "employees-1"
+      }
+   }
+
+This seeder could be exanded to seeding multiple endpointpoints by loading a YAML file and iterating through like in Step 2 above. After seeding
+our external json endpoint we can now write a parser such as the following:
+
+.. code-block:: ruby
+
+   require 'typhoeus'
+   require 'json'
+   require 'ae_easy/qa'
+
+   collection_name = page['vars']['collection_id']
+   json = JSON.parse(content)
+   qa = AeEasy::Qa::Validator.new(json, {})
+   qa.validate_external(outputs, collection_name)
+
+We can also implement thresholds with external sources by loading a thresholds yaml and passing it into the validator options. We can update our
+parser so that it looks like the following:
+
+.. code-block:: ruby
+
+   require 'typhoeus'
+   require 'json'
+   require 'yaml'
+   require 'ae_easy/qa'
+
+   collection_name = page['vars']['collection_id']
+   file_path = File.expand_path('thresholds.yaml', Dir.pwd)
+   thresholds = YAML.load(File.open(file_path))
+   options = { 'thresholds' => thresholds[collection_name] }
+
+   json = JSON.parse(content)
+   qa = AeEasy::Qa::Validator.new(json, options)
+   qa.validate_external(outputs, collection_name)
