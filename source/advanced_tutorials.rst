@@ -568,7 +568,7 @@ for an external source:
       }
    }
 
-This seeder could be exanded to seeding multiple endpointpoints by loading a YAML file and iterating through like in Step 2 above. After seeding
+This seeder could be expanded to seeding multiple endpointpoints by loading a YAML file and iterating through like in Step 2 above. After seeding
 our external json endpoint we can now write a parser such as the following:
 
 .. code-block:: ruby
