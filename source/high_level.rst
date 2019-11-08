@@ -132,10 +132,10 @@ these pages using these commands:
    answersengine scraper page refetch <scraper_name> --gid <gid>   # refetch an specific page
    answersengine scraper page refetch <scraper_name> --fetch-fail  # refetch all fetch failed pages
    answersengine scraper page refetch <scraper_name> --parse-fail  # refetch all parse failed pages
-   answersengine scraper page refetch <scraper_name> --status <status>  # refetch all parse by queue
+   answersengine scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
    answersengine scraper page reparse <scraper_name> --gid <gid>   # reparse an specific page
    answersengine scraper page reparse <scraper_name> --parse-fail  # reparse all parse failed pages
-   answersengine scraper page reparse <scraper_name> --status <status>  # reparse all parse by queue
+   answersengine scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
 
 After resetting at least one page, you can resume the job:
 
@@ -196,14 +196,14 @@ Available Commands
 
    $ answersengine scraper page help
    scraper page commands:
-    answersengine scraper page add <scraper_name> <url>     # Enqueues a page to a scraper's current job
-     answersengine scraper page help [COMMAND]               # Describe subcommands or one specific subcommand
-     answersengine scraper page list <scraper_name>          # List Pages on a scraper's current job
-     answersengine scraper page log <scraper_name> <gid>     # List log entries related to a job page
-     answersengine scraper page refetch <scraper_name>       # Refetch Pages on a scraper's current job
-     answersengine scraper page reparse <scraper_name> <gid>   # Reparse Pages on a scraper's current job
-     answersengine scraper page show <scraper_name> <gid>    # Show a page in scraper's current job
-     answersengine scraper page update <scraper_name> <gid>  # Update a page in a scraper's current job
+     answersengine scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
+     answersengine scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
+     answersengine scraper page list <scraper_name>               # List Pages on a scraper's current job
+     answersengine scraper page log <scraper_name> <gid>          # List log entries related to a job page
+     answersengine scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
+     answersengine scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
+     answersengine scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
+     answersengine scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
 
 Job Outputs
 ===========
