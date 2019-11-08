@@ -129,12 +129,12 @@ these pages using these commands:
 
 .. code-block:: bash
 
-   answersengine scraper page refetch <scraper_name> --gid <gid>   # refetch an specific page
-   answersengine scraper page refetch <scraper_name> --fetch-fail  # refetch all fetch failed pages
-   answersengine scraper page refetch <scraper_name> --parse-fail  # refetch all parse failed pages
+   answersengine scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
+   answersengine scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
+   answersengine scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
    answersengine scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
-   answersengine scraper page reparse <scraper_name> --gid <gid>   # reparse an specific page
-   answersengine scraper page reparse <scraper_name> --parse-fail  # reparse all parse failed pages
+   answersengine scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
+   answersengine scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
    answersengine scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
 
 After resetting at least one page, you can resume the job:
