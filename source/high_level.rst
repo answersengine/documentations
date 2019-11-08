@@ -132,8 +132,10 @@ these pages using these commands:
    answersengine scraper page refetch <scraper_name> --gid <gid>   # refetch an specific page
    answersengine scraper page refetch <scraper_name> --fetch-fail  # refetch all fetch failed pages
    answersengine scraper page refetch <scraper_name> --parse-fail  # refetch all parse failed pages
+   answersengine scraper page refetch <scraper_name> --status <status>  # refetch all parse by queue
    answersengine scraper page reparse <scraper_name> --gid <gid>   # reparse an specific page
    answersengine scraper page reparse <scraper_name> --parse-fail  # reparse all parse failed pages
+   answersengine scraper page reparse <scraper_name> --status <status>  # reparse all parse by queue
 
 After resetting at least one page, you can resume the job:
 
@@ -199,7 +201,7 @@ Available Commands
      answersengine scraper page list <scraper_name>          # List Pages on a scraper's current job
      answersengine scraper page log <scraper_name> <gid>     # List log entries related to a job page
      answersengine scraper page refetch <scraper_name>       # Refetch Pages on a scraper's current job
-     answersengine scraper page reset <scraper_name> <gid>   # Reset fetching and parsing of a page in a scraper's current job
+     answersengine scraper page reparse <scraper_name> <gid>   # Reparse Pages on a scraper's current job
      answersengine scraper page show <scraper_name> <gid>    # Show a page in scraper's current job
      answersengine scraper page update <scraper_name> <gid>  # Update a page in a scraper's current job
 
